@@ -17,7 +17,7 @@
 <meta property="og:description" content="有人说：“有人说，文学的永恒主题是生与死。” 深度学习的永恒主题是什么？">
 <meta property="og:image" content="http://yuange250.github.io/2017/10/21/先来谈一谈CNN/Perceptron.bmp">
 <meta property="og:image" content="http://yuange250.github.io/2017/10/21/先来谈一谈CNN/multi-layer.bmp">
-<meta property="og:updated_time" content="2017-10-21T12:39:25.615Z">
+<meta property="og:updated_time" content="2017-10-21T12:43:31.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="先来谈一谈神经网络(Neural Network)">
 <meta name="twitter:description" content="有人说：“有人说，文学的永恒主题是生与死。” 深度学习的永恒主题是什么？">
@@ -188,12 +188,12 @@
 <h2 id="感知机-Perceptron"><a href="#感知机-Perceptron" class="headerlink" title="感知机(Perceptron)"></a>感知机(Perceptron)</h2><pre><code>感知机是神经网络的基本组成构件，也可以说最小的神经网络就是一个感知机，一般的感知机由两层神经元构成，一层输入层，一层输出层。 
 </code></pre><p><img src="/2017/10/21/先来谈一谈CNN/Perceptron.bmp" alt="&quot;感知机&quot;"><br>    两层神经元这时候最简单的一种情况就是两个输入，一个输出。此时如图所示，参数一共有三个，两个输入的权重w1 w2，以及连接神经元的阈值θ，此时通过调整这三个参数，我们可以很方便地实现一些简单的逻辑，比如与或非，我们以与为例:<br>    “与运算”的逻辑是只有当x1 = x2 = 1时，输出结果才为1，其他情况下则为0。此时我们可以设w1 = w2 = 1，θ = 2，即 y = F ( 1 * x1 + 2 * x2 - 2)此时即可以满足“与运算”所要求的条件,只有当 x1 = x2 = 1时，y的值才为1。</p>
 <pre><code>以上的过程中通过调整感知机的参数，我们完成了我们的任务目标。简单的捋一下整个过程：
-**任务目标** ： 实现“与功能”，使得神经网络完成在给定输入的情况下，得到相应的输出。
-**完成方法** ：调整神经网络中的权重和阈值这些参数，达到我们的目的。
+** 任务目标 ** ： 实现“与功能”，使得神经网络完成在给定输入的情况下，得到相应的输出。
+** 完成方法 ** ：调整神经网络中的权重和阈值这些参数，达到我们的目的。
 
-__而在现实的机器学习的过程中, 一个神经网络系统会有很多很多的参数，像上面那样由我们人工的设置和调整是不可能的。所以对于不同的任务目标，我们需要构建更为高效的神经网络结构，并实现更为高效的自动调参的算法，以使得我们的神经网络系统能够更好的完成我们被要求的任务。__
+** 而在现实的机器学习的过程中, 一个神经网络系统会有很多很多的参数，像上面那样由我们人工的设置和调整是不可能的。所以对于不同的任务目标，我们需要构建更为高效的神经网络结构，并实现更为高效的自动调参的算法，以使得我们的神经网络系统能够更好的完成我们被要求的任务。 **
 以上就是神经网络研究的研究内容。
-</code></pre><h4 id="隐含层-hidden-layer"><a href="#隐含层-hidden-layer" class="headerlink" title="隐含层(hidden layer)"></a>隐含层(hidden layer)</h4><pre><code>如果前面工作的__任务目标__换成了实现异或功能，很明显两层简单结构的感知机已经无法完成任务了，所以我们可以在输入输出层之间加一层隐含层,此时网络结构和参数权重可以采用下图策略，这就是简单的多层功能神经元。
+</code></pre><h4 id="隐含层-hidden-layer"><a href="#隐含层-hidden-layer" class="headerlink" title="隐含层(hidden layer)"></a>隐含层(hidden layer)</h4><pre><code>如果前面工作的** 任务目标 **换成了实现异或功能，很明显两层简单结构的感知机已经无法完成任务了，所以我们可以在输入输出层之间加一层隐含层,此时网络结构和参数权重可以采用下图策略，这就是简单的多层功能神经元。
 </code></pre><p><img src="/2017/10/21/先来谈一谈CNN/multi-layer.bmp" alt="&quot;多层功能神经元&quot;"></p>
 <h2 id="梯度下降-gradient-descent-以及反向传播-error-BackPropagation"><a href="#梯度下降-gradient-descent-以及反向传播-error-BackPropagation" class="headerlink" title="梯度下降(gradient descent)以及反向传播(error BackPropagation)"></a>梯度下降(gradient descent)以及反向传播(error BackPropagation)</h2><pre><code>回顾一下我们前面提到的任务目标，要知道，对于现实生活中的实际任务，即神经网络的应用场景中，几乎没有那种我们可以做到100%完美解决的任务（上帝不会让你那么简单就猜透他）。所以我们的任务目标可以转化为，对于目标任务，使用特定的网络结构，不断地调整神经网络的参数，使得神经网络输出结果与实际结果之间的误差最小。误差越小，意味着我们离完美解决任务目标就更进了一步。（默认大家都懂训练集和测试集的概念了）
 那具体用什么方法来不断调整网络参数，以达到误差最小呢？我们用反向传播和梯度下降的方法。简单来说就是，利用输出层（最后一层）的输出结果和实际结果之间的差异，反向影响前面的各层的参数，并利用梯度下降的方法，根据结果差异对每层的参数进行不断地调整，以使得调整后的网络，能够降低输出结果与实际结果之间的误差。
