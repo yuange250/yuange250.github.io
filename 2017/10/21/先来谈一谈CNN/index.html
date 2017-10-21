@@ -17,7 +17,7 @@
 <meta property="og:description" content="有人说：“有人说，文学的永恒主题是生与死。” 深度学习的永恒主题是什么？">
 <meta property="og:image" content="http://yuange250.github.io/2017/10/21/先来谈一谈CNN/Perceptron.bmp">
 <meta property="og:image" content="http://yuange250.github.io/2017/10/21/先来谈一谈CNN/multi-layer.bmp">
-<meta property="og:updated_time" content="2017-10-21T12:33:42.267Z">
+<meta property="og:updated_time" content="2017-10-21T12:34:11.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="先来谈一谈神经网络(Neural Network)">
 <meta name="twitter:description" content="有人说：“有人说，文学的永恒主题是生与死。” 深度学习的永恒主题是什么？">
@@ -191,9 +191,9 @@
 **任务目标** ： 实现“与功能”，使得神经网络完成在给定输入的情况下，得到相应的输出。
 **完成方法** ：调整神经网络中的权重和阈值这些参数，达到我们的目的。
 
-** 而在现实的机器学习的过程中, 一个神经网络系统会有很多很多的参数，像上面那样由我们人工的设置和调整是不可能的。所以对于不同的任务目标，我们需要构建更为高效的神经网络结构，并实现更为高效的自动调参的算法，以使得我们的神经网络系统能够更好的完成我们被要求的任务。 **
+**而在现实的机器学习的过程中, 一个神经网络系统会有很多很多的参数，像上面那样由我们人工的设置和调整是不可能的。所以对于不同的任务目标，我们需要构建更为高效的神经网络结构，并实现更为高效的自动调参的算法，以使得我们的神经网络系统能够更好的完成我们被要求的任务。**
 以上就是神经网络研究的研究内容。
-</code></pre><h4 id="隐含层-hidden-layer"><a href="#隐含层-hidden-layer" class="headerlink" title="隐含层(hidden layer)"></a>隐含层(hidden layer)</h4><pre><code>如果前面工作的** 任务目标 ** 换成了实现异或功能，很明显两层简单结构的感知机已经无法完成任务了，所以我们可以在输入输出层之间加一层隐含层,此时网络结构和参数权重可以采用下图策略，这就是简单的多层功能神经元。
+</code></pre><h4 id="隐含层-hidden-layer"><a href="#隐含层-hidden-layer" class="headerlink" title="隐含层(hidden layer)"></a>隐含层(hidden layer)</h4><pre><code>如果前面工作的**任务目标**换成了实现异或功能，很明显两层简单结构的感知机已经无法完成任务了，所以我们可以在输入输出层之间加一层隐含层,此时网络结构和参数权重可以采用下图策略，这就是简单的多层功能神经元。
 </code></pre><p><img src="/2017/10/21/先来谈一谈CNN/multi-layer.bmp" alt="&quot;多层功能神经元&quot;"></p>
 <h2 id="梯度下降-gradient-descent-以及反向传播-error-BackPropagation"><a href="#梯度下降-gradient-descent-以及反向传播-error-BackPropagation" class="headerlink" title="梯度下降(gradient descent)以及反向传播(error BackPropagation)"></a>梯度下降(gradient descent)以及反向传播(error BackPropagation)</h2><pre><code>回顾一下我们前面提到的任务目标，要知道，对于现实生活中的实际任务，即神经网络的应用场景中，几乎没有那种我们可以做到100%完美解决的任务（上帝不会让你那么简单就猜透他）。所以我们的任务目标可以转化为，对于目标任务，使用特定的网络结构，不断地调整神经网络的参数，使得神经网络输出结果与实际结果之间的误差最小。误差越小，意味着我们离完美解决任务目标就更进了一步。（默认大家都懂训练集和测试集的概念了）
 那具体用什么方法来不断调整网络参数，以达到误差最小呢？我们用反向传播和梯度下降的方法。简单来说就是，利用输出层（最后一层）的输出结果和实际结果之间的差异，反向影响前面的各层的参数，并利用梯度下降的方法，根据结果差异对每层的参数进行不断地调整，以使得调整后的网络，能够降低输出结果与实际结果之间的误差。
