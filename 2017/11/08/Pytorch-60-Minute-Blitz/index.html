@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yuange250.github.io">
-  <title>再来看看CNN(Convolutional Neural Network,CNN) | De Chen&#39;s blog</title>
+  <title>Pytorch 60 Minute Blitz Translation | De Chen&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一只有梦想的可达鸭。">
+  <meta name="description" content="入门资料还是官网靠谱一点。">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="再来看看CNN(Convolutional Neural Network,CNN)">
-<meta property="og:url" content="http://yuange250.github.io/2017/10/25/再来看看CNN-Convolutional-Neural-Network-CNN/index.html">
+<meta property="og:title" content="Pytorch 60 Minute Blitz Translation">
+<meta property="og:url" content="http://yuange250.github.io/2017/11/08/Pytorch-60-Minute-Blitz/index.html">
 <meta property="og:site_name" content="De Chen&#39;s blog">
-<meta property="og:description" content="一只有梦想的可达鸭。">
-<meta property="og:updated_time" content="2017-10-25T02:13:51.449Z">
+<meta property="og:description" content="入门资料还是官网靠谱一点。">
+<meta property="og:updated_time" content="2017-11-17T07:22:20.813Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再来看看CNN(Convolutional Neural Network,CNN)">
-<meta name="twitter:description" content="一只有梦想的可达鸭。">
+<meta name="twitter:title" content="Pytorch 60 Minute Blitz Translation">
+<meta name="twitter:description" content="入门资料还是官网靠谱一点。">
   
     <link rel="alternative" href="/atom.xml" title="De Chen&#39;s blog" type="application/atom+xml">
   
@@ -158,27 +158,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-再来看看CNN-Convolutional-Neural-Network-CNN" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Pytorch-60-Minute-Blitz" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      再来看看CNN(Convolutional Neural Network,CNN)
+      Pytorch 60 Minute Blitz Translation
     </h1>
   
 
         
-        <a href="/2017/10/25/再来看看CNN-Convolutional-Neural-Network-CNN/" class="archive-article-date">
-  	<time datetime="2017-10-25T02:13:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-25</time>
+        <a href="/2017/11/08/Pytorch-60-Minute-Blitz/" class="archive-article-date">
+  	<time datetime="2017-11-08T08:08:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <pre><code>入门资料还是官网靠谱一点。
+</code></pre><a id="more"></a>
+<p> tensorflow太慢，caffe太垃圾，所以决定投入到pytorch的怀抱，入门资料直接看官网教程，<em><a href="http://pytorch.org/tutorials/" target="_blank" rel="external">http://pytorch.org/tutorials/</a></em>。</p>
+<h2 id="什么是Pytorch"><a href="#什么是Pytorch" class="headerlink" title="什么是Pytorch"></a>什么是Pytorch</h2><p> Pytorch 是一种基于Python的科学计算包，主要有两个主要目的：</p>
+<ul>
+<li>替代numpy来发挥GPU在计算中的强大功能</li>
+<li><p>作为一种深度学习研究平台，提高开发人员在开发深度学习代码的速度的同时，赋予其极大的代码自由度</p>
+<h2 id="Tensors基本单元"><a href="#Tensors基本单元" class="headerlink" title="Tensors基本单元"></a>Tensors基本单元</h2><p>这就跟tensorflow有点像了，顾名思义，tensorflow的基本单元就是tensor, 也就是张量[4], 具体解释张量比较复杂，就暂时记住向量是一维张量，矩阵是二维张量，立方体方阵是三维张量就好。<br>下面举一个使用Pytorch创建一个二维张量即矩阵的例子：</p>
+<figure class="highlight plain"><figcaption><span>torch # 引入pytorch, 必需操作</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x = torch.Tensor(5, 3)</div><div class="line">print(x)</div></pre></td></tr></table></figure>
+<p>此时会输出一个没有初始化的5x3矩阵：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">0.0000e+00  0.0000e+00  2.1019e-44</div><div class="line">0.0000e+00  0.0000e+00  0.0000e+00</div><div class="line">6.1501e+19  1.3563e-19  0.0000e+00</div><div class="line">0.0000e+00  2.1019e-44  0.0000e+00</div><div class="line">0.0000e+00  0.0000e+00  1.2102e+25</div></pre></td></tr></table></figure>
+<p>其他tensor的基本操作如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">y = torch.rand(5, 3)  #随机生成5x3矩阵</div><div class="line"></div><div class="line">torch.add(x, y) #张量加法</div><div class="line">result = torch.Tensor(5, 3)</div><div class="line">torch.add(x, y, out=result) #方法中可以加入结果变量</div><div class="line">y.add_(x) #另一种加法的形式</div><div class="line">y[:,1] # 矩阵第几列</div><div class="line"></div><div class="line"># 函数后面跟_的一般都会改变张量的值，如copy_ t_</div></pre></td></tr></table></figure>
+<h3 id="numpy与pytorch数据结构的转换"><a href="#numpy与pytorch数据结构的转换" class="headerlink" title="numpy与pytorch数据结构的转换"></a>numpy与pytorch数据结构的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">x = torch.ones(5)  #创建一个一维张量，值都是1</div><div class="line">y = x.numpy() # 一维张量转numpy的数组，此时y只是x的浅拷贝</div><div class="line">x.add_(1) #此次操作后，y的值也会改变</div><div class="line">z = torch.from_numpy(y)  #再转为一维张量，此时也只是浅拷贝</div><div class="line">``` </div><div class="line">### cuda数据</div><div class="line">使用.cuda函数转换为cuda数据格式：</div></pre></td></tr></table></figure>
+<p>if torch.cuda.is_available():<br> x = x.cuda()<br> y = y.cuda()<br> x + y</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">## Autograd 自动求导包</div><div class="line"> 自动求导包可以说是整个Pytorch的核心，看神经网络之前我们先来了解一下autograd这个包。</div><div class="line"> 自动求导包Autograd定义了所有在tensor上的求导操作。这个包的各种规则的结果都是运行时确定，也就意味着你的反向传播算法的流程和结果是在你的代码运行的时候被确定的，每一次迭代的结果都有可能不同。</div><div class="line">### Variable类</div><div class="line"> autograd.Variable类是Autograd包的核心，当然了，只有变量才能求梯度，标量就没有梯度这个说法。这个类主要用来封装Tensor,并且几乎支持所有对Tensor的操作。每当结束对一个变量的运算的时候，调用.backward()函数，就可以自动计算出变量在运算过程中所发生的梯度变化。</div><div class="line"> Variable类的内部数据结构如下：</div><div class="line"> 其中.data是tensor的数据值，.grad是运算过程中的梯度变化。Variable类还有一个比较特殊的内部成员是creator或者grad_fn,这个主要用来记录产生这个变量的函数，变量一般都是由函数的运算值，比如c=a+b, 此时对应的函数就是f(a,b) = a + b，函数与变量之间的相互组合和迭代构成了我们整个运算的过程（由用户自己创建的变量的grad_fn是None）。</div><div class="line"> 如果你想要计算梯度的话，可以执行变量中的.backward()方法。如果变量是一个标量（</div><div class="line"> 单元素数据），那你就不用担心backward()函数的参数，如果有更多的元素的话，你需要指定一个和tensor的形状相匹配的grad_output参数。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>x = Variable(torch.ones(2, 2), requires_grad=True)<br>print(x)<br>y = Variable(x.data + 2, requires_grad=True )</p>
+<p>z = Variable(y.data <em> y.data </em> 3, requires_grad=True )  # z = 3 ( x + 2 )</p>
+<p>out = z.mean() # out = 1/4 Σ 3 (xi + 2)^2</p>
+<p>out.backward() # 此时由out对每个xi求导，即 out = 3/2 ( xi + 2)</p>
+<h1 id="当xi-1-是-梯度为-4-5"><a href="#当xi-1-是-梯度为-4-5" class="headerlink" title="当xi = 1 是 梯度为 4.5"></a>当xi = 1 是 梯度为 4.5</h1><p>print(x.grad)</p>
+<p>#output:</p>
+<p>#4.5000 4.5000</p>
+<p>#4.5000 4.5000<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">上述情况out是一个标量，所以不需要指定求导类型，但如果要对矢量求导，需要指定求导梯度的形式：</div></pre></td></tr></table></figure></p>
+<p>x = torch.randn(3)<br>print(x)<br>x = Variable(x, requires_grad=True)</p>
+<p>y = x <em> 2<br>while y.data.norm() &lt; 1000:<br>    y = y </em> 2</p>
+<p>print(y)</p>
+<p>gradients = torch.FloatTensor([0.1, 1.0, 0.0001])<br>y.backward(gradients)</p>
+<p>print(x.grad)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">##神经网络</div><div class="line"> 神经网络可以使用torch.nn包来构建。</div><div class="line"> 看完前文，应该对自动求导autograd包已经有了一定的了解，神经网络的模型构建和梯度下降的计算都依赖于Autograd包。nn.Module包含了各种层以及一个forward方法用于返回output值。</div><div class="line"></div><div class="line"> 举一个数字图像识别神经网络的例子：</div><div class="line"></div><div class="line"> 这是一个简单的前馈神经网络。这个网络的主要工作流程就是，接受输入，然后将输入传递给之后的各层，最后将结果输出。</div><div class="line"> 一个典型的神经网络的工作流程如下：</div><div class="line"> * 定义一个具有学习参数或者权重的神经网络。</div><div class="line"> * 根据数据库的输入进行多次迭代。</div><div class="line"> * 将输入不断前馈至神经网络的各层。</div><div class="line"> * 计算损失（输出与正确结果之间的误差）</div><div class="line"> * 由损失计算出神经网络的各个参数的下降梯度并将之反馈</div><div class="line"> * 更新神经网络的权重，典型的更新规则如下：</div><div class="line"> ``` weight = weight - learning_rate * gradient</div></pre></td></tr></table></figure></p>
+<p>###定义神经网络<br> 简单了解卷积神经网络[5][6]卷积，池化(降维)，relu激活[7]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import torch</div><div class="line">from torch.autograd import Variable</div><div class="line">import torch.nn as nn</div><div class="line">import torch.nn.functional as F</div><div class="line"></div><div class="line"></div><div class="line">class Net(nn.Module):</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        super(Net, self).__init__()</div><div class="line">        # 1 input image channel, 6 output channels, 5x5 square convolution</div><div class="line">        # kernel</div><div class="line">        self.conv1 = nn.Conv2d(1, 6, 5)</div><div class="line">        self.conv2 = nn.Conv2d(6, 16, 5)</div><div class="line">        # an affine operation: y = Wx + b</div><div class="line">        self.fc1 = nn.Linear(16 * 5 * 5, 120)</div><div class="line">        self.fc2 = nn.Linear(120, 84)</div><div class="line">        self.fc3 = nn.Linear(84, 10)</div><div class="line"></div><div class="line">    def forward(self, x):</div><div class="line">        # Max pooling over a (2, 2) window</div><div class="line">        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))</div><div class="line">        # If the size is a square you can only specify a single number</div><div class="line">        x = F.max_pool2d(F.relu(self.conv2(x)), 2)</div><div class="line">        x = x.view(-1, self.num_flat_features(x))</div><div class="line">        x = F.relu(self.fc1(x))  # 更牛的激活函数 仿生</div><div class="line">        x = F.relu(self.fc2(x))</div><div class="line">        x = self.fc3(x)</div><div class="line">        return x</div><div class="line"></div><div class="line">    def num_flat_features(self, x):</div><div class="line">        size = x.size()[1:]  # all dimensions except the batch dimension</div><div class="line">        num_features = 1</div><div class="line">        for s in size:</div><div class="line">            num_features *= s</div><div class="line">        return num_features</div><div class="line"></div><div class="line"></div><div class="line">net = Net()</div><div class="line">print(net)</div></pre></td></tr></table></figure></p>
+<p> 如上，现在我们通过编写forward函数已经定义了一个具有前馈功能的神经网络，而反向传播的梯度计算的过程可以通过autograd包来实现。在实现forward函数的时候，你可以使用所有对Tensor的操作。<br> 如果要查看神经网络的参数，可以通过net.parameters()函数来查看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">params = list(net.parameters())</div><div class="line">print(len(params))</div><div class="line">print(params[0].size())</div></pre></td></tr></table></figure></p>
+<p>前馈网络的输入是一个Variable变量，输出当然也是。 <strong> Note </strong>: 这个网络leNet的输入应该是32x32，如果要在MNIST数据集上跑的话，需要改一下数据大小。<br>跑一个随机的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">input = Variable(torch.randn(1, 1, 32, 32))</div><div class="line">net = Net()</div><div class="line">out = net(input)</div><div class="line">print(out)</div><div class="line"></div><div class="line">output:</div><div class="line">Variable containing:</div><div class="line">-0.0256 -0.0619  0.0642  0.1049  0.0128 -0.1586  0.0242 -0.0318  0.0535  0.0041</div></pre></td></tr></table></figure></p>
+<p>可以使用net的zero_grad()函数将所有参数的梯度缓冲区归零，然后使用backward()函数进行反向传播。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">net.zero_grad()</div><div class="line">out.backward(torch.randn(1, 10))</div></pre></td></tr></table></figure></p>
+<p><strong> Note </strong>:<br>torch.nn只支持小batch数据，而并不是单个样本，比如，nn.Conv2d是接受一个四维的Tensor，TensornSamples x nChannels x Height x Width。<br>如果拿到样本维度不够，用input..unsqueeze(0)加一个假维度。</p>
+<p>###复习</p>
+<ul>
+<li>Torch.tensor 一个多维数列，张量</li>
+<li>autograd.Variable 包装一个张量，记录张量之上的各种操作，在张量的各种基础上又封装了梯度的各种运算，比如backward()</li>
+<li>nn.Module 神经网络模型，对参数进行了便捷的封装，能够帮助使用者方便地将参数运送至GPU。</li>
+<li>nn.Parameter 一种Variable，一个Variable一旦被赋予给一个Module，就会自动被注册为此Module的参数</li>
+<li>autograd.Function 实现了自动求导的前馈和后馈的definations（不好翻译，自己体会）。每一个Variable操作，都会创建至少一个function节点，这个节点记录了Variable的操作历史。<br>目前为止我们掌握了：</li>
+<li>定义一个神经网络</li>
+<li>进行前馈操作<br>还剩：</li>
+<li>计算损失Loss</li>
+<li>更新网络的权重<br>##损失函数（Loss Function）<br>损失函数的输入时计算结果与实际结果这对变量，然后输出一个结果用于评价计算结果与实际结果之间的差距。<br>nn包中有很多种损失函数，比如MSE（Mean squared error）均方误差函数，这个就简单的计算了实际结果与计算结果之间的均方误差。<br>比如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">input = Variable(torch.randn(1, 1, 32, 32))</div><div class="line">net = Net()</div><div class="line">output = net(input)</div><div class="line">target = Variable(torch.arange(1, 11))  # a dummy target, for example</div><div class="line">criterion = nn.MSELoss()</div><div class="line">loss = criterion(output, target)</div><div class="line">print(loss)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在，如果你从Loss往后看，使用每个节点的.grad_fn属性一层一层递归向前走，一会看到一个这样的计算流程图：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">input -&gt; conv2d -&gt; relu -&gt; maxpool2d -&gt; conv2d -&gt; relu -&gt; maxpool2d</div><div class="line">      -&gt; view -&gt; linear -&gt; relu -&gt; linear -&gt; relu -&gt; linear</div><div class="line">      -&gt; MSELoss</div><div class="line">      -&gt; loss</div></pre></td></tr></table></figure></p>
+<p>所以，当我们调用backward()函数的时候。整个网格都会根据(w.r.t)损失来进行求导，图中各变量的.grad变量也会不断累积梯度。<br>为了更方便解释，可以做个小实验：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">print(loss.grad_fn)  # MSELoss</div><div class="line">print(loss.grad_fn.next_functions[0][0])  # Linear</div><div class="line">print(loss.grad_fn.next_functions[0][0].next_functions[0][0])  # ReLU</div><div class="line"></div><div class="line">output:</div><div class="line">&lt;torch.nn._functions.thnn.auto.MSELoss object at 0x000001D8950E0CE0&gt;</div><div class="line">&lt;torch.autograd.function.LinearBackward object at 0x000001D8950E0BE8&gt;</div><div class="line">&lt;torch.nn._functions.thnn.auto.Threshold object at 0x000001D8950E0AF0&gt;</div></pre></td></tr></table></figure></p>
+<p>##反向传播<br>可以通过loss.backward()函数将得到的误差结果反向传播。不过每次反向传播之前都需要先将梯度清除，不然梯度会在之前的梯度值上累加。<br>现在做个实验，看一下loss函数对于conv1层的影响情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">net.zero_grad()     # zeroes the gradient buffers of all parameters</div><div class="line"></div><div class="line">print(&apos;conv1.bias.grad before backward&apos;)</div><div class="line">print(net.conv1.bias.grad)</div><div class="line"></div><div class="line">loss.backward()</div><div class="line"></div><div class="line">print(&apos;conv1.bias.grad after backward&apos;)</div><div class="line">print(net.conv1.bias.grad)</div><div class="line">output:</div><div class="line">conv1.bias.grad before backward</div><div class="line">None</div><div class="line">conv1.bias.grad after backward</div><div class="line">Variable containing:</div><div class="line"> 0.0127</div><div class="line"> 0.0510</div><div class="line"> 0.0744</div><div class="line">-0.0247</div><div class="line"> 0.1333</div><div class="line"> 0.0388</div><div class="line">[torch.FloatTensor of size 6]</div></pre></td></tr></table></figure></p>
+<p>##更新权重<br>梯度下降：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">weight = weight - learning_rate * gradient</div></pre></td></tr></table></figure></p>
+<p>python编程实现很简单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">learning_rate = 0.01</div><div class="line">for f in net.parameters():</div><div class="line">    f.data.sub_(f.grad.data * learning_rate)</div></pre></td></tr></table></figure></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]<a href="http://pytorch.org/tutorials/" target="_blank" rel="external">http://pytorch.org/tutorials/</a><br>[2]<a href="https://www.zhihu.com/question/55720139" target="_blank" rel="external">https://www.zhihu.com/question/55720139</a><br>[3]<a href="https://zhuanlan.zhihu.com/p/25572330" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25572330</a><br>[4]<a href="https://www.zhihu.com/question/20695804" target="_blank" rel="external">https://www.zhihu.com/question/20695804</a><br>[5]<a href="https://www.zhihu.com/question/39022858" target="_blank" rel="external">https://www.zhihu.com/question/39022858</a><br>[6]<a href="http://scs.ryerson.ca/" target="_blank" rel="external">http://scs.ryerson.ca/</a><br>[7]<a href="http://m.blog.csdn.net/dajiabudongdao/article/details/77263608" target="_blank" rel="external">http://m.blog.csdn.net/dajiabudongdao/article/details/77263608</a></p>
+
       
 
       
@@ -273,7 +328,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yuange250.github.io/2017/10/25/再来看看CNN-Convolutional-Neural-Network-CNN/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yuange250.github.io/2017/11/08/Pytorch-60-Minute-Blitz/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -287,18 +342,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/11/08/Pytorch-60-Minute-Blitz/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Pytorch 60 Minute Blitz Translation
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/21/先来谈一谈神经网络/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">先来谈一谈神经网络(Neural Network)</div>
+    <a href="/2017/10/25/再来看看CNN-Convolutional-Neural-Network-CNN/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">再来看看CNN(Convolutional Neural Network,CNN)</div>
       <i class="icon-circle-right"></i>
     </a>
   
