@@ -16,8 +16,10 @@
 <meta property="og:description" content="《鱿鱼游戏3》在6月27日上映了，随着李政宰老师的杀青，这场“真人版蛋仔派对”总算是有了一个阶段性的结束。后面第四季不管是转战美东开展破产红脖超级乱斗，还是转战美西上演小黑小墨互打手枪，估计都不会有啥浪花了。我之所以下这样的判断是因为，鱿鱼游戏爆火的关键点之一是其巧妙的关卡游戏设计，而有趣的关卡游戏设计是很难的。看完第三季一个很大的感触就是，编剧已经很难设计出更好、更吸引人的游戏了。因为不管是捉迷">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://yuange250.github.io/images/AandB.png">
+<meta property="og:image" content="https://yuange250.github.io/images/zhuomicang.jpg">
+<meta property="og:image" content="https://yuange250.github.io/images/dangqiuqian.jpg">
 <meta property="article:published_time" content="2025-06-29T14:52:54.000Z">
-<meta property="article:modified_time" content="2025-08-09T17:16:21.550Z">
+<meta property="article:modified_time" content="2025-11-16T23:24:05.092Z">
 <meta property="article:author" content="yuange250">
 <meta property="article:tag" content="闲聊">
 <meta name="twitter:card" content="summary">
@@ -234,21 +236,198 @@
 <li>小A的最优策略是，以(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)的概率出剪刀石头布。</li>
 <li>小B的最优策略也是，以(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)的概率出剪刀石头布。</li>
 </ul>
-<p>因此两人便形成了纳什均衡，而这种基于一定策略组合而非单一策略的情况下产生的均衡点，便是<strong>混合策略纳什均衡</strong>。而此时，这种有明确的纳什均衡点的游戏便不再具有趣味性，因为最优策略已经在数学层面上被定义好了，玩家只需要遵循即可。</p>
+<p>因此两人便形成了纳什均衡，而这种基于一定策略组合而非单一策略的情况下产生的均衡点，便是<strong>混合策略纳什均衡</strong>。但不管是哪一种纳什均衡，这种有明确的纳什均衡点的游戏便不再具有趣味性，因为最优策略已经在数学层面上被定义好了，玩家只需要遵循即可。</p>
 <h3 id="重新看下鱿鱼游戏"><a href="#重新看下鱿鱼游戏" class="headerlink" title="重新看下鱿鱼游戏"></a>重新看下鱿鱼游戏</h3><p>让我们用纳什均衡的视角重新看一下鱿鱼游戏3中的各个游戏，捉迷藏、荡秋千与推推乐。</p>
-<h4 id="捉迷藏"><a href="#捉迷藏" class="headerlink" title="捉迷藏"></a>捉迷藏</h4><p>我们需要分别分析A组和B组的策略，以及它们之间的互动。</p>
-<p>A组的策略：<br>每个A组玩家必须在规定时间内至少杀死一名B组玩家。<br>可以追杀B组玩家，但B组可以反杀。<br>A组之间不能互相残杀。</p>
-<p>B组的策略：<br>必须规定时间内找到迷宫出口。<br>可以躲避A组。<br>可以反杀A组。</p>
-<ol start="4">
-<li>寻找纳什均衡点<br>为了找到纳什均衡，我们需要考虑是否存在一组策略，使得任何玩家都无法通过单方面改变策略而获得更好的结果。<br>可能的均衡策略：<br>A组策略：<br>每个A组玩家选择一个B组玩家作为目标，并追杀。<br>如果B组玩家反杀，A组玩家可能会选择其他目标。<br>B组策略：<br>B组玩家可以选择躲避A组，同时寻找出口。<br>或者B组玩家可以合作，集中反杀A组玩家。<br>均衡分析：<br>B组玩家的选择：<br>如果B组玩家选择合作反杀A组，可能会减少A组玩家数量，从而降低A组的击杀成功率。<br>但反杀A组需要消耗时间和资源，可能影响寻找出口的进度。<br>A组玩家的选择：<br>如果A组玩家分散追杀B组，可能会增加击杀率。<br>但如果B组集中反杀，A组玩家可能会避免单独行动。<br>关键点：<br>所有A组玩家必须至少杀死一名B组玩家才能通关。<br>所有B组玩家必须找到出口才能通关。<br>如果A组玩家未能击杀B组玩家，则被淘汰。<br>如果B组玩家未能找到出口，则被淘汰（无论是否被杀）。<br>可能的均衡：<br>A组玩家：每个A组玩家选择一个B组玩家作为目标，并确保能够击杀至少一个B组玩家。为了避免被反杀，A组玩家可能会选择分散追杀不同的B组玩家。<br>B组玩家：为了最大化自己的生存概率，B组玩家可能会选择分散逃跑，避免被A组集中击杀。同时，B组玩家可能会尝试反杀A组玩家以减少A组数量，但这样会分散寻找出口的注意力。<br>纳什均衡的存在：<br>如果A组玩家和B组玩家都采取分散策略（A组分散追杀，B组分散逃跑和寻找出口），那么：<br>对于A组玩家：如果其他A组玩家也分散追杀，自己无法通过改变策略（如集中追杀）获得更好的结果，因为B组玩家已经分散。<br>对于B组玩家：如果其他B组玩家也分散逃跑，自己无法通过改变策略（如集中反杀）获得更好的结果，因为A组玩家已经分散。<br>这种分散策略下，任何一方都无法通过单方面改变策略而获得更好的结果。因此，这是一个纳什均衡。</li>
-<li>验证均衡的稳定性<br>让我们验证这个均衡是否稳定：<br>A组玩家：<br>如果某个A组玩家试图集中追杀多个B组玩家，可能会因为B组玩家的分散而无法有效击杀，且可能被反杀。<br>因此，分散追杀是最优策略。<br>B组玩家：<br>如果某个B组玩家试图集中反杀A组玩家，可能会减少A组数量，但会牺牲寻找出口的时间，可能导致自己被淘汰。<br>因此，分散逃跑和寻找出口是最优策略。</li>
-<li>其他可能的均衡<br>另一种可能的均衡是：<br>A组玩家：所有A组玩家集中追杀一个B组玩家，确保击杀。<br>B组玩家：所有B组玩家集中反杀A组玩家，减少A组数量。<br>然而，这种策略对于A组玩家来说风险较高，因为集中追杀一个B组玩家可能无法保证每个A组玩家都能击杀一个B组玩家（因为只有一个B组玩家被击杀）。因此，这种策略不是纳什均衡。</li>
-<li>结论<br>最合理的纳什均衡是：<br>A组玩家：每个A组玩家独立选择一个B组玩家作为目标，分散追杀。<br>B组玩家：每个B组玩家独立选择逃跑路线，寻找出口，尽量避免被追杀。<br>在这种策略下，任何一方都无法通过单方面改变策略而获得更好的结果。</li>
-<li>数学模型（简要）<br>为了更形式化，可以构建以下模型：<br>设A组有n个玩家，B组有m个玩家。<br>A组玩家i的策略是选择一个B组玩家j进行追杀。<br>B组玩家j的策略是选择逃跑和寻找出口的路径。<br>纳什均衡的条件是：<br>对于每个A组玩家i，给定其他A组玩家的追杀策略和B组玩家的逃跑策略，选择追杀某个B组玩家是最优的。<br>对于每个B组玩家j，给定其他B组玩家的逃跑策略和A组玩家的追杀策略，选择逃跑和寻找出口的路径是最优的。</li>
-<li>实际限制<br>在实际中，迷宫的复杂性、玩家的能力差异、信息不对称等因素可能影响均衡的实现。但从理论上看，分散策略是一个稳定的纳什均衡。</li>
-<li>最终答案<br>是的，这个游戏存在纳什均衡点。<br>纳什均衡策略如下：<br>A组玩家：每个A组玩家独立选择一个B组玩家作为目标，分散追杀，确保自己能够击杀至少一个B组玩家。<br>B组玩家：每个B组玩家独立选择逃跑路线，专注于寻找迷宫出口，避免被A组玩家追杀。<br>在这种策略组合下，任何单个玩家都无法通过单方面改变自己的策略而获得更好的结果。</li>
+<h4 id="捉迷藏"><a href="#捉迷藏" class="headerlink" title="捉迷藏"></a>捉迷藏</h4><p><img src="/images/zhuomicang.jpg" alt="mnist"></p>
+<p>下面我们让Kimi分析下这个游戏是否存在纳什均衡点。</p>
+<h5 id="游戏规则概述"><a href="#游戏规则概述" class="headerlink" title="游戏规则概述"></a>游戏规则概述</h5><p>所有游戏参与者会被分成A&#x2F;B两组，</p>
+<ul>
+<li><strong>A组目标</strong>：在规定时间内至少杀死一名B组玩家。</li>
+<li><strong>B组目标</strong>：在规定时间内找到迷宫出口。</li>
+<li><strong>A组限制</strong>：不能互相残杀。</li>
+<li><strong>B组限制</strong>：无明确限制，可以躲避或反杀A组。</li>
+</ul>
+<h5 id="A组策略分析"><a href="#A组策略分析" class="headerlink" title="A组策略分析"></a>A组策略分析</h5><ol>
+<li><strong>追杀B组玩家</strong><br>A组玩家必须击杀至少一个B组玩家才能通关。</li>
+<li><strong>反杀风险</strong><br>B组玩家可以反杀A组，因此A组需谨慎选择目标。</li>
+<li><strong>分散追杀</strong><br>A组玩家之间不能互相残杀，因此分散追杀不同B组玩家是合理选择。</li>
 </ol>
-<h3 id="再看下优秀的游戏"><a href="#再看下优秀的游戏" class="headerlink" title="再看下优秀的游戏"></a>再看下优秀的游戏</h3>
+<h5 id="B组策略分析"><a href="#B组策略分析" class="headerlink" title="B组策略分析"></a>B组策略分析</h5><ol>
+<li><strong>寻找出口</strong><br>B组玩家必须找到迷宫出口才能通关。</li>
+<li><strong>躲避A组</strong><br>B组玩家可以选择躲避A组，避免被击杀。</li>
+<li><strong>反杀A组</strong><br>B组玩家可以反杀A组，但会消耗时间和资源，影响寻找出口。</li>
+</ol>
+<h5 id="纳什均衡分析"><a href="#纳什均衡分析" class="headerlink" title="纳什均衡分析"></a>纳什均衡分析</h5><ol>
+<li><p><strong>A组均衡策略</strong>  </p>
+<ul>
+<li><strong>分散追杀</strong>：每个A组玩家独立选择一个B组玩家作为目标，避免集中追杀导致部分A组玩家无法完成击杀任务。  </li>
+<li><strong>避免反杀</strong>：分散追杀降低被B组集中反杀的风险。</li>
+</ul>
+</li>
+<li><p><strong>B组均衡策略</strong>  </p>
+<ul>
+<li><strong>分散逃跑</strong>：每个B组玩家独立选择逃跑路线，避免被A组集中击杀。  </li>
+<li><strong>专注寻找出口</strong>：分散逃跑的同时，专注于寻找迷宫出口，避免反杀A组消耗过多时间。</li>
+</ul>
+</li>
+<li><p><strong>均衡稳定性验证</strong>  </p>
+<ul>
+<li><strong>A组</strong>：集中追杀多个B组玩家可能因B组分散而无法有效击杀，且可能被反杀，因此分散追杀是最优策略。  </li>
+<li><strong>B组</strong>：集中反杀A组会减少寻找出口的时间，可能导致被淘汰，因此分散逃跑和寻找出口是最优策略。</li>
+</ul>
+</li>
+</ol>
+<h5 id="其他可能的均衡"><a href="#其他可能的均衡" class="headerlink" title="其他可能的均衡"></a>其他可能的均衡</h5><ul>
+<li><strong>集中追杀与反杀</strong>  <ul>
+<li>A组集中追杀一个B组玩家，B组集中反杀A组。  </li>
+<li>这种策略对A组风险高，因为无法保证每个A组玩家都能击杀一个B组玩家，因此<strong>不是纳什均衡</strong>。</li>
+</ul>
+</li>
+</ul>
+<h5 id="数学模型简要"><a href="#数学模型简要" class="headerlink" title="数学模型简要"></a>数学模型简要</h5><ul>
+<li><p><strong>变量定义</strong>  </p>
+<ul>
+<li>A组玩家数量：<code>n</code>  </li>
+<li>B组玩家数量：<code>m</code></li>
+</ul>
+</li>
+<li><p><strong>策略描述</strong>  </p>
+<ul>
+<li>A组玩家<code>i</code>的策略：选择B组玩家<code>j</code>进行追杀。  </li>
+<li>B组玩家<code>j</code>的策略：选择逃跑和寻找出口的路径。</li>
+</ul>
+</li>
+<li><p><strong>均衡条件</strong>  </p>
+<ul>
+<li>对于每个A组玩家<code>i</code>，给定其他玩家的策略，选择追杀某个B组玩家是最优的。  </li>
+<li>对于每个B组玩家<code>j</code>，给定其他玩家的策略，选择逃跑和寻找出口的路径是最优的。</li>
+</ul>
+</li>
+</ul>
+<h5 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h5><ul>
+<li>迷宫复杂性、玩家能力差异、信息不对称等因素可能影响均衡实现，但理论上分散策略是稳定的纳什均衡。</li>
+</ul>
+<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><ul>
+<li><p><strong>此游戏存在纳什均衡</strong>  </p>
+<ul>
+<li><strong>A组策略</strong>：每个A组玩家独立选择一个B组玩家作为目标，分散追杀。  </li>
+<li><strong>B组策略</strong>：每个B组玩家独立选择逃跑路线，专注于寻找迷宫出口。</li>
+</ul>
+</li>
+<li><p><strong>均衡稳定性</strong><br>任何单个玩家无法通过单方面改变策略获得更好结果。</p>
+</li>
+</ul>
+<h4 id="荡秋千"><a href="#荡秋千" class="headerlink" title="荡秋千"></a>荡秋千</h4><p><img src="/images/dangqiuqian.jpg" alt="mnist"></p>
+<p>不用说了，存在纯策略纳什均衡。每个人的最优策略就是第一个冲到秋千对面然后阻止其他人过去，就是剧中第二位过秋千的大叔的行动，因此纳什均衡点会是所有人都去抢第一个上秋千并阻止别人比自己先上秋千，从而导致没人能站上秋千站台。</p>
+<h4 id="推推乐"><a href="#推推乐" class="headerlink" title="推推乐"></a>推推乐</h4><p>我们继续让Kimi分析下推人游戏是否有纳什均衡点：</p>
+<h5 id="游戏规则还原"><a href="#游戏规则还原" class="headerlink" title="游戏规则还原"></a>游戏规则还原</h5><table>
+<thead>
+<tr>
+<th>要素</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>场景</td>
+<td>3座悬空的狭窄平台，需跳跃、推搡、合作或背叛抵达终点</td>
+</tr>
+<tr>
+<td>胜利条件</td>
+<td>倒计时归零前至少1人到达终点即可触发奖金；未到达者淘汰</td>
+</tr>
+<tr>
+<td>关键动作</td>
+<td>可抢夺武器、推人、按下“开始键”启动倒计时</td>
+</tr>
+<tr>
+<td>人数</td>
+<td>最多7人（含婴儿）</td>
+</tr>
+<tr>
+<td>信息</td>
+<td>不完全：无法预知他人是否按下开始键</td>
+</tr>
+</tbody></table>
+<h5 id="局部纳什均衡：恶人组“牺牲一人”方案"><a href="#局部纳什均衡：恶人组“牺牲一人”方案" class="headerlink" title="局部纳什均衡：恶人组“牺牲一人”方案"></a>局部纳什均衡：恶人组“牺牲一人”方案</h5><table>
+<thead>
+<tr>
+<th>策略组合</th>
+<th>收益结构</th>
+<th>单方偏离后果</th>
+<th>均衡判定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>恶人组</strong><br>提出牺牲1名重伤者，其余6人过桥，<strong>不按下开始键</strong></td>
+<td>6人存活 → 每人75亿韩元</td>
+<td>若抢武器&#x2F;推人 → 引发混战，全灭概率↑</td>
+<td>无动力偏离</td>
+</tr>
+<tr>
+<td><strong>主角团</strong><br>接受方案，<strong>不攻击、不启动游戏</strong></td>
+<td>婴儿、自己、孩子爸均存活</td>
+<td>若拒绝 → 进入抽签，死亡概率≥1&#x2F;2</td>
+<td>无动力偏离</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>结论</strong>：在给定“不攻击、不启动”前提下，<strong>无人可单方面改善收益</strong>，构成<strong>纳什均衡</strong>。</p>
+</blockquote>
+<h5 id="均衡破裂：主角的“公平抽签”提案"><a href="#均衡破裂：主角的“公平抽签”提案" class="headerlink" title="均衡破裂：主角的“公平抽签”提案"></a>均衡破裂：主角的“公平抽签”提案</h5><table>
+<thead>
+<tr>
+<th>新策略</th>
+<th>恶人组视角</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>抽签（婴儿不计）</td>
+<td>死亡概率 &#x3D; 4&#x2F;6 &gt; 50%，期望收益为负</td>
+<td><strong>拒绝参与</strong> → 爆发冲突 → 全灭</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>均衡破裂原因</strong>：主角方案对恶人组<strong>非个体理性</strong>，原均衡无法维持。</p>
+</blockquote>
+<h5 id="其他潜在策略组合"><a href="#其他潜在策略组合" class="headerlink" title="其他潜在策略组合"></a>其他潜在策略组合</h5><table>
+<thead>
+<tr>
+<th>策略</th>
+<th>是否均衡</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全员零冲突合作过桥</td>
+<td>✅（理论上）</td>
+<td>收益最大，但<strong>信息不完全+信任缺失</strong>难以达成</td>
+</tr>
+<tr>
+<td>恶人组内部推人减员</td>
+<td>✅（子博弈）</td>
+<td>内部稳定，一旦被主角干预即崩</td>
+</tr>
+<tr>
+<td>主角单方按下开始键</td>
+<td>❌</td>
+<td>自己也可能掉下，<strong>非最优反应</strong></td>
+</tr>
+<tr>
+<td>抽签决定生死</td>
+<td>❌</td>
+<td>对恶人组<strong>严格劣势策略</strong>，拒绝参与</td>
+</tr>
+</tbody></table>
+<h5 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h5><blockquote>
+<p><strong>存在纳什均衡</strong>：<br><strong>“牺牲1人，余6人存活”方案</strong>是<strong>局部纳什均衡</strong>。<br>主角以道德理由拒绝 → 均衡被人为打破 → 走向全灭。<br>剧情“降智”实质是<strong>价值观冲突</strong>而非博弈无均衡。</p>
+</blockquote>
+<h4 id="最终结论"><a href="#最终结论" class="headerlink" title="最终结论"></a>最终结论</h4><p>从上面的分析看，鱿鱼游戏3中的三个游戏各个都有着明确的纳什均衡点，即如果大家都是理性人的话是很难把游戏推进下去的。所以，第三季的剧情还能够推动全依赖主角是个完全不理性人。</p>
+<h3 id="再看下优秀的游戏"><a href="#再看下优秀的游戏" class="headerlink" title="再看下优秀的游戏"></a>再看下优秀的游戏</h3><h4 id="MOBA类-DOTA-LOL-王者荣耀"><a href="#MOBA类-DOTA-LOL-王者荣耀" class="headerlink" title="MOBA类(DOTA&#x2F;LOL&#x2F;王者荣耀)"></a>MOBA类(DOTA&#x2F;LOL&#x2F;王者荣耀)</h4><p>MOBA游戏都是一代版本一代神，版本强势英雄能直接影响到比赛的胜率，所以抢夺强势英雄变成了一个纳什均衡点，一旦抢不到强势英雄，各种弃玩逃跑屡见不鲜。所以各个MOBA游戏最重要的升级便是BAN英雄+按序选英雄的机制，通过此机制尽可能保证了游戏双方在游戏开盘早期便遭遇纳什均衡，进而保证了游戏体验。</p>
+<h4 id="德州扑克"><a href="#德州扑克" class="headerlink" title="德州扑克"></a>德州扑克</h4><p>德州扑克其实存在纳什均衡，因为有限信息、有限动作、有限玩家的博弈在数学上必存在混合策略纳什均衡。但德州扑克的均衡策略极复杂且无法实际穷举，所以近似于没有纳什均衡点，从而保证了其趣味性。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综上，游戏的有趣与否与是否存在纳什均衡点关系巨大。而优秀的制度设计又何尝不是如此呢，古今第一阳谋“推恩令”，便是非常经典的纳什均衡应用例子，通过巧妙的规则设计让嫡庶各方陷入零和竞争并达到纳什均衡点，从而让其完全顺从规则不断将规则执行下去。</p>
+<p>因此，不光是游戏啊，纳什均衡之道是通用的“制定规则”之道。</p>
+
       
 
       
