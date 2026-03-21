@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yuange250.github.io">
   <title>从《鱿鱼游戏》看纳什均衡 | Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="《鱿鱼游戏3》在6月27日上映了，随着李政宰老师的杀青，这场“真人版蛋仔派对”总算是有了一个阶段性的结束。后面第四季不管是转战美东开展破产红脖超级乱斗，还是转战美西上演小黑小墨互打手枪，估计都不会有啥浪花了。我之所以下这样的判断是因为，鱿鱼游戏爆火的关键点之一是其巧妙的关卡游戏设计，而有趣的关卡游戏设计是很难的。看完第三季一个很大的感触就是，编剧已经很难设计出更好、更吸引人的游戏了。因为不管是捉迷">
+  <meta name="description" content="《鱿鱼游戏3》播完之后，我有一个很强烈的感受：这一季的戏剧冲突还在，但“游戏设计本身”已经明显不如前两季抓人。原因并不复杂：一个游戏如果想长期有张力，不只是要“刺激”，还要在规则层面有稳定的博弈空间。换句话说，它得让玩家不断面对真实、持续、可计算的策略选择，而不是只靠剧情强行推进。 所以这篇文章想做一件事：借《鱿鱼游戏3》里的三个核心关卡，系统地聊聊纳什均衡，以及它为什么会直接决定一个游戏好不好看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从《鱿鱼游戏》看纳什均衡">
 <meta property="og:url" content="https://yuange250.github.io/2025/06/29/gamblingAndSquidGame/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="《鱿鱼游戏3》在6月27日上映了，随着李政宰老师的杀青，这场“真人版蛋仔派对”总算是有了一个阶段性的结束。后面第四季不管是转战美东开展破产红脖超级乱斗，还是转战美西上演小黑小墨互打手枪，估计都不会有啥浪花了。我之所以下这样的判断是因为，鱿鱼游戏爆火的关键点之一是其巧妙的关卡游戏设计，而有趣的关卡游戏设计是很难的。看完第三季一个很大的感触就是，编剧已经很难设计出更好、更吸引人的游戏了。因为不管是捉迷">
+<meta property="og:description" content="《鱿鱼游戏3》播完之后，我有一个很强烈的感受：这一季的戏剧冲突还在，但“游戏设计本身”已经明显不如前两季抓人。原因并不复杂：一个游戏如果想长期有张力，不只是要“刺激”，还要在规则层面有稳定的博弈空间。换句话说，它得让玩家不断面对真实、持续、可计算的策略选择，而不是只靠剧情强行推进。 所以这篇文章想做一件事：借《鱿鱼游戏3》里的三个核心关卡，系统地聊聊纳什均衡，以及它为什么会直接决定一个游戏好不好看">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://yuange250.github.io/images/AandB.png">
 <meta property="og:image" content="https://yuange250.github.io/images/zhuomicang.jpg">
 <meta property="og:image" content="https://yuange250.github.io/images/dangqiuqian.jpg">
 <meta property="article:published_time" content="2025-06-29T14:52:54.000Z">
-<meta property="article:modified_time" content="2026-03-21T06:48:02.334Z">
+<meta property="article:modified_time" content="2026-03-21T14:14:31.461Z">
 <meta property="article:author" content="Chen Zhiyuan">
 <meta property="article:tag" content="game theory">
 <meta property="article:tag" content="culture">
@@ -200,12 +200,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>《鱿鱼游戏3》在6月27日上映了，随着李政宰老师的杀青，这场“真人版蛋仔派对”总算是有了一个阶段性的结束。后面第四季不管是转战美东开展破产红脖超级乱斗，还是转战美西上演小黑小墨互打手枪，估计都不会有啥浪花了。我之所以下这样的判断是因为，鱿鱼游戏爆火的关键点之一是其巧妙的关卡游戏设计，而有趣的关卡游戏设计是很难的。看完第三季一个很大的感触就是，编剧已经很难设计出更好、更吸引人的游戏了。因为不管是捉迷藏还是荡秋千亦或是推推乐，从游戏设计的角度来看这三个游戏都很难称之为“好游戏”。</p>
-<p>那么我们不禁要问，一个好的游戏除了要有趣且简单之外，还要有什么要素才能让它被称之为“好游戏”呢？好的，我们今天借着《鱿鱼游戏》来看一下纳什均衡。</p>
+        <p>《鱿鱼游戏3》播完之后，我有一个很强烈的感受：这一季的戏剧冲突还在，但“游戏设计本身”已经明显不如前两季抓人。<br>原因并不复杂：一个游戏如果想长期有张力，不只是要“刺激”，还要在规则层面有稳定的博弈空间。换句话说，它得让玩家不断面对真实、持续、可计算的策略选择，而不是只靠剧情强行推进。</p>
+<p>所以这篇文章想做一件事：<br>借《鱿鱼游戏3》里的三个核心关卡，系统地聊聊<strong>纳什均衡</strong>，以及它为什么会直接决定一个游戏好不好看、耐不耐玩。</p>
 <span id="more"></span>
 
-<h3 id="纯策略纳什均衡"><a href="#纯策略纳什均衡" class="headerlink" title="纯策略纳什均衡"></a>纯策略纳什均衡</h3><p><img src="/images/AandB.png" alt="mnist"></p>
-<p>首先我们先看看什么叫好游戏，从最经典的游戏“剪刀石头布”说起，剪刀石头布是一个经典的两人零和博弈，即一方的收益等于另一方的损失。此时我们假设玩家A和玩家B在玩剪刀石头布，那此时的收益矩阵如下：</p>
+<h2 id="先把概念说清：什么是纳什均衡"><a href="#先把概念说清：什么是纳什均衡" class="headerlink" title="先把概念说清：什么是纳什均衡"></a>先把概念说清：什么是纳什均衡</h2><p>一个策略组合如果满足下面条件，就叫纳什均衡：</p>
+<ul>
+<li>在其他人策略不变时，你单独改策略，收益不会更好；</li>
+<li>对每个参与者都成立。</li>
+</ul>
+<p>它的核心是“<strong>无人愿意单方面偏离</strong>”。<br>注意这里说的是“单方面”。也就是说，就算有一个大家都更好的集体方案，只要个体有动机背刺，它就未必是均衡。</p>
+<p>接下来我先用最经典的例子（剪刀石头布）做一个热身，再回到鱿鱼游戏。</p>
+<h2 id="一、从剪刀石头布理解纯策略与混合策略"><a href="#一、从剪刀石头布理解纯策略与混合策略" class="headerlink" title="一、从剪刀石头布理解纯策略与混合策略"></a>一、从剪刀石头布理解纯策略与混合策略</h2><p><img src="/images/AandB.png" alt="mnist"></p>
+<p>剪刀石头布是一个典型的两人零和博弈：一方收益就是另一方损失。<br>设玩家 A 和玩家 B 的收益矩阵如下（以 A 视角）：</p>
 <table>
 <thead>
 <tr>
@@ -234,101 +241,80 @@
 <td>0</td>
 </tr>
 </tbody></table>
-<p>此时双方可能的操作如下：</p>
-<p>如果A选择出石头，B的最佳回应是布（因为B选布得1，选石头或剪刀得0或-1）。</p>
-<p>如果B选择出布，A的最佳回应是剪刀（因为A选剪刀得1，选石头或布得-1或0）。</p>
-<p>同理如果A选择剪刀，B的最佳回应是石头。</p>
-<p>如果B选择石头，A的最佳回应是布。</p>
-<p>可以看到，没有任何一个策略组合是双方互为最佳回应的。因此，剪刀石头布不存在传统意义上的纳什均衡，即不存在<strong>纯策略纳什均衡</strong>。</p>
-<h3 id="混合策略纳什均衡"><a href="#混合策略纳什均衡" class="headerlink" title="混合策略纳什均衡"></a>混合策略纳什均衡</h3><p>但这时候如果我们让剪刀石头布成为一个N次决胜游戏，两人进行N次剪刀石头布，最后统计两人谁的获胜次数更多谁胜利，这时是否存在纳什均衡呢？</p>
-<p>现在我们还是让小A和小B登场，此时小A的策略是每次都0.3概率剪刀、0.2概率石头、0.5概率布，小B的策略是0.4概率剪刀、0.4概率石头、0.2概率布，此时我们写个简单的程序模拟下两者的胜负情况：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">throw_A</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A 的策略：1/3 剪刀，1/3 石头，1/3 布&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> random.choices(</span><br><span class="line">        population=[<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;布&#x27;</span>],</span><br><span class="line">        weights=[<span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.5</span>],</span><br><span class="line">        k=<span class="number">1</span></span><br><span class="line">    )[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">throw_B</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;B 的策略：0.4 剪刀，0.4 石头，0.2 布&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> random.choices(</span><br><span class="line">        population=[<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;布&#x27;</span>],</span><br><span class="line">        weights=[<span class="number">0.4</span>, <span class="number">0.4</span>, <span class="number">0.2</span>],</span><br><span class="line">        k=<span class="number">1</span></span><br><span class="line">    )[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">judge</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;返回 1 表示 A 赢，-1 表示 B 赢，0 表示平局&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> a == b:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    win_cases = &#123;(<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;布&#x27;</span>), (<span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;剪刀&#x27;</span>), (<span class="string">&#x27;布&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>)&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> (a, b) <span class="keyword">in</span> win_cases <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulate</span>(<span class="params">n_rounds: <span class="built_in">int</span></span>):</span><br><span class="line">    stats = defaultdict(<span class="built_in">int</span>)  <span class="comment"># 1, -1, 0 分别记录 A 胜、B 胜、平</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_rounds + <span class="number">1</span>):</span><br><span class="line">        a = throw_A()</span><br><span class="line">        b = throw_B()</span><br><span class="line">        outcome = judge(a, b)</span><br><span class="line">        stats[outcome] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n===== 总计 =====&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;A 胜: <span class="subst">&#123;stats[<span class="number">1</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;B 胜: <span class="subst">&#123;stats[-<span class="number">1</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;平局: <span class="subst">&#123;stats[<span class="number">0</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行示例：模拟 1000000 局</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    N = <span class="number">1000000</span></span><br><span class="line">    simulate(N)</span><br></pre></td></tr></table></figure>
-<p>此时模拟一百万次，总计的胜负结果如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">===== 总计 =====</span><br><span class="line">A 胜: 339824 次</span><br><span class="line">B 胜: 360147 次</span><br><span class="line">平局: 300029 次</span><br></pre></td></tr></table></figure>
-<p>此时可以看到小B对小A产生了胜和优势，核心原因在于B的策略选择相对A产生了策略优势，此时A相对B的策略差计算如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">E_A = 0.30(0·0.40 -1·0.40 +1·0.20)</span><br><span class="line">    + 0.20(1·0.40 +0·0.40 -1·0.20)</span><br><span class="line">    + 0.50(-1·0.40 +1·0.40 +0·0.20)</span><br><span class="line"></span><br><span class="line">    = 0.30(-0.4 + 0.2)</span><br><span class="line">    + 0.20(0.4 - 0.2)</span><br><span class="line">    + 0.50(-0.4 + 0.4)</span><br><span class="line"></span><br><span class="line">    = 0.30(-0.2) + 0.20(0.2) + 0.50(0)</span><br><span class="line">    = -0.06 + 0.04 + 0</span><br><span class="line">    = -0.02</span><br></pre></td></tr></table></figure>
-<p>可以看出来每局B相对A都有0.02分的优势，而这点优势在一百万局下来只有便产生了很明显的胜场差异。此时其实从策略差函数可以看出来，B如果知道A的概率分布选择，那他总是能找到一种策略让他战胜或者至少战平小A，小A反之亦然。</p>
-<p>那此时小A有没有什么至少让自己立于不败之地的手段呢，此时我们让小A采用(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)的策略，我们假设小B的策略是 (q<sub>1</sub>,q<sub>2</sub>,q<sub>3</sub>)，则此时A相对B的策略差计算为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E_A = 1/3(0·q_1 -1·q_2 +1·q_3)</span><br><span class="line">    + 1/3(1·q_1 +0·q_2 -1·q_3)</span><br><span class="line">    + 1/3(-1·q_1 +1·q_2 +0·q_3)</span><br><span class="line"></span><br><span class="line">    = 0.0</span><br></pre></td></tr></table></figure>
-<p>可以发现当小A的策略是(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)，他能让自己的胜率至少保证不处于劣势，当然坏处是也不可能存在优势。而小B也是同理，与其冒险设置一个可能被别人击败的策略，倒不如先让自己立身于不亏的状态。因此在彼此猜疑的情况下，小A和小B在这个游戏中会陷入一个纳什均衡点, 即：</p>
+<h3 id="1-纯策略纳什均衡：这里不存在"><a href="#1-纯策略纳什均衡：这里不存在" class="headerlink" title="1) 纯策略纳什均衡：这里不存在"></a>1) 纯策略纳什均衡：这里不存在</h3><p>如果 A 出石头，B 最佳回应是布；<br>如果 B 出布，A 最佳回应是剪刀；<br>如果 A 改出剪刀，B 又会改石头……</p>
+<p>你会发现策略在循环，找不到一个固定组合让双方都不想改。<br>所以这个游戏不存在纯策略纳什均衡。</p>
+<h3 id="2-混合策略纳什均衡：这里存在"><a href="#2-混合策略纳什均衡：这里存在" class="headerlink" title="2) 混合策略纳什均衡：这里存在"></a>2) 混合策略纳什均衡：这里存在</h3><p>如果游戏重复很多轮，玩家可以采用“概率策略”。<br>比如下面这个例子：</p>
 <ul>
-<li>小A的最优策略是，以(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)的概率出剪刀石头布。</li>
-<li>小B的最优策略也是，以(1&#x2F;3, 1&#x2F;3, 1&#x2F;3)的概率出剪刀石头布。</li>
+<li>A: 剪刀 0.3，石头 0.2，布 0.5</li>
+<li>B: 剪刀 0.4，石头 0.4，布 0.2</li>
 </ul>
-<p>因此两人便形成了纳什均衡，而这种基于一定策略组合而非单一策略的情况下产生的均衡点，便是<strong>混合策略纳什均衡</strong>。但不管是哪一种纳什均衡，这种有明确的纳什均衡点的游戏便不再具有趣味性，因为最优策略已经在数学层面上被定义好了，玩家只需要遵循即可。</p>
-<h3 id="重新看下鱿鱼游戏"><a href="#重新看下鱿鱼游戏" class="headerlink" title="重新看下鱿鱼游戏"></a>重新看下鱿鱼游戏</h3><p>让我们用纳什均衡的视角重新看一下鱿鱼游戏3中的各个游戏，捉迷藏、荡秋千与推推乐。</p>
-<h4 id="捉迷藏"><a href="#捉迷藏" class="headerlink" title="捉迷藏"></a>捉迷藏</h4><p><img src="/images/zhuomicang.jpg" alt="mnist"></p>
-<p>下面我们让Kimi分析下这个游戏是否存在纳什均衡点。</p>
-<h5 id="游戏规则概述"><a href="#游戏规则概述" class="headerlink" title="游戏规则概述"></a>游戏规则概述</h5><p>所有游戏参与者会被分成A&#x2F;B两组，</p>
+<p>我们先做个模拟：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">throw_A</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;A 的策略：1/3 剪刀，1/3 石头，1/3 布&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> random.choices(</span><br><span class="line">        population=[<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;布&#x27;</span>],</span><br><span class="line">        weights=[<span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.5</span>],</span><br><span class="line">        k=<span class="number">1</span></span><br><span class="line">    )[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">throw_B</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;B 的策略：0.4 剪刀，0.4 石头，0.2 布&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> random.choices(</span><br><span class="line">        population=[<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;布&#x27;</span>],</span><br><span class="line">        weights=[<span class="number">0.4</span>, <span class="number">0.4</span>, <span class="number">0.2</span>],</span><br><span class="line">        k=<span class="number">1</span></span><br><span class="line">    )[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">judge</span>(<span class="params">a, b</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;返回 1 表示 A 赢，-1 表示 B 赢，0 表示平局&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> a == b:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    win_cases = &#123;(<span class="string">&#x27;剪刀&#x27;</span>, <span class="string">&#x27;布&#x27;</span>), (<span class="string">&#x27;石头&#x27;</span>, <span class="string">&#x27;剪刀&#x27;</span>), (<span class="string">&#x27;布&#x27;</span>, <span class="string">&#x27;石头&#x27;</span>)&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> (a, b) <span class="keyword">in</span> win_cases <span class="keyword">else</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulate</span>(<span class="params">n_rounds: <span class="built_in">int</span></span>):</span><br><span class="line">    stats = defaultdict(<span class="built_in">int</span>)  <span class="comment"># 1, -1, 0 分别记录 A 胜、B 胜、平</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_rounds + <span class="number">1</span>):</span><br><span class="line">        a = throw_A()</span><br><span class="line">        b = throw_B()</span><br><span class="line">        outcome = judge(a, b)</span><br><span class="line">        stats[outcome] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n===== 总计 =====&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;A 胜: <span class="subst">&#123;stats[<span class="number">1</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;B 胜: <span class="subst">&#123;stats[-<span class="number">1</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;平局: <span class="subst">&#123;stats[<span class="number">0</span>]&#125;</span> 次&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行示例：模拟 1000000 局</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    N = <span class="number">1000000</span></span><br><span class="line">    simulate(N)</span><br></pre></td></tr></table></figure>
+
+<p>模拟一百万次，典型结果是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">===== 总计 =====</span><br><span class="line">A 胜: 339824 次</span><br><span class="line">B 胜: 360147 次</span><br><span class="line">平局: 300029 次</span><br></pre></td></tr></table></figure>
+
+<p>B 对 A 的期望优势可以直接算出来：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">E_A = 0.30(0·0.40 -1·0.40 +1·0.20)</span><br><span class="line">    + 0.20(1·0.40 +0·0.40 -1·0.20)</span><br><span class="line">    + 0.50(-1·0.40 +1·0.40 +0·0.20)</span><br><span class="line"></span><br><span class="line">    = 0.30(-0.4 + 0.2)</span><br><span class="line">    + 0.20(0.4 - 0.2)</span><br><span class="line">    + 0.50(-0.4 + 0.4)</span><br><span class="line"></span><br><span class="line">    = 0.30(-0.2) + 0.20(0.2) + 0.50(0)</span><br><span class="line">    = -0.06 + 0.04 + 0</span><br><span class="line">    = -0.02</span><br></pre></td></tr></table></figure>
+
+<p>这意味着 A 每局平均要亏 0.02。看起来很小，但轮数拉长后会被稳定放大。<br>那么 A 有办法“至少不吃亏”吗？有：采用均匀随机策略 <code>(1/3, 1/3, 1/3)</code>。</p>
+<p>设 B 的策略是 <code>(q1, q2, q3)</code>，则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E_A = 1/3(0·q_1 -1·q_2 +1·q_3)</span><br><span class="line">    + 1/3(1·q_1 +0·q_2 -1·q_3)</span><br><span class="line">    + 1/3(-1·q_1 +1·q_2 +0·q_3)</span><br><span class="line"></span><br><span class="line">    = 0.0</span><br></pre></td></tr></table></figure>
+
+<p>当双方都采用 <code>(1/3, 1/3, 1/3)</code> 时，谁都无法通过单方面换概率获得优势，这就是混合策略纳什均衡。</p>
+<hr>
+<p>上面这个热身结论很重要：<br><strong>如果规则可被稳定“解题”，游戏张力会迅速下降。</strong><br>带着这个观点，我们回看鱿鱼游戏第三季。</p>
+<h2 id="二、回看《鱿鱼游戏3》：三个关卡的博弈结构"><a href="#二、回看《鱿鱼游戏3》：三个关卡的博弈结构" class="headerlink" title="二、回看《鱿鱼游戏3》：三个关卡的博弈结构"></a>二、回看《鱿鱼游戏3》：三个关卡的博弈结构</h2><h3 id="1-捉迷藏：有均衡，但依赖信息与执行能力"><a href="#1-捉迷藏：有均衡，但依赖信息与执行能力" class="headerlink" title="1) 捉迷藏：有均衡，但依赖信息与执行能力"></a>1) 捉迷藏：有均衡，但依赖信息与执行能力</h3><p><img src="/images/zhuomicang.jpg" alt="mnist"></p>
+<p>先把游戏抽象出来：</p>
+<p>所有参与者分成 A&#x2F;B 两组：</p>
 <ul>
 <li><strong>A组目标</strong>：在规定时间内至少杀死一名B组玩家。</li>
 <li><strong>B组目标</strong>：在规定时间内找到迷宫出口。</li>
 <li><strong>A组限制</strong>：不能互相残杀。</li>
 <li><strong>B组限制</strong>：无明确限制，可以躲避或反杀A组。</li>
 </ul>
-<h5 id="A组策略分析"><a href="#A组策略分析" class="headerlink" title="A组策略分析"></a>A组策略分析</h5><ol>
+<h4 id="A-组最自然策略"><a href="#A-组最自然策略" class="headerlink" title="A 组最自然策略"></a>A 组最自然策略</h4><ol>
 <li><strong>追杀B组玩家</strong><br>A组玩家必须击杀至少一个B组玩家才能通关。</li>
 <li><strong>反杀风险</strong><br>B组玩家可以反杀A组，因此A组需谨慎选择目标。</li>
 <li><strong>分散追杀</strong><br>A组玩家之间不能互相残杀，因此分散追杀不同B组玩家是合理选择。</li>
 </ol>
-<h5 id="B组策略分析"><a href="#B组策略分析" class="headerlink" title="B组策略分析"></a>B组策略分析</h5><ol>
+<h4 id="B-组最自然策略"><a href="#B-组最自然策略" class="headerlink" title="B 组最自然策略"></a>B 组最自然策略</h4><ol>
 <li><strong>寻找出口</strong><br>B组玩家必须找到迷宫出口才能通关。</li>
 <li><strong>躲避A组</strong><br>B组玩家可以选择躲避A组，避免被击杀。</li>
 <li><strong>反杀A组</strong><br>B组玩家可以反杀A组，但会消耗时间和资源，影响寻找出口。</li>
 </ol>
-<h5 id="纳什均衡分析"><a href="#纳什均衡分析" class="headerlink" title="纳什均衡分析"></a>纳什均衡分析</h5><p><strong>A组均衡策略</strong>  </p>
+<h4 id="均衡判断（简化模型）"><a href="#均衡判断（简化模型）" class="headerlink" title="均衡判断（简化模型）"></a>均衡判断（简化模型）</h4><p>一个较稳定的局部均衡是：</p>
 <ul>
-<li><strong>分散追杀</strong>：每个A组玩家独立选择一个B组玩家作为目标，避免集中追杀导致部分A组玩家无法完成击杀任务。  </li>
-<li><strong>避免反杀</strong>：分散追杀降低被B组集中反杀的风险。<br><strong>B组均衡策略</strong>  </li>
-<li><strong>分散逃跑</strong>：每个B组玩家独立选择逃跑路线，避免被A组集中击杀。  </li>
-<li><strong>专注寻找出口</strong>：分散逃跑的同时，专注于寻找迷宫出口，避免反杀A组消耗过多时间。<br><strong>均衡稳定性验证</strong>  </li>
-<li><strong>A组</strong>：集中追杀多个B组玩家可能因B组分散而无法有效击杀，且可能被反杀，因此分散追杀是最优策略。  </li>
-<li><strong>B组</strong>：集中反杀A组会减少寻找出口的时间，可能导致被淘汰，因此分散逃跑和寻找出口是最优策略。</li>
+<li>A 组分散追杀（提高“每人至少一杀”达成率）；</li>
+<li>B 组分散逃跑并以找出口为主（降低被集中围猎概率）。</li>
 </ul>
-<h5 id="其他可能的均衡"><a href="#其他可能的均衡" class="headerlink" title="其他可能的均衡"></a>其他可能的均衡</h5><ul>
+<p>为什么说“局部”而不是“全局”？</p>
+<p>因为这个均衡对前提非常敏感：</p>
+<ul>
+<li>地图信息是否对称；</li>
+<li>个体能力差异是否显著；</li>
+<li>A&#x2F;B 人数比例是否失衡；</li>
+<li>临场合作是否能稳定维持。</li>
+</ul>
+<h4 id="其他策略为什么不稳定"><a href="#其他策略为什么不稳定" class="headerlink" title="其他策略为什么不稳定"></a>其他策略为什么不稳定</h4><ul>
 <li><strong>集中追杀与反杀</strong>  <ul>
 <li>A组集中追杀一个B组玩家，B组集中反杀A组。  </li>
-<li>这种策略对A组风险高，因为无法保证每个A组玩家都能击杀一个B组玩家，因此<strong>不是纳什均衡</strong>。</li>
+<li>A组会出现“有人完成不了击杀指标”的问题，个体有强烈偏离动机，所以不稳。</li>
 </ul>
 </li>
 </ul>
-<h5 id="数学模型简要"><a href="#数学模型简要" class="headerlink" title="数学模型简要"></a>数学模型简要</h5><ul>
-<li><p><strong>变量定义</strong>  </p>
+<p><strong>小结</strong>：<br>捉迷藏不是“没有均衡”，而是“均衡高度情境化”。编剧如果想靠它持续制造高质量张力，就必须不断打破信息条件，否则很快会被策略化。</p>
+<h3 id="2-荡秋千：纯策略均衡过于直给，观感上容易塌缩"><a href="#2-荡秋千：纯策略均衡过于直给，观感上容易塌缩" class="headerlink" title="2) 荡秋千：纯策略均衡过于直给，观感上容易塌缩"></a>2) 荡秋千：纯策略均衡过于直给，观感上容易塌缩</h3><p><img src="/images/dangqiuqian.jpg" alt="mnist"></p>
+<p>这个关卡的问题其实最明显：<br>它几乎直接把“先手抢位 + 阻止他人通过”写成了占优策略。</p>
+<p>如果所有人都理性，最优反应会快速收敛为：</p>
 <ul>
-<li>A组玩家数量：<code>n</code>  </li>
-<li>B组玩家数量：<code>m</code></li>
+<li>抢先占据关键点位；</li>
+<li>阻断后续竞争者；</li>
+<li>牺牲整体通关率换个体先手收益。</li>
 </ul>
-</li>
-<li><p><strong>策略描述</strong>  </p>
-<ul>
-<li>A组玩家<code>i</code>的策略：选择B组玩家<code>j</code>进行追杀。  </li>
-<li>B组玩家<code>j</code>的策略：选择逃跑和寻找出口的路径。</li>
-</ul>
-</li>
-<li><p><strong>均衡条件</strong>  </p>
-<ul>
-<li>对于每个A组玩家<code>i</code>，给定其他玩家的策略，选择追杀某个B组玩家是最优的。  </li>
-<li>对于每个B组玩家<code>j</code>，给定其他玩家的策略，选择逃跑和寻找出口的路径是最优的。</li>
-</ul>
-</li>
-</ul>
-<h5 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h5><ul>
-<li>迷宫复杂性、玩家能力差异、信息不对称等因素可能影响均衡实现，但理论上分散策略是稳定的纳什均衡。</li>
-</ul>
-<h5 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h5><ul>
-<li><p><strong>此游戏存在纳什均衡</strong>  </p>
-<ul>
-<li><strong>A组策略</strong>：每个A组玩家独立选择一个B组玩家作为目标，分散追杀。  </li>
-<li><strong>B组策略</strong>：每个B组玩家独立选择逃跑路线，专注于寻找迷宫出口。</li>
-</ul>
-</li>
-<li><p><strong>均衡稳定性</strong><br>任何单个玩家无法通过单方面改变策略获得更好结果。</p>
-</li>
-</ul>
-<h4 id="荡秋千"><a href="#荡秋千" class="headerlink" title="荡秋千"></a>荡秋千</h4><p><img src="/images/dangqiuqian.jpg" alt="mnist"></p>
-<p>不用说了，存在纯策略纳什均衡。每个人的最优策略就是第一个冲到秋千对面然后阻止其他人过去，就是剧中第二位过秋千的大叔的行动，因此纳什均衡点会是所有人都去抢第一个上秋千并阻止别人比自己先上秋千，从而导致没人能站上秋千站台。</p>
-<h4 id="推推乐"><a href="#推推乐" class="headerlink" title="推推乐"></a>推推乐</h4><p>我们继续让Kimi分析下推人游戏是否有纳什均衡点：</p>
-<h5 id="游戏规则还原"><a href="#游戏规则还原" class="headerlink" title="游戏规则还原"></a>游戏规则还原</h5><table>
+<p>这会产生一个尴尬结果：<br><strong>均衡存在，但观赏性下降。</strong><br>因为玩家策略空间被压得太窄，观众很快就能预测行为，戏剧性主要靠角色人设而不是机制本身。</p>
+<h3 id="3-推推乐：存在局部均衡，但会被价值偏好主动打破"><a href="#3-推推乐：存在局部均衡，但会被价值偏好主动打破" class="headerlink" title="3) 推推乐：存在局部均衡，但会被价值偏好主动打破"></a>3) 推推乐：存在局部均衡，但会被价值偏好主动打破</h3><p>这个关卡比前两个更有意思，因为它把“理性收益”与“道德偏好”直接撞在一起。</p>
+<h4 id="规则抽象"><a href="#规则抽象" class="headerlink" title="规则抽象"></a>规则抽象</h4><table>
 <thead>
 <tr>
 <th>要素</th>
@@ -356,7 +342,7 @@
 <td>不完全：无法预知他人是否按下开始键</td>
 </tr>
 </tbody></table>
-<h5 id="局部纳什均衡：恶人组“牺牲一人”方案"><a href="#局部纳什均衡：恶人组“牺牲一人”方案" class="headerlink" title="局部纳什均衡：恶人组“牺牲一人”方案"></a>局部纳什均衡：恶人组“牺牲一人”方案</h5><table>
+<h4 id="局部纳什均衡：恶人组“牺牲一人”方案"><a href="#局部纳什均衡：恶人组“牺牲一人”方案" class="headerlink" title="局部纳什均衡：恶人组“牺牲一人”方案"></a>局部纳什均衡：恶人组“牺牲一人”方案</h4><table>
 <thead>
 <tr>
 <th>策略组合</th>
@@ -378,10 +364,8 @@
 <td>无动力偏离</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p><strong>结论</strong>：在给定“不攻击、不启动”前提下，<strong>无人可单方面改善收益</strong>，构成<strong>纳什均衡</strong>。</p>
-</blockquote>
-<h5 id="均衡破裂：主角的“公平抽签”提案"><a href="#均衡破裂：主角的“公平抽签”提案" class="headerlink" title="均衡破裂：主角的“公平抽签”提案"></a>均衡破裂：主角的“公平抽签”提案</h5><table>
+<p>在“纯收益最大化”前提下，这个组合确实稳定。</p>
+<h4 id="均衡破裂：主角提出“公平抽签”"><a href="#均衡破裂：主角提出“公平抽签”" class="headerlink" title="均衡破裂：主角提出“公平抽签”"></a>均衡破裂：主角提出“公平抽签”</h4><table>
 <thead>
 <tr>
 <th>新策略</th>
@@ -395,10 +379,8 @@
 <td><strong>拒绝参与</strong> → 爆发冲突 → 全灭</td>
 </tr>
 </tbody></table>
-<blockquote>
-<p><strong>均衡破裂原因</strong>：主角方案对恶人组<strong>非个体理性</strong>，原均衡无法维持。</p>
-</blockquote>
-<h5 id="其他潜在策略组合"><a href="#其他潜在策略组合" class="headerlink" title="其他潜在策略组合"></a>其他潜在策略组合</h5><table>
+<p>破裂原因一句话就够：<br>主角方案不符合恶人组个体理性，因此原均衡无法维持。</p>
+<h4 id="其他策略组合（稳定性对比）"><a href="#其他策略组合（稳定性对比）" class="headerlink" title="其他策略组合（稳定性对比）"></a>其他策略组合（稳定性对比）</h4><table>
 <thead>
 <tr>
 <th>策略</th>
@@ -427,14 +409,49 @@
 <td>对恶人组<strong>严格劣势策略</strong>，拒绝参与</td>
 </tr>
 </tbody></table>
-<h5 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h5><blockquote>
-<p><strong>存在纳什均衡</strong>：<br><strong>“牺牲1人，余6人存活”方案</strong>是<strong>局部纳什均衡</strong>。<br>主角以道德理由拒绝 → 均衡被人为打破 → 走向全灭。<br>剧情“降智”实质是<strong>价值观冲突</strong>而非博弈无均衡。</p>
+<h4 id="这一关最值得看的点"><a href="#这一关最值得看的点" class="headerlink" title="这一关最值得看的点"></a>这一关最值得看的点</h4><p>这关不是“有没有均衡”的问题，而是“角色是否愿意活在均衡里”的问题。<br>也就是说，剧情冲突并非来自数学失败，而是来自价值排序冲突。</p>
+<h2 id="三、把三关放在一起看：第三季为什么观感分裂"><a href="#三、把三关放在一起看：第三季为什么观感分裂" class="headerlink" title="三、把三关放在一起看：第三季为什么观感分裂"></a>三、把三关放在一起看：第三季为什么观感分裂</h2><p>综合上面的分析，可以看到：</p>
+<ol>
+<li>三个关卡都能找到某种纳什结构（纯策略或混合&#x2F;局部均衡）；</li>
+<li>但很多均衡太“直给”，导致策略空间不够丰富；</li>
+<li>剧情推进越来越依赖“角色偏离理性”，而非规则自身生成张力。</li>
+</ol>
+<p>这也是我说第三季游戏设计偏弱的核心原因：<br><strong>机制不够复杂时，博弈很快被解题；一旦被解题，戏剧就只能靠人设强推。</strong></p>
+<h2 id="四、再看真正耐玩的游戏：它们如何处理纳什均衡"><a href="#四、再看真正耐玩的游戏：它们如何处理纳什均衡" class="headerlink" title="四、再看真正耐玩的游戏：它们如何处理纳什均衡"></a>四、再看真正耐玩的游戏：它们如何处理纳什均衡</h2><p>上面聊的是剧。下面回到现实游戏设计，看看“好游戏”怎么和均衡相处。</p>
+<h3 id="1-MOBA（DOTA-LOL-王者）"><a href="#1-MOBA（DOTA-LOL-王者）" class="headerlink" title="1) MOBA（DOTA&#x2F;LOL&#x2F;王者）"></a>1) MOBA（DOTA&#x2F;LOL&#x2F;王者）</h3><p>MOBA 的本质是：版本会不断制造局部强势点。<br>如果完全放任，最优策略会快速收敛，体验会变成“谁抢到版本答案谁赢”。</p>
+<p>所以你会看到一套经典制度工具：</p>
+<ul>
+<li>Ban 位（先消除最强占优策略）；</li>
+<li>轮选顺序（压制先手信息优势）；</li>
+<li>版本更新（持续打破旧均衡）。</li>
+</ul>
+<p>它的本质是在做一件事：<br><strong>不让博弈过早收敛到单一可解点。</strong></p>
+<h3 id="2-德州扑克"><a href="#2-德州扑克" class="headerlink" title="2) 德州扑克"></a>2) 德州扑克</h3><p>德州扑克在有限玩家、有限动作、有限信息框架下，理论上存在混合策略纳什均衡。<br>但问题在于，这个均衡在实际局面里非常复杂，玩家无法完整求解。</p>
+<p>于是它在体验上呈现为：</p>
+<ul>
+<li>你知道“有均衡”；</li>
+<li>但你无法稳定“吃透均衡”；</li>
+<li>所以博弈长期有张力。</li>
+</ul>
+<p>这也是为什么扑克经久不衰：<br><strong>不是没有规则答案，而是答案复杂到足够支撑长期策略对抗。</strong></p>
+<h2 id="五、结论：有趣的规则，往往是“可博弈但不可速解”"><a href="#五、结论：有趣的规则，往往是“可博弈但不可速解”" class="headerlink" title="五、结论：有趣的规则，往往是“可博弈但不可速解”"></a>五、结论：有趣的规则，往往是“可博弈但不可速解”</h2><p>把全文压缩成一句话就是：</p>
+<blockquote>
+<p>好游戏不是“没有纳什均衡”，而是“不让玩家太快锁死在单一均衡里”。</p>
 </blockquote>
-<h4 id="最终结论"><a href="#最终结论" class="headerlink" title="最终结论"></a>最终结论</h4><p>从上面的分析看，鱿鱼游戏3中的三个游戏各个都有着明确的纳什均衡点，即如果大家都是理性人的话是很难把游戏推进下去的。所以，第三季的剧情还能够推动全依赖主角是个完全不理性人。</p>
-<h3 id="再看下优秀的游戏"><a href="#再看下优秀的游戏" class="headerlink" title="再看下优秀的游戏"></a>再看下优秀的游戏</h3><h4 id="MOBA类-DOTA-LOL-王者荣耀"><a href="#MOBA类-DOTA-LOL-王者荣耀" class="headerlink" title="MOBA类(DOTA&#x2F;LOL&#x2F;王者荣耀)"></a>MOBA类(DOTA&#x2F;LOL&#x2F;王者荣耀)</h4><p>MOBA游戏都是一代版本一代神，版本强势英雄能直接影响到比赛的胜率，所以抢夺强势英雄变成了一个纳什均衡点，一旦抢不到强势英雄，各种弃玩逃跑屡见不鲜。所以各个MOBA游戏最重要的升级便是BAN英雄+按序选英雄的机制，通过此机制尽可能保证了游戏双方在游戏开盘早期便遭遇纳什均衡，进而保证了游戏体验。</p>
-<h4 id="德州扑克"><a href="#德州扑克" class="headerlink" title="德州扑克"></a>德州扑克</h4><p>德州扑克其实存在纳什均衡，因为有限信息、有限动作、有限玩家的博弈在数学上必存在混合策略纳什均衡。但德州扑克的均衡策略极复杂且无法实际穷举，所以近似于没有纳什均衡点，从而保证了其趣味性。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>综上，游戏的有趣与否与是否存在纳什均衡点关系巨大。而优秀的制度设计又何尝不是如此呢，古今第一阳谋“推恩令”，便是非常经典的纳什均衡应用例子，通过巧妙的规则设计让嫡庶各方陷入零和竞争并达到纳什均衡点，从而让其完全顺从规则不断将规则执行下去。</p>
-<p>因此，不光是游戏啊，纳什均衡之道是通用的“制定规则”之道。</p>
+<p>回到《鱿鱼游戏3》，我个人的判断也是一样：</p>
+<ul>
+<li>三个关卡并非没有博弈；</li>
+<li>但机制层面的可展开空间不足；</li>
+<li>于是剧情只能越来越依赖“非理性人物动作”来打破稳定策略。</li>
+</ul>
+<p>这不完全是“编剧降智”，更像是规则设计难度本身已经到瓶颈了。<br>因为真正高质量的规则，从来都不是“想个刺激惩罚机制”那么简单，而是要同时满足：</p>
+<ul>
+<li>可理解（观众看得懂）；</li>
+<li>可博弈（角色有策略空间）；</li>
+<li>不速解（不会两轮就被看穿）。</li>
+</ul>
+<p>最后，纳什均衡不只解释游戏，也解释制度。<br>很多看似高明的规则设计，本质上都是在“设计激励结构”，让参与者在各自理性下仍然沿着制定者希望的方向行动。</p>
+<p>所以，不光是游戏。<br><strong>纳什均衡之道，本质上也是“制定规则之道”。</strong></p>
 
       
 
