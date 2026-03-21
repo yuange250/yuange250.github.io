@@ -6,18 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuange250.github.io">
-  <title>Tag: economics | Chen Zhiyuan</title>
+  <title>Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
+  <meta name="description" content="FireRed-Image-Edit-1.0 Techinical Report地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2602.13344 简介：小红书图像编辑模型1.0，基于QwenImageEditPlus进行迭代训练，核心工作在于：  数据的收集与清洗，共收集1.6B文生图和图生图数据，经过清洗后剩余1E（0.1B） 全生命周期的Bags of training tricks，涵">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chen Zhiyuan">
-<meta property="og:url" content="https://yuange250.github.io/tags/economics/index.html">
+<meta property="og:url" content="https://yuange250.github.io/ExportBlock-a079e1b4-1e1d-4645-8b74-c74d364079e1-Part-1/FireRed-Image-Edit-1%200%20Techinical%20Report%2030d0ef6b1f0d80d4a309ced5aad92aec.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
+<meta property="og:description" content="FireRed-Image-Edit-1.0 Techinical Report地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2602.13344 简介：小红书图像编辑模型1.0，基于QwenImageEditPlus进行迭代训练，核心工作在于：  数据的收集与清洗，共收集1.6B文生图和图生图数据，经过清洗后剩余1E（0.1B） 全生命周期的Bags of training tricks，涵">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuange250.github.io/image.png">
+<meta property="og:image" content="https://yuange250.github.io/image%201.png">
+<meta property="og:image" content="https://yuange250.github.io/image%202.png">
+<meta property="og:image" content="https://yuange250.github.io/image%203.png">
+<meta property="og:image" content="https://yuange250.github.io/image%204.png">
+<meta property="og:image" content="https://yuange250.github.io/image%205.png">
+<meta property="og:image" content="https://yuange250.github.io/image%206.png">
+<meta property="og:image" content="https://yuange250.github.io/image%207.png">
+<meta property="og:image" content="https://yuange250.github.io/image%208.png">
+<meta property="article:published_time" content="2026-03-21T07:06:07.528Z">
+<meta property="article:modified_time" content="2026-03-21T07:05:53.012Z">
 <meta property="article:author" content="Chen Zhiyuan">
 <meta property="article:tag" content="Chen Zhiyuan, blog, computer vision, deep learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuange250.github.io/image.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -162,79 +174,508 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="FireRed-Image-Edit-1-0-Techinical-Report"><a href="#FireRed-Image-Edit-1-0-Techinical-Report" class="headerlink" title="FireRed-Image-Edit-1.0 Techinical Report"></a>FireRed-Image-Edit-1.0 Techinical Report</h1><p><strong>地址</strong>：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.13344">https://arxiv.org/abs/2602.13344</a></p>
+<p><strong>简介</strong>：小红书图像编辑模型1.0，基于QwenImageEditPlus进行迭代训练，核心工作在于：</p>
+<ol>
+<li>数据的收集与清洗，共收集1.6B文生图和图生图数据，经过清洗后剩余1E（0.1B）</li>
+<li>全生命周期的Bags of training tricks，涵盖了从预训练到有监督训练再到强化学习的全流程， 进一步提升模型训练过程中的数据效率与训练稳定性。</li>
+<li>推出了一个全新的图像编辑评测benchmark REDEdit-Bench，总共包含了15大类图像编辑任务，其中也提出了美化与底层增强两类新任务。</li>
+</ol>
+<p><img src="/image.png" alt="image.png"></p>
+<p><strong>当前图像编辑演进的核心卡点</strong>：</p>
+<ol>
+<li>黑盒类的不开源，没法研究</li>
+<li>开源的模型都越来越大，不利于训练和部署</li>
+<li>大家都倾向于去蒸馏黑盒模型，但缺少原生的高质量训练数据集与评测benchmark</li>
+</ol>
+<p><strong>本文的提出重点解决的问题、做出的贡献</strong>：</p>
+<ol>
+<li><p>庞大的训练数据集，囊括了一亿图文数据，包含文生图与图生图，两类数据比例1:1</p>
+<p> <img src="/image%201.png" alt="image.png"></p>
+</li>
+<li><p>训练Tricks：</p>
+<ol>
+<li>在大量训练数据的基础上提出了一套效率很高的训练方案 Multi-Condition Aware Bucket Sampler，尽可能减少了因为padding带来的训练资源浪费；</li>
+<li>提出了一套Stochastic Instruction Alignment<br> mechanism，在训练过程中对参考图进行droptout处理、对指令进行顺序打乱操作等增强模型训练泛化性；</li>
+<li>提出一种分布式分层时间采样，将扩散过程的不同时间段打散到不同GPU上，通过同步轮换机制防止单元过拟合的同时也提升整体噪音的一致性</li>
+<li><strong>对数正态损失加权</strong>将梯度贡献集中在<strong>语义关键的中间扩散时间步</strong>上，同时抑制可忽略的极端值。</li>
+<li><strong>基于指数移动平均的模型权重平均</strong>对优化轨迹中的参数进行融合，抵消瞬时波动，从而提升模型对真实场景分布偏移的鲁棒性。</li>
+</ol>
+</li>
+<li><p>针对benchmark分数与实际体验之间的体感不一致问题，作者面向用户实际体验提出了一个全面综合的测试benchmark <strong>REDEdit-Bench</strong>，用于更好得评估模型在实际使用过程中的好坏与否</p>
+</li>
+</ol>
+<p><strong>论文各部分具体的细节</strong>：</p>
+<ol>
+<li><p><strong>数据</strong></p>
+<ol>
+<li><p><strong>数据预清洗步骤</strong>：</p>
+<p> 对于真实世界数据，采用以下数据清洗流程进行大规模数据清洗：</p>
+<p> 全局粗去重 → 图像指标筛选（明亮度、锐化程度等） → 内容维度清洗（水印、文本覆盖等）→ 感知分清洗（美学感知分数、艺术分）</p>
+<p> 作者特意强调去掉了AIGC生成图，保证此类数据中的真实样本占比</p>
+</li>
+<li><p><strong>数据生成pipline</strong>：</p>
+<p> 自然生成数据无法覆盖各类图像编辑特定情况，因为对于I2I，多采用数据生成方案，有以下几种方案：</p>
+<ul>
+<li><strong>专家指令库</strong>与<strong>编辑目标词典:</strong><ul>
+<li>专家指令库将模型约束与触发条件归纳为<strong>规范原语</strong>与<strong>结构化槽位</strong>，以提升指令的稳定性与性能。</li>
+<li>编辑目标词典则定义了可编辑的内容：它结合<strong>VLM 探测</strong>来解析图像并提出<strong>有依据的编辑目标</strong>；以<strong>任务清单</strong>作为与任务对齐的可编辑对象 &#x2F; 属性库，实现长尾覆盖；并利用<strong>辅助元数据</strong>（如 OCR、坐标信息）作为可计算锚点，实现精确的定位与 grounding。</li>
+</ul>
+</li>
+<li>结构化控制下的专家模型合成:<ul>
+<li>从 SAM 、DWpose 等辅助感知模块中提取<strong>结构先验</strong>，包括分割掩码与姿态关键点，并将其与预设配置模板中的任务参数相结合，得到<strong>面向特定任务的结构化控制信息</strong>。</li>
+<li>这种结构化控制方法在<strong>空间敏感型任务</strong>中尤为有效，例如<strong>精确目标移除、面部表情与人体姿态迁移、外观重定向</strong>等。</li>
+</ul>
+</li>
+<li>无模型、基于模板的合成流程：<ul>
+<li><strong>3D 参数化模板</strong>：借助图形引擎与骨骼绑定系统，合成像素一致的面部表情、人体姿态调整及其他参数化变换；</li>
+<li><strong>结构化布局模板</strong>：为文字、Logo、UI 元素等图形组件定义空间锚点，严格约束排版与布局规范；</li>
+<li><strong>算法滤波模板</strong>：覆盖各类确定性图像信号处理操作，如锐化、色彩重定向及其他底层视觉增强。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>长尾数据增补</strong></p>
+<p> 对于长尾数据，主要的处理方案是 check and fill。首先在数据库内对现有数据做聚类，对于一些小众类目，基于文搜图、图搜图的方案从全量数据集中检索到相关的数据并进行处理。</p>
+</li>
+<li><p><strong>数据打标：</strong></p>
+<p> 基于VLM进行三级打标：详细指令打标→ 精确指令优化 → 用户指令生成三阶段</p>
+<p> <img src="/image%202.png" alt="image.png"></p>
+<p> 通过将这些改写后的简洁指令与原始精细描述混合训练，构建了<strong>覆盖从极简口语到精细指定全区间</strong>的多尺度数据分布。这种混合策略使从长文本中学到的<strong>细粒度视觉推理能力</strong>能够有效泛化到短文本场景中。因此，即便面对<strong>模糊或简洁的用户指令</strong>，模型仍可依托深度视觉知识进行精准推理与执行。</p>
+</li>
+<li><p><strong>数据后清洗</strong>：</p>
+<p> 数据收集、生成完成后，需要对数据进行后处理以形成训练数据集，主要有以下几个环节：</p>
+<ul>
+<li><p><strong>难负样本挖掘与多维度打标：</strong></p>
+<p>  先从海量原始数据集中采样<strong>5 万条 “源图像–编辑指令–目标图像” 三元组</strong>作为正样本；随后利用大语言模型对原始指令进行<strong>语义扰动与随机改写</strong>，生成偏离性指令，从而构建<strong>5 万条负样本</strong>，最终得到包含 10 万个样本的均衡数据集。为构建权威基准，我们组织专业人类标注人员进行<strong>双盲标注</strong>，评估标准聚焦两大核心指标：</p>
+<ul>
+<li><strong>指令对齐度</strong>：评估编辑结果是否准确执行文本指令</li>
+<li><strong>感知质量</strong>：检查清晰度、伪影与视觉美观度</li>
+</ul>
+<p>  这套严格的标注方案保证了均衡的语义分布，为后续评估模型的精度提供了可靠基础。
+  </p>
+</li>
+<li><p><strong>视觉语言评估模型训练：</strong></p>
+<p>  为实现与人类审美和逻辑判断高度一致的自动化评估机制，以 <strong>Qwen3‑VL‑8B</strong> 为骨干网络进行微调。通过在上述 10 万条高质量标注数据上进行<strong>监督微调（SFT）</strong>，模型获得了解析复杂编辑指令与感知细微视觉差异的能力。</p>
+</li>
+<li><p><strong>训练视觉语言验证模型：</strong></p>
+<p>  借助训练好的评估模型，对<strong>超亿级规模</strong>的原始训练数据进行全面质量评估，并设定严格过滤阈值，从<strong>指令对齐分数</strong>与<strong>视觉质量分数</strong>两个维度进行联合筛选。</p>
+<p>  具体而言，模型自动识别并剔除未遵循指令、发生语义偏移或视觉保真度低（如模糊、伪影、逻辑不一致）的样本。这套系统化的数据净化流程显著优化了训练集分布，确保生成模型在后续大规模训练中专注于<strong>高质量、高保真的编辑样本对</strong>，从根本上提升最终模型性能。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>训练Tricks</p>
+<ol>
+<li><p>整体训练PipeLine与训练数据量：</p>
+<p> <img src="/image%203.png" alt="image.png"></p>
+<table>
+<thead>
+<tr>
+<th>阶段属性</th>
+<th>预训练（Pretrain）</th>
+<th>持续预训练（CT）</th>
+<th>有监督微调（SFT）</th>
+<th>直接偏好优化（DPO）</th>
+<th>微调优化（NFT）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据集</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>互联网采集数据</td>
+<td>1 亿</td>
+<td>500 万</td>
+<td>5 万</td>
+<td>1 万</td>
+<td>1 万</td>
+</tr>
+<tr>
+<td>合成数据</td>
+<td>500 万</td>
+<td>1000 万</td>
+<td>5 万</td>
+<td>5 万</td>
+<td>1 万</td>
+</tr>
+<tr>
+<td><strong>标注类型</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>原始标注（Original Cap.）</td>
+<td>55%</td>
+<td>20%</td>
+<td>10%</td>
+<td>10%</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>结构化标注（Structured Cap.）</td>
+<td>40%</td>
+<td>60%</td>
+<td>45%</td>
+<td>30%</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>指令式标注（Instructive Cap.）</td>
+<td>5%</td>
+<td>20%</td>
+<td>45%</td>
+<td>60%</td>
+<td>60%</td>
+</tr>
+<tr>
+<td><strong>训练方案</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>分辨率（像素）</td>
+<td>384-512</td>
+<td>512-1024</td>
+<td>1024</td>
+<td>1024</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>训练步数</td>
+<td>30 万</td>
+<td>6.5 万</td>
+<td>5 千</td>
+<td>5 千</td>
+<td>500</td>
+</tr>
+<tr>
+<td>预热步数</td>
+<td>0</td>
+<td>0</td>
+<td>500</td>
+<td>500</td>
+<td>0</td>
+</tr>
+<tr>
+<td>优化器</td>
+<td>全阶段均为 AdamW（β₁&#x3D;0.9，β₂&#x3D;0.999）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>梯度裁剪</td>
+<td>全阶段均为 1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>权重衰减</td>
+<td>全阶段均为 0.01</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>整个流水线的核心目标是<strong>高效处理多分辨率多模态输入，生成高保真的图像，同时提升模型对文本提示的鲁棒性</strong>；</li>
+<li>关键创新点在于：① 分桶采样适配多分辨率；② 文本提示的随机增强；③ 基于 RoI 的一致性损失保证生成保真度；</li>
+<li>技术栈核心：VAE（视觉编码）+ Transformer（MMDiT）+ 多模态大模型（Qwen VL）+ 对比损失（RoI 级）。</li>
+</ul>
+</li>
+<li><p>预训练流程</p>
+<p> <img src="/image%204.png" alt="image.png"></p>
+<table>
+<thead>
+<tr>
+<th>核心策略</th>
+<th>解决的核心问题</th>
+<th>关键创新点</th>
+<th>最终收益</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>任意分辨率适配框架</td>
+<td>固定分辨率导致的构图破坏、算力浪费</td>
+<td>动态分桶采样（按长宽比分组）+ 双输入模式切换</td>
+<td>保语义 + 提效率 + 算力利用率最大化</td>
+</tr>
+<tr>
+<td>大规模混合条件数据</td>
+<td>网络数据噪声多、长尾概念易丢失</td>
+<td>包容性过滤（不弃稀有概念）+ 原始 &#x2F; 合成混合标注</td>
+<td>知识覆盖广 + 提示词遵循能力强</td>
+</tr>
+<tr>
+<td>渐进式时间步课程学习</td>
+<td>海量低质数据训练易发散、细节学习不充分</td>
+<td>先高噪声（学全局）→后均匀采样（学细节）的渐进式策略</td>
+<td>训练稳定 + 从粗到细掌握视觉特征</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>持续预训练流程</p>
+<p> <img src="/image%205.png" alt="image.png"></p>
+<table>
+<thead>
+<tr>
+<th>策略名称</th>
+<th>解决的核心问题</th>
+<th>具体实现方式</th>
+<th>核心收益</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>统一任务采样</td>
+<td>模型对不同生成范式（文本 &#x2F; 单图 &#x2F; 多图）适配性差</td>
+<td>平衡三类任务输入占比，联合训练</td>
+<td>提升模型通用性，充分利用算力</td>
+</tr>
+<tr>
+<td>扩展分辨率 &#x2F; 长宽比适配</td>
+<td>模型过拟合标准分辨率，非标准画布生成质量差</td>
+<td>分桶采样覆盖 9 种长宽比，分辨率提升至 512-1024</td>
+<td>保构图完整性，适配任意画布尺寸</td>
+</tr>
+<tr>
+<td>合成数据 + 密集语义对齐</td>
+<td>长尾概念覆盖不足、视觉 - 文本对齐精度低</td>
+<td>补充合成数据覆盖小众领域；用密集标注替代稀疏标注，强化细粒度语义对齐</td>
+<td>掌握稀有物体 &#x2F; 纹理，提升提示词遵循能力</td>
+</tr>
+<tr>
+<td>聚类 - based 分布平衡</td>
+<td>数据分布失衡导致模式坍缩、主导类别过拟合</td>
+<td>按语义聚类后均匀采样，而非按原始频率采样</td>
+<td>生成能力跨类别一致，避免模式坍缩</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>监督训练流程</p>
+<p> <img src="/image%206.png" alt="image.png"></p>
+<table>
+<thead>
+<tr>
+<th>策略名称</th>
+<th>解决的核心问题</th>
+<th>具体实现方式</th>
+<th>核心收益</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高保真数据对齐 + 分布平衡</td>
+<td>1. 预训练噪声导致生成质量低；2. 指令遵循能力弱；3. 微调时长尾概念遗忘</td>
+<td>1. 人工筛选 1024×1024 高分辨率数据；2. 用指令式标注 &#x2F; 结构化提示词强制文本 - 视觉精准对齐；3. 动态重采样平衡类别，避免长尾遗忘</td>
+<td>1. 提升生成保真度（减少伪影）；2. 强化指令遵循；3. 保留语义多样性</td>
+</tr>
+<tr>
+<td>低学习率 + EMA 权重平均</td>
+<td>1. 大学习率破坏预训练的全局结构；2. 单 checkpoint 偏差大、生成不稳定</td>
+<td>1. 低学习率仅优化细节，不改动全局结构；2. EMA 维护参数移动平均，平滑优化过程</td>
+<td>1. 提升高频细节 &#x2F; 真实感；2. 增强生成稳定性；3. 降低单 checkpoint 偏差</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>强化学习训练</p>
+<p> <img src="/image%207.png" alt="image.png"></p>
+<ul>
+<li><strong>DPO+PSR</strong>解决标准 DPO “正负一起退化”，<strong>强化正样本梯度</strong>，不被负样本带偏。</li>
+<li><strong>Mix-Policy</strong>从多个专家模型取正样本，自动构造偏好对，不人工标注。</li>
+<li><strong>Diffusion NFT</strong>扩散模型上直接在线 RL，用<strong>连续软奖励</strong>，不用配对数据。</li>
+<li><strong>LA-OCR 奖励</strong>字符级位置 + 尺度约束，<strong>防奖励作弊、防文字崩坏</strong>。</li>
+<li><strong>半困难样本挖掘</strong>只练 “差一点就完美” 的样本，<strong>数据效率极高</strong>。</li>
+</ul>
+</li>
+<li><p>一致性损失</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>核心问题</th>
+<th>根本原因</th>
+<th>解决方案核心</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>身份漂移（identity drift）</td>
+<td>均方损失仅关注像素保真，忽略高层语义</td>
+<td>引入基于人脸识别网络的身份损失 Lid</td>
+</tr>
+<tr>
+<td>身份约束与细节合成冲突</td>
+<td>低噪声阶段强行约束身份会破坏纹理</td>
+<td>动态权重调度：高噪声阶段强约束，低噪声阶段无约束</td>
+</tr>
+<tr>
+<td>多主体身份保真实现</td>
+<td>单主体策略无法适配多人场景</td>
+<td>人脸独立对齐 + 多主体余弦距离平均</td>
+</tr>
+</tbody></table>
+<p> g. 训练策略</p>
+<ul>
+<li><strong>分布式分层时间步采样</strong>将总时间步按 GPU 数量均分并动态轮换，保证全局批次均匀覆盖全噪声区间，解决分布式训练中的采样偏置问题，提升收敛稳定性。</li>
+<li><strong>Logit‑Normal 损失加权</strong>以扩散中间阶段为核心分配梯度权重，弱化高 &#x2F; 低噪声端的无效贡献，让模型重点学习语义结构与纹理形成的关键阶段。</li>
+<li><strong>模型权重平均（EMA）</strong>对收敛阶段的参数做指数移动平均，平滑优化过程、消除瞬时波动，增强模型在真实场景编辑中的鲁棒性与泛化能力。</li>
+</ul>
+</li>
+<li><p>Benchmark：</p>
+<ol>
+<li>benchmark构成</li>
+</ol>
+<p> <img src="/image%208.png" alt="image.png"></p>
+<ul>
+<li>构建了<strong>1,673 对中英双语</strong>图像编辑评测集，覆盖 <strong>15 类结构化编辑任务</strong>。</li>
+<li>数据经过<strong>专业筛选 + 专家审核</strong>，来源合法、指令多样、类别分布均衡。</li>
+<li>在规模、真实图像、人工过滤、细分子任务、双语、专用评测提示六个维度上<strong>全面超越现有开源基准</strong>。</li>
+</ul>
+</li>
+</ol>
+<p>b. 测试流程</p>
+<ul>
+<li>从三大维度综合评估：<strong>指令遵循度、视觉自然度、物理与细节一致性</strong>。</li>
+<li>使用 <strong>Gemini 3 Flash</strong> 作为自动化评测器，实现客观、统一打分。</li>
+<li>针对<strong>文字编辑任务</strong>提出两套新指标：<ul>
+<li><strong>OCR 指标</strong>：计算编辑距离、完成率、字符准确率，量化文字生成精度。</li>
+<li><strong>VLM Judge</strong>：从编辑成功度、过度编辑、风格、背景融合一致性评价视觉质量。</li>
+</ul>
+</li>
+</ul>
+<p>c. 整体评测框架</p>
+<ul>
+<li>采用<strong>人工评测 + 基准量化评测</strong>双验证体系。</li>
+<li>评测覆盖四大类任务：通用编辑、文字中心编辑、创意编辑、虚拟试穿编辑。</li>
+</ul>
+<p>d. 人工评测设计</p>
+<ul>
+<li>采用<strong>盲评、多模型同屏随机展示</strong>，消除位置与品牌偏好，保证公平。</li>
+<li>从两个核心维度打分：<ol>
+<li><strong>Prompt Following（指令遵循）</strong>：是否准确理解并完整执行编辑意图。</li>
+<li><strong>Consistency Preservation（一致性保持）</strong>：是否只改指定区域，<strong>保留身份、背景、结构、布局</strong>等非编辑区域不变。</li>
+</ol>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2025/06/15/BigDepression/" class="archive-article-date">
-  	<time datetime="2025-06-14T18:14:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/06/15/BigDepression/">《大衰退：宏观经济学的圣杯》--前者之失，后者之鉴？</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">economics</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">reading notes</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">闲聊</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yuange250.github.io/ExportBlock-a079e1b4-1e1d-4645-8b74-c74d364079e1-Part-1/FireRed-Image-Edit-1%200%20Techinical%20Report%2030d0ef6b1f0d80d4a309ced5aad92aec.html" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Essays//" class="article-tag-list-link color2">Essays</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -259,7 +700,7 @@
 		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
