@@ -6,18 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuange250.github.io">
-  <title>Tag: PyTorch | Chen Zhiyuan</title>
+  <title>从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘 | Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chen Zhiyuan">
-<meta property="og:url" content="https://yuange250.github.io/tags/PyTorch/index.html">
+  <meta name="description" content="这个项目一开始并不“宏大”：我只是想做一台能远程控制、能看视频、后续还能接机械臂的小车。真正做起来后，发现它不是一个“写几段控制代码”的问题，而是一个典型的系统工程：主控怎么选、供电怎么拆、控制协议怎么留扩展位、机械结构和软件接口怎么对齐。 这篇文章更像一次完整的工程学习记录：为什么这样设计、踩了哪些坑、以及这些取舍背后的逻辑。 项目代码已经开源在 GitHub：https:&#x2F;&#x2F;github.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘">
+<meta property="og:url" content="https://yuange250.github.io/2026/03/21/SmartCar-Project-Story/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
+<meta property="og:description" content="这个项目一开始并不“宏大”：我只是想做一台能远程控制、能看视频、后续还能接机械臂的小车。真正做起来后，发现它不是一个“写几段控制代码”的问题，而是一个典型的系统工程：主控怎么选、供电怎么拆、控制协议怎么留扩展位、机械结构和软件接口怎么对齐。 这篇文章更像一次完整的工程学习记录：为什么这样设计、踩了哪些坑、以及这些取舍背后的逻辑。 项目代码已经开源在 GitHub：https:&#x2F;&#x2F;github.co">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuange250.github.io/images/smartcar/20260321-211458.jpg">
+<meta property="og:image" content="https://yuange250.github.io/images/smartcar/resp_gpio.png">
+<meta property="og:image" content="https://yuange250.github.io/images/smartcar/20260321-211521.jpg">
+<meta property="og:image" content="https://yuange250.github.io/images/smartcar/20260321-211528.jpg">
+<meta property="article:published_time" content="2026-03-21T14:10:00.000Z">
+<meta property="article:modified_time" content="2026-03-21T13:54:20.914Z">
 <meta property="article:author" content="Chen Zhiyuan">
-<meta property="article:tag" content="Chen Zhiyuan, blog, computer vision, deep learning">
+<meta property="article:tag" content="robotics">
+<meta property="article:tag" content="raspberry pi">
+<meta property="article:tag" content="project log">
+<meta property="article:tag" content="engineering">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuange250.github.io/images/smartcar/20260321-211458.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -172,56 +182,138 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-SmartCar-Project-Story" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/08/Pytorch-introduction/" class="archive-article-date">
-  	<time datetime="2017-11-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/08/Pytorch-introduction/">Pytorch 60 Minute Blitz Translation</a>
+    <h1 class="article-title" itemprop="name">
+      从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2026/03/21/SmartCar-Project-Story/" class="archive-article-date">
+  	<time datetime="2026-03-21T14:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-03-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个项目一开始并不“宏大”：我只是想做一台能远程控制、能看视频、后续还能接机械臂的小车。<br>真正做起来后，发现它不是一个“写几段控制代码”的问题，而是一个典型的系统工程：主控怎么选、供电怎么拆、控制协议怎么留扩展位、机械结构和软件接口怎么对齐。</p>
+<p>这篇文章更像一次完整的工程学习记录：为什么这样设计、踩了哪些坑、以及这些取舍背后的逻辑。</p>
+<p>项目代码已经开源在 GitHub：<br><a target="_blank" rel="noopener" href="https://github.com/yuange250/SmartCar">https://github.com/yuange250/SmartCar</a></p>
+<span id="more"></span>
+
+<p><img src="/images/smartcar/20260321-211458.jpg" alt="SmartCar 成品图"></p>
+<h2 id="一、最早的目标：先让系统“完整”起来"><a href="#一、最早的目标：先让系统“完整”起来" class="headerlink" title="一、最早的目标：先让系统“完整”起来"></a>一、最早的目标：先让系统“完整”起来</h2><p>我给自己的第一版目标是四件事：</p>
+<ol>
+<li>小车底盘可稳定前后左右运动；</li>
+<li>有远程控制能力（客户端-服务端）；</li>
+<li>能实时视频回传；</li>
+<li>后续可扩展机械臂（SO101）。</li>
+</ol>
+<p>这里有一个关键判断：<strong>我需要的是“系统能力”而不是“单片机级控制”</strong>。<br>这个判断直接决定了后面的大部分技术路线。</p>
+<h2 id="二、为什么主控选树莓派，而不是-Arduino"><a href="#二、为什么主控选树莓派，而不是-Arduino" class="headerlink" title="二、为什么主控选树莓派，而不是 Arduino"></a>二、为什么主控选树莓派，而不是 Arduino</h2><p>这是这个项目里最核心的架构选择之一。</p>
+<h3 id="2-1-如果只看“电机控制”，Arduino-很好"><a href="#2-1-如果只看“电机控制”，Arduino-很好" class="headerlink" title="2.1 如果只看“电机控制”，Arduino 很好"></a>2.1 如果只看“电机控制”，Arduino 很好</h3><p>Arduino 的优点我完全认可：简单、稳定、实时性强、上手快。<br>如果目标只是“让车动起来”，它甚至更优雅。</p>
+<h3 id="2-2-但这个项目不只是“让车动”"><a href="#2-2-但这个项目不只是“让车动”" class="headerlink" title="2.2 但这个项目不只是“让车动”"></a>2.2 但这个项目不只是“让车动”</h3><p>我最终选择树莓派，是因为项目从一开始就要求：</p>
+<ul>
+<li>同时跑网络服务（TCP&#x2F;IP）；</li>
+<li>同时处理视频流（摄像头采集、压缩、回传）；</li>
+<li>后续接入机械臂控制库（LeRobot&#x2F;串口总线）；</li>
+<li>后续可能再加轻量视觉模型（YOLO 推理等）。</li>
+</ul>
+<p>这些任务叠在一起，树莓派作为 Linux 主机的优势非常明显：<br><strong>开发效率高、软件生态完整、模块集成成本低</strong>。<br>我可以用一套 Python 代码把服务端、控制逻辑、视频传输、机械臂接口统一起来，而不是拆成多 MCU + 上位机桥接的复杂形态。</p>
+<p>换句话说：<br>我不是在做“一个最小控制器”，我是在做“一个可持续扩展的机器人节点”。</p>
+<h2 id="三、为什么电源必须拆成三路"><a href="#三、为什么电源必须拆成三路" class="headerlink" title="三、为什么电源必须拆成三路"></a>三、为什么电源必须拆成三路</h2><p>这是另一个关键工程决策。很多初学项目会用“一路电池全供”，看起来省事，但在真实运行中很容易出问题。</p>
+<p>我把电源拆成：</p>
+<ol>
+<li><strong>树莓派电源</strong>（UPS）  </li>
+<li><strong>小车动力电源</strong>（电机&#x2F;L298N）  </li>
+<li><strong>机械臂电源</strong>（SO101 控制板+舵机）</li>
+</ol>
+<h3 id="3-1-树莓派电源：核心是“稳”"><a href="#3-1-树莓派电源：核心是“稳”" class="headerlink" title="3.1 树莓派电源：核心是“稳”"></a>3.1 树莓派电源：核心是“稳”</h3><p>树莓派怕的是瞬时跌压。<br>一旦电压抖动，轻则网络卡顿、摄像头掉帧，重则重启、文件系统风险。<br>所以我给树莓派单独 UPS，优先保证主控和服务端稳定在线。</p>
+<h3 id="3-2-小车动力电源：核心是“脏电隔离”"><a href="#3-2-小车动力电源：核心是“脏电隔离”" class="headerlink" title="3.2 小车动力电源：核心是“脏电隔离”"></a>3.2 小车动力电源：核心是“脏电隔离”</h3><p>电机启动和转向时会带来明显电流冲击与电磁噪声。<br>如果和主控共电，最常见症状就是控制正常但系统随机异常。<br>把动力和主控隔离后，这类玄学问题会少很多，调试效率差异非常明显。</p>
+<h3 id="3-3-机械臂电源：核心是“峰值电流独立”"><a href="#3-3-机械臂电源：核心是“峰值电流独立”" class="headerlink" title="3.3 机械臂电源：核心是“峰值电流独立”"></a>3.3 机械臂电源：核心是“峰值电流独立”</h3><p>机械臂舵机在起停、夹爪动作、姿态突变时会出现高峰值电流。<br>如果它和底盘动力或者树莓派绑在一条电源上，系统耦合会变得很重：机械臂一动作，其他模块可能同步抖动。<br>独立电源后，机械臂调参和小车行走可以基本互不干扰。</p>
+<p>总结成一句话：<br><strong>三路供电不是“堆料”，而是用硬件边界换系统稳定性与可调试性。</strong></p>
+<h2 id="四、硬件搭建与控制链路"><a href="#四、硬件搭建与控制链路" class="headerlink" title="四、硬件搭建与控制链路"></a>四、硬件搭建与控制链路</h2><p>在硬件上，我用了 L298N 作为底盘电机驱动，树莓派通过 GPIO + PWM 进行控制，云台舵机也直接由树莓派输出控制信号。</p>
+<p><img src="/images/smartcar/resp_gpio.png" alt="树莓派3B GPIO示意图"></p>
+<p>控制层面是典型的客户端-服务端结构：</p>
+<ul>
+<li>树莓派侧跑服务端，负责执行电机&#x2F;舵机&#x2F;机械臂动作；</li>
+<li>上位机侧可以用键盘或 GUI 发控制命令；</li>
+<li>视频模块独立传输并带重连机制，避免控制面被视频流阻塞。</li>
+</ul>
+<h2 id="五、加上机械臂后，项目才真正“像机器人”"><a href="#五、加上机械臂后，项目才真正“像机器人”" class="headerlink" title="五、加上机械臂后，项目才真正“像机器人”"></a>五、加上机械臂后，项目才真正“像机器人”</h2><p>SO101 机械臂不是简单外挂。它逼着系统从“移动平台”升级成“移动操作平台”：</p>
+<ul>
+<li>控制对象从两路轮子扩展到多关节总线舵机；</li>
+<li>供电从“能转就行”升级到“峰值动作可持续”；</li>
+<li>命令协议要预留机械臂动作语义（如 <code>arm_home</code> &#x2F; <code>arm_open</code> &#x2F; <code>arm_close</code>）。</li>
+</ul>
+<p>机械臂调通后，系统的可玩性和研究价值都上了一个台阶：<br>它不再只是遥控车，而是可以做“移动 + 操作”联动实验的底座。</p>
+<p><img src="/images/smartcar/20260321-211521.jpg" alt="机械臂与整车视角 1"><br><img src="/images/smartcar/20260321-211528.jpg" alt="机械臂与整车视角 2"></p>
+<h2 id="六、成本与取舍：我学到的不是“最便宜”，而是“最划算”"><a href="#六、成本与取舍：我学到的不是“最便宜”，而是“最划算”" class="headerlink" title="六、成本与取舍：我学到的不是“最便宜”，而是“最划算”"></a>六、成本与取舍：我学到的不是“最便宜”，而是“最划算”</h2><p>按当前版本，预算大致是：</p>
+<ul>
+<li>仅小车平台（含云台+摄像头）：约 551 元</li>
+<li>小车 + SO101 机械臂：约 1299 元</li>
+</ul>
+<p>如果只看“能动”，这个成本不低；<br>但如果看“可扩展、可调试、可继续迭代”的学习价值，我认为是划算的。</p>
+<p>因为真正贵的不是硬件，而是你在混乱系统里排查不稳定问题的时间。</p>
+<h2 id="七、项目结果与下一步"><a href="#七、项目结果与下一步" class="headerlink" title="七、项目结果与下一步"></a>七、项目结果与下一步</h2><p>目前我比较满意的结果是：</p>
+<ul>
+<li>小车运动控制、远程控制和视频传输可以稳定协作；</li>
+<li>机械臂链路可独立验证并集成到服务端；</li>
+<li>电源与模块边界清晰，便于后续功能叠加。</li>
+</ul>
+<p>下一步我会继续做两件事：</p>
+<ol>
+<li>把“移动决策 + 机械臂动作”做成可编排任务流（不是单条指令触发）；  </li>
+<li>增加更稳定的状态机与日志归档，让故障定位更工程化。</li>
+</ol>
+<p>同时，我也会开启两个更长期的方向：</p>
+<ol start="3">
+<li><p><strong>升级树莓派控制系统至 ROS</strong><br>目标是把底盘控制、视觉感知、机械臂控制统一到标准化消息与节点框架中，降低模块耦合，提升系统可复用性与调试效率。</p>
+</li>
+<li><p><strong>探索 VLA 大模型在小车上的潜力，并发掘待解决问题</strong><br>我希望把“感知-决策-动作”链路做成更智能的闭环，同时系统性记录当前瓶颈（时延、稳定性、数据闭环、真实场景泛化等），明确哪些问题值得优先攻克。</p>
+</li>
+</ol>
+<hr>
+<p>项目开源地址（欢迎 star &#x2F; issue &#x2F; PR）：<br><a target="_blank" rel="noopener" href="https://github.com/yuange250/SmartCar">https://github.com/yuange250/SmartCar</a></p>
+<p>如果你也在做类似项目，我最想分享的一条经验是：<br><strong>先把系统边界设计清楚，再追求功能堆叠。</strong><br>当主控、供电、协议都留好扩展位，后面的每一步都会轻松很多。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Deep Learning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">robotics</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">PyTorch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">raspberry pi</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DeepLearning</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">project log</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">engineering</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -234,17 +326,104 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yuange250.github.io/2026/03/21/SmartCar-Project-Story/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2026/03/21/FireRed-Image-Edit-1-0-Technical-Report/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FireRed-Image-Edit-1.0 Technical Report 论文学习记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-    
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -282,9 +461,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
