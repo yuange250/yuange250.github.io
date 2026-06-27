@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://yuange250.github.io">
   <title>Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
+  <meta name="description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chen Zhiyuan">
 <meta property="og:url" content="https://yuange250.github.io/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="Personal site — research notes, essays, and CV (computer vision &amp; multimodal ML).">
+<meta property="og:description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Chen Zhiyuan">
 <meta property="article:tag" content="Chen Zhiyuan, blog, computer vision, deep learning">
@@ -44,14 +44,14 @@
 <div class="overlay" style="background: #1e3a5f"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
-		<a href="" class="profilepic">
+		<a href="/" class="profilepic">
 			<img src="/images/avatar.png" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="">Chen Zhiyuan</a></h1>
+		  <h1 class="header-author"><a href="/">Chen Zhiyuan</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">Computer vision · Multimodal ML</p>
+		<p class="header-subtitle">Computer Vision / Multimodal ML</p>
 		
 
 		<nav class="header-menu">
@@ -111,7 +111,7 @@
 			  <h1 class="header-author js-header-author">Chen Zhiyuan</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Computer vision · Multimodal ML<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Computer Vision / Multimodal ML<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -173,20 +173,318 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<section class="home-resume-spotlight" role="region" aria-label="Curriculum vitae">
-  <div class="home-resume-inner">
-    <h2 class="home-resume-title">Curriculum Vitae · Research Profile</h2>
-    
-    <p class="home-resume-affil">Ant Group · Beihang University (IRIP)</p>
-    
-    
-    <p class="home-resume-subtitle">Experience, research interests, and selected publications are organized on the CV page for quick review.</p>
-    
-    <a class="home-resume-btn" href="/resume/">View CV and Publications</a>
+
+<style>
+  .home-resume-spotlight {
+    margin: 30px;
+    padding: 36px;
+    background:
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 34%),
+      linear-gradient(135deg, #12314f 0%, #1f4f76 52%, #d6b06d 100%);
+    border-radius: 28px;
+    color: #f6f8fb;
+    box-shadow: 0 24px 60px rgba(17, 41, 68, 0.18);
+  }
+  .home-resume-hero {
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .home-resume-copy,
+  .home-resume-panel {
+    min-width: 0;
+  }
+  .home-resume-copy {
+    flex: 1.25;
+  }
+  .home-resume-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .home-resume-eyebrow {
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 248, 251, 0.72);
+  }
+  .home-resume-title {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 40px;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .home-resume-affil {
+    margin: 16px 0 0;
+    font-size: 16px;
+    color: rgba(246, 248, 251, 0.82);
+  }
+  .home-resume-subtitle {
+    margin: 16px 0 0;
+    max-width: 680px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(246, 248, 251, 0.92);
+  }
+  .home-resume-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .home-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 148px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .home-resume-btn:hover {
+    transform: translateY(-1px);
+  }
+  .home-resume-btn.primary {
+    background: #fff;
+    color: #163553;
+    box-shadow: 0 12px 30px rgba(12, 27, 44, 0.18);
+  }
+  .home-resume-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+  }
+  .home-resume-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .home-resume-stat {
+    padding: 16px 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .home-resume-stat strong,
+  .home-resume-stat span,
+  .home-resume-card-title,
+  .home-resume-card-desc {
+    display: block;
+  }
+  .home-resume-stat strong {
+    font-size: 22px;
+    color: #fff;
+  }
+  .home-resume-stat span {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(246, 248, 251, 0.8);
+  }
+  .home-resume-card-grid {
+    display: grid;
+    gap: 14px;
+  }
+  .home-resume-card,
+  .home-resume-latest {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 20px;
+    padding: 18px 20px;
+    box-shadow: 0 14px 34px rgba(14, 30, 46, 0.12);
+  }
+  .home-resume-card {
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .home-resume-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 38px rgba(14, 30, 46, 0.16);
+  }
+  .home-resume-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #163553;
+  }
+  .home-resume-card-desc {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #5d6e7d;
+  }
+  .home-resume-latest-label {
+    margin: 0 0 10px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a99a8;
+  }
+  .home-resume-latest ul {
+    margin: 0;
+  }
+  .home-resume-latest li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid #ebeff3;
+  }
+  .home-resume-latest li:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+  .home-resume-latest a {
+    color: #183652;
+    line-height: 1.6;
+  }
+  .home-resume-latest time {
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #7d8b98;
+  }
+  .home-posts-heading {
+    margin: 18px 30px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #17304a;
+  }
+  @media screen and (max-width: 800px) {
+    .home-resume-spotlight {
+      margin: 10px;
+      padding: 22px 18px;
+      border-radius: 22px;
+    }
+    .home-resume-hero,
+    .home-resume-latest li {
+      display: block;
+    }
+    .home-resume-title {
+      font-size: 30px;
+    }
+    .home-resume-subtitle {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .home-resume-actions {
+      display: block;
+    }
+    .home-resume-btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+    .home-resume-stats {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-panel {
+      margin-top: 18px;
+    }
+    .home-resume-latest time {
+      display: block;
+      margin-top: 4px;
+    }
+    .home-posts-heading {
+      margin: 14px 10px 0;
+      font-size: 24px;
+    }
+  }
+</style>
+<section class="home-resume-spotlight" role="region" aria-label="Homepage introduction">
+  <div class="home-resume-hero">
+    <div class="home-resume-copy">
+      
+      <p class="home-resume-eyebrow">Research notes, engineering logs, and essays</p>
+      
+      <h2 class="home-resume-title">Building visual AI systems and writing along the way</h2>
+      
+      <p class="home-resume-affil">Ant Group / Beihang University (IRIP)</p>
+      
+      
+      <p class="home-resume-subtitle">This homepage doubles as a research-facing profile and a working notebook for computer vision, multimodal generation, and product experiments.</p>
+      
+      <div class="home-resume-actions">
+        <a class="home-resume-btn primary" href="/resume/">View CV</a>
+        <a class="home-resume-btn secondary" href="/guestbook/">Leave a Message</a>
+      </div>
+      
+      <div class="home-resume-stats">
+        
+        <div class="home-resume-stat">
+          <strong>6+</strong>
+          <span>Years building CV systems</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>10+</strong>
+          <span>Public notes and essays</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>AI x Product</strong>
+          <span>Long-term exploration</span>
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <div class="home-resume-panel">
+      
+      <div class="home-resume-card-grid">
+        
+        <a class="home-resume-card" href="/resume/">
+          <span class="home-resume-card-title">Publications</span>
+          <span class="home-resume-card-desc">Selected papers, projects, and academic background.</span>
+        </a>
+        
+        <a class="home-resume-card" href="/categories/Research/">
+          <span class="home-resume-card-title">Research Posts</span>
+          <span class="home-resume-card-desc">Notes on vision, multimodal models, and embodied intelligence.</span>
+        </a>
+        
+        <a class="home-resume-card" href="/categories/Essays/">
+          <span class="home-resume-card-title">Essays</span>
+          <span class="home-resume-card-desc">Longer writing on economics, games, history, and culture.</span>
+        </a>
+        
+      </div>
+      
+      
+      <div class="home-resume-latest">
+        <p class="home-resume-latest-label">Latest posts</p>
+        <ul>
+          
+          <li>
+            <a href="/2026/04/18/KosoWorld-WorldScene/">科索造物集第二个项目《蓝星之美》：空间叙事练习</a>
+            <time datetime="2026-04-18">2026-04-18</time>
+          </li>
+          
+          <li>
+            <a href="/2026/04/18/KosoWorld-Intro-And-Timeline/">“科索造物集”以及第一个项目《游戏史时间轴》</a>
+            <time datetime="2026-04-18">2026-04-18</time>
+          </li>
+          
+          <li>
+            <a href="/2026/03/21/SmartCar-Project-Story/">从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘</a>
+            <time datetime="2026-03-21">2026-03-21</time>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </div>
   </div>
 </section>
 
-<h2 class="home-posts-heading">Recent posts</h2>
+<h2 class="home-posts-heading">Recent writing</h2>
 
 
 
@@ -212,8 +510,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>** 文字扫盲，让更多人学会了用纸和笔表达自己；智能手机的兴起，让更多人学会了用自媒体和视频表达自己；而 AI 的兴起，很可能正在带来下一次个人表达方式的变化。 **</p>
-<p>如果说科索造物集的第一个项目 <a target="_blank" rel="noopener" href="http://localhost:5173/works/timeline">《游戏史时间轴》</a> 练的是“时间叙事”，那么第二个项目 <a target="_blank" rel="noopener" href="http://www.koso.world/works/worldscene">《蓝星之美》</a> 想练的，就是另一种同样重要的能力：空间叙事。</p>
+        <p><strong>文字扫盲，让更多人学会了用纸和笔表达自己；智能手机的兴起，让更多人学会了用自媒体和视频表达自己；而 AI 的兴起，很可能正在带来下一次个人表达方式的变化。</strong></p>
+<p>如果说科索造物集的第一个项目 <a target="_blank" rel="noopener" href="http://www.koso.world/works/timeline">《游戏史时间轴》</a> 练的是“时间叙事”，那么第二个项目 <a target="_blank" rel="noopener" href="http://www.koso.world/works/worldscene">《蓝星之美》</a> 想练的，就是另一种同样重要的能力：空间叙事。</p>
 <p>我想知道，当内容天然属于“空间”而不是“时间”的时候，产品应该怎么讲它。</p>
         
           <a class="article-more-a" href="/2026/04/18/KosoWorld-WorldScene/#more">more >></a>
