@@ -188,21 +188,30 @@
   .home-resume-hero {
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
+    grid-template-areas:
+      "copy quick"
+      "stats latest";
     gap: 28px;
     align-items: stretch;
   }
   .home-resume-copy,
-  .home-resume-panel {
+  .home-resume-panel,
+  .home-resume-latest-wrap {
     min-width: 0;
   }
   .home-resume-copy {
+    grid-area: copy;
     display: flex;
     flex-direction: column;
   }
   .home-resume-panel {
+    grid-area: quick;
     display: flex;
     flex-direction: column;
     gap: 18px;
+  }
+  .home-resume-latest-wrap {
+    grid-area: latest;
   }
   .home-resume-eyebrow {
     margin: 0 0 12px;
@@ -266,7 +275,8 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
-    grid-column: 1 / -1;
+    grid-area: stats;
+    align-self: start;
   }
   .home-resume-stat {
     padding: 16px 14px;
@@ -370,6 +380,11 @@
     }
     .home-resume-hero {
       grid-template-columns: 1fr;
+      grid-template-areas:
+        "copy"
+        "quick"
+        "stats"
+        "latest";
     }
     .home-resume-title {
       font-size: 30px;
@@ -441,7 +456,31 @@
         
       </div>
       
+    </div>
+
+    
+    <div class="home-resume-stats">
       
+      <div class="home-resume-stat">
+        <strong>6+</strong>
+        <span>Years building CV systems</span>
+      </div>
+      
+      <div class="home-resume-stat">
+        <strong>10+</strong>
+        <span>Public notes and essays</span>
+      </div>
+      
+      <div class="home-resume-stat">
+        <strong>AI x Product</strong>
+        <span>Long-term exploration</span>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="home-resume-latest-wrap">
       <div class="home-resume-latest">
         <p class="home-resume-latest-label">Latest posts</p>
         <ul>
@@ -463,27 +502,6 @@
           
         </ul>
       </div>
-      
-    </div>
-
-    
-    <div class="home-resume-stats">
-      
-      <div class="home-resume-stat">
-        <strong>6+</strong>
-        <span>Years building CV systems</span>
-      </div>
-      
-      <div class="home-resume-stat">
-        <strong>10+</strong>
-        <span>Public notes and essays</span>
-      </div>
-      
-      <div class="home-resume-stat">
-        <strong>AI x Product</strong>
-        <span>Long-term exploration</span>
-      </div>
-      
     </div>
     
   </div>
