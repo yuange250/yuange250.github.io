@@ -186,7 +186,8 @@
     box-shadow: 0 24px 60px rgba(17, 41, 68, 0.18);
   }
   .home-resume-hero {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
     gap: 28px;
     align-items: stretch;
   }
@@ -195,10 +196,10 @@
     min-width: 0;
   }
   .home-resume-copy {
-    flex: 1.25;
+    display: flex;
+    flex-direction: column;
   }
   .home-resume-panel {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -265,7 +266,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
-    margin-top: 28px;
+    grid-column: 1 / -1;
   }
   .home-resume-stat {
     padding: 16px 14px;
@@ -367,6 +368,9 @@
     .home-resume-latest li {
       display: block;
     }
+    .home-resume-hero {
+      grid-template-columns: 1fr;
+    }
     .home-resume-title {
       font-size: 30px;
     }
@@ -414,26 +418,6 @@
         <a class="home-resume-btn primary" href="/resume/">View CV</a>
         <a class="home-resume-btn secondary" href="/guestbook/">Leave a Message</a>
       </div>
-      
-      <div class="home-resume-stats">
-        
-        <div class="home-resume-stat">
-          <strong>6+</strong>
-          <span>Years building CV systems</span>
-        </div>
-        
-        <div class="home-resume-stat">
-          <strong>10+</strong>
-          <span>Public notes and essays</span>
-        </div>
-        
-        <div class="home-resume-stat">
-          <strong>AI x Product</strong>
-          <span>Long-term exploration</span>
-        </div>
-        
-      </div>
-      
     </div>
 
     <div class="home-resume-panel">
@@ -481,6 +465,27 @@
       </div>
       
     </div>
+
+    
+    <div class="home-resume-stats">
+      
+      <div class="home-resume-stat">
+        <strong>6+</strong>
+        <span>Years building CV systems</span>
+      </div>
+      
+      <div class="home-resume-stat">
+        <strong>10+</strong>
+        <span>Public notes and essays</span>
+      </div>
+      
+      <div class="home-resume-stat">
+        <strong>AI x Product</strong>
+        <span>Long-term exploration</span>
+      </div>
+      
+    </div>
+    
   </div>
 </section>
 
