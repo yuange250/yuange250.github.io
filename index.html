@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/images/avatar.png">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
 <link rel="stylesheet" type="text/css" href="/./academic.css">
@@ -176,113 +176,150 @@
 
 <style>
   .home-resume-spotlight {
-    margin: 30px;
-    padding: 36px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    container-name: home-spotlight;
+    container-type: inline-size;
+    margin: 24px 30px 30px;
+    padding: clamp(30px, 3.2vw, 50px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 30px;
     background:
-      radial-gradient(circle at top right, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 34%),
-      linear-gradient(135deg, #12314f 0%, #1f4f76 52%, #d6b06d 100%);
-    border-radius: 28px;
-    color: #f6f8fb;
-    box-shadow: 0 24px 60px rgba(17, 41, 68, 0.18);
+      radial-gradient(circle at 88% 14%, rgba(250, 239, 207, 0.28), transparent 27%),
+      linear-gradient(120deg, #102e49 0%, #194a6b 64%, #b98d49 135%);
+    color: #f7f9fb;
+    box-shadow: 0 24px 64px rgba(13, 35, 55, 0.18);
+  }
+  .home-resume-spotlight::before,
+  .home-resume-spotlight::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    pointer-events: none;
+  }
+  .home-resume-spotlight::before {
+    right: -120px;
+    bottom: -180px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 72px rgba(255, 255, 255, 0.025),
+      0 0 0 144px rgba(255, 255, 255, 0.018);
+  }
+  .home-resume-spotlight::after {
+    inset: 0;
+    opacity: 0.18;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: linear-gradient(90deg, #000, transparent 58%);
+    mask-image: linear-gradient(90deg, #000, transparent 58%);
   }
   .home-resume-hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 1fr);
-    grid-template-areas:
-      "copy quick"
-      "stats latest";
-    gap: 28px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(460px, 0.92fr);
+    gap: clamp(36px, 4.5vw, 72px);
     align-items: stretch;
   }
   .home-resume-copy,
-  .home-resume-panel,
-  .home-resume-latest-wrap {
+  .home-resume-hub {
     min-width: 0;
   }
   .home-resume-copy {
-    grid-area: copy;
     display: flex;
     flex-direction: column;
-  }
-  .home-resume-panel {
-    grid-area: quick;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
-  .home-resume-latest-wrap {
-    grid-area: latest;
+    padding: 8px 0 4px;
   }
   .home-resume-eyebrow {
-    margin: 0 0 12px;
-    font-size: 12px;
-    letter-spacing: 0.18em;
+    margin: 0 0 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(246, 248, 251, 0.72);
+    color: rgba(247, 249, 251, 0.7);
   }
   .home-resume-title {
+    max-width: 760px;
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 40px;
-    line-height: 1.1;
+    font-size: clamp(38px, 3.15vw, 52px);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
     color: #fff;
   }
   .home-resume-affil {
-    margin: 16px 0 0;
-    font-size: 16px;
-    color: rgba(246, 248, 251, 0.82);
+    margin: 20px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(247, 249, 251, 0.84);
   }
   .home-resume-subtitle {
-    margin: 16px 0 0;
-    max-width: 680px;
-    font-size: 16px;
+    max-width: 690px;
+    margin: 18px 0 0;
+    font-size: 15px;
     line-height: 1.8;
-    color: rgba(246, 248, 251, 0.92);
+    color: rgba(247, 249, 251, 0.88);
   }
   .home-resume-actions {
     display: flex;
-    gap: 12px;
-    margin-top: 24px;
     flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
   }
   .home-resume-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 148px;
-    padding: 12px 20px;
+    padding: 13px 20px;
     border-radius: 999px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
   .home-resume-btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
   .home-resume-btn.primary {
-    background: #fff !important;
-    color: #163553 !important;
-    box-shadow: 0 12px 30px rgba(12, 27, 44, 0.18);
+    background: #f8fafb !important;
+    color: #14344f !important;
+    box-shadow: 0 12px 28px rgba(6, 22, 35, 0.2);
+  }
+  .home-resume-btn.primary:hover {
+    box-shadow: 0 16px 34px rgba(6, 22, 35, 0.26);
   }
   .home-resume-btn.secondary {
-    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.07) !important;
     color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(8px);
+  }
+  .home-resume-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.13) !important;
   }
   .home-resume-stats {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-    grid-area: stats;
-    align-self: start;
+    margin-top: auto;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
   .home-resume-stat {
-    padding: 16px 14px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    min-width: 0;
+    padding: 0 18px;
+  }
+  .home-resume-stat:first-child {
+    padding-left: 0;
+  }
+  .home-resume-stat + .home-resume-stat {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
   }
   .home-resume-stat strong,
   .home-resume-stat span,
@@ -291,75 +328,158 @@
     display: block;
   }
   .home-resume-stat strong {
-    font-size: 22px;
+    overflow-wrap: anywhere;
+    font-size: 20px;
+    line-height: 1.2;
     color: #fff;
   }
   .home-resume-stat span {
-    margin-top: 6px;
+    margin-top: 7px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: rgba(247, 249, 251, 0.67);
+  }
+  .home-resume-hub {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 25px;
+    background: rgba(248, 249, 247, 0.96);
+    box-shadow: 0 22px 48px rgba(7, 27, 43, 0.2);
+    backdrop-filter: blur(14px);
+  }
+  .home-resume-hub-header,
+  .home-resume-latest-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .home-resume-hub-kicker,
+  .home-resume-latest-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .home-resume-hub-kicker {
+    color: #183c59;
+  }
+  .home-resume-hub-intro {
+    max-width: 270px;
+    margin: 0;
+    text-align: right;
     font-size: 12px;
     line-height: 1.5;
-    color: rgba(246, 248, 251, 0.8);
+    color: #72808b;
   }
   .home-resume-card-grid {
     display: grid;
-    gap: 14px;
-  }
-  .home-resume-card,
-  .home-resume-latest {
-    background: rgba(255, 255, 255, 0.94);
-    border-radius: 20px;
-    padding: 18px 20px;
-    box-shadow: 0 14px 34px rgba(14, 30, 46, 0.12);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 20px;
   }
   .home-resume-card {
-    display: block;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    min-height: 146px;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid #dfe5e8;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #173750 !important;
+    box-shadow: 0 7px 18px rgba(28, 49, 64, 0.055);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   }
   .home-resume-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 38px rgba(14, 30, 46, 0.16);
+    transform: translateY(-3px);
+    border-color: #c99a4f;
+    background: #fff;
+    box-shadow: 0 13px 26px rgba(28, 49, 64, 0.11);
+  }
+  .home-resume-card-index {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #b17d2e;
+  }
+  .home-resume-card-copy {
+    margin-top: 15px;
   }
   .home-resume-card-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #163553 !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #173750 !important;
   }
   .home-resume-card-desc {
-    margin-top: 8px;
-    font-size: 13px;
-    line-height: 1.7;
-    color: #5d6e7d !important;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #687986 !important;
+  }
+  .home-resume-card-arrow {
+    display: inline-flex;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    border-radius: 50%;
+    background: #edf1f2;
+    color: #173750;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .home-resume-card:hover .home-resume-card-arrow {
+    transform: translateX(2px);
+    background: #173750;
+    color: #fff;
+  }
+  .home-resume-latest {
+    margin-top: 26px;
+    padding-top: 21px;
+    border-top: 1px solid #dce3e7;
   }
   .home-resume-latest-label {
-    margin: 0 0 10px;
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #8a99a8;
+    color: #86939d;
+  }
+  .home-resume-all-posts {
+    font-size: 11px;
+    font-weight: 600;
+    color: #5e6f7b !important;
+  }
+  .home-resume-all-posts:hover {
+    color: #173750 !important;
   }
   .home-resume-latest ul {
-    margin: 0;
+    margin: 10px 0 0;
   }
   .home-resume-latest li {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
     align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
     padding: 10px 0;
-    border-top: 1px solid #ebeff3;
+    border-top: 1px solid #e5e9eb;
   }
   .home-resume-latest li:first-child {
-    padding-top: 0;
     border-top: 0;
   }
   .home-resume-latest a {
-    color: #183652 !important;
-    line-height: 1.6;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #173750 !important;
+  }
+  .home-resume-latest li > a:hover {
+    color: #a36f20 !important;
   }
   .home-resume-latest time {
     flex-shrink: 0;
-    font-size: 12px;
-    color: #7d8b98;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    color: #87939c;
   }
   .home-posts-heading {
     margin: 18px 30px 0;
@@ -368,43 +488,115 @@
     font-weight: 600;
     color: #17304a;
   }
-  @media screen and (max-width: 800px) {
-    .home-resume-spotlight {
-      margin: 10px;
-      padding: 22px 18px;
-      border-radius: 22px;
-    }
-    .home-resume-hero,
-    .home-resume-latest li {
-      display: block;
-    }
+  @media screen and (max-width: 1120px) {
     .home-resume-hero {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "copy"
-        "quick"
-        "stats"
-        "latest";
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+      gap: 34px;
     }
     .home-resume-title {
-      font-size: 30px;
+      font-size: 40px;
     }
-    .home-resume-subtitle {
-      font-size: 15px;
-      line-height: 1.7;
+    .home-resume-card {
+      padding: 14px;
     }
-    .home-resume-actions {
-      display: block;
-    }
-    .home-resume-btn {
-      width: 100%;
-      margin-top: 10px;
-    }
-    .home-resume-stats {
+  }
+  @container home-spotlight (max-width: 1040px) {
+    .home-resume-hero {
       grid-template-columns: 1fr;
     }
-    .home-resume-panel {
-      margin-top: 18px;
+    .home-resume-copy {
+      padding: 0;
+    }
+    .home-resume-stats {
+      margin-top: 42px;
+    }
+    .home-resume-hub {
+      padding: 24px;
+    }
+  }
+  @media screen and (max-width: 940px) {
+    .home-resume-hero {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-copy {
+      padding: 0;
+    }
+    .home-resume-stats {
+      margin-top: 42px;
+    }
+    .home-resume-hub {
+      padding: 24px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .home-resume-spotlight {
+      margin: 10px;
+      padding: 26px 20px;
+      border-radius: 23px;
+    }
+    .home-resume-spotlight::after {
+      display: none;
+    }
+    .home-resume-title {
+      font-size: 32px;
+      line-height: 1.1;
+    }
+    .home-resume-affil,
+    .home-resume-subtitle {
+      font-size: 14px;
+    }
+    .home-resume-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .home-resume-btn {
+      min-width: 0;
+      padding-right: 12px;
+      padding-left: 12px;
+    }
+    .home-resume-stats {
+      padding-top: 20px;
+    }
+    .home-resume-stat {
+      padding: 0 10px;
+    }
+    .home-resume-stat strong {
+      font-size: 17px;
+    }
+    .home-resume-stat span {
+      font-size: 10px;
+    }
+    .home-resume-hub {
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .home-resume-hub-header {
+      display: block;
+    }
+    .home-resume-hub-intro {
+      max-width: none;
+      margin-top: 7px;
+      text-align: left;
+    }
+    .home-resume-card-grid {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-card {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr) 28px;
+      gap: 10px;
+      min-height: 0;
+      align-items: center;
+    }
+    .home-resume-card-copy,
+    .home-resume-card-arrow {
+      margin-top: 0;
+    }
+    .home-resume-card-desc {
+      margin-top: 4px;
+    }
+    .home-resume-latest li {
+      display: block;
     }
     .home-resume-latest time {
       display: block;
@@ -413,6 +605,24 @@
     .home-posts-heading {
       margin: 14px 10px 0;
       font-size: 24px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .home-resume-actions {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-stats {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .home-resume-stat,
+    .home-resume-stat:first-child {
+      padding: 0;
+    }
+    .home-resume-stat + .home-resume-stat {
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-left: 0;
     }
   }
 </style>
@@ -433,77 +643,95 @@
         <a class="home-resume-btn primary" href="/resume/">View CV</a>
         <a class="home-resume-btn secondary" href="/guestbook/">Leave a Message</a>
       </div>
+
+      
+      <div class="home-resume-stats" aria-label="Profile highlights">
+        
+        <div class="home-resume-stat">
+          <strong>6+</strong>
+          <span>Years building CV systems</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>10+</strong>
+          <span>Public notes and essays</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>AI x Product</strong>
+          <span>Long-term exploration</span>
+        </div>
+        
+      </div>
+      
     </div>
 
-    <div class="home-resume-panel">
+    <aside class="home-resume-hub" aria-label="Explore the site">
+      <div class="home-resume-hub-header">
+        <p class="home-resume-hub-kicker">Explore</p>
+        <p class="home-resume-hub-intro">Research, projects, and longer-form notes in one place.</p>
+      </div>
+
       
-      <div class="home-resume-card-grid">
+      <nav class="home-resume-card-grid" aria-label="Featured sections">
         
         <a class="home-resume-card" href="/resume/">
-          <span class="home-resume-card-title">Publications</span>
-          <span class="home-resume-card-desc">Selected papers, projects, and academic background.</span>
+          <span class="home-resume-card-index">01</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Publications</span>
+            <span class="home-resume-card-desc">Selected papers, projects, and academic background.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
         </a>
         
         <a class="home-resume-card" href="/categories/Research/">
-          <span class="home-resume-card-title">Research Posts</span>
-          <span class="home-resume-card-desc">Notes on vision, multimodal models, and embodied intelligence.</span>
+          <span class="home-resume-card-index">02</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Research Posts</span>
+            <span class="home-resume-card-desc">Notes on vision, multimodal models, and embodied intelligence.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
         </a>
         
         <a class="home-resume-card" href="/categories/Essays/">
-          <span class="home-resume-card-title">Essays</span>
-          <span class="home-resume-card-desc">Longer writing on economics, games, history, and culture.</span>
+          <span class="home-resume-card-index">03</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Essays</span>
+            <span class="home-resume-card-desc">Longer writing on economics, games, history, and culture.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
         </a>
         
-      </div>
+      </nav>
       
-    </div>
 
-    
-    <div class="home-resume-stats">
       
-      <div class="home-resume-stat">
-        <strong>6+</strong>
-        <span>Years building CV systems</span>
-      </div>
-      
-      <div class="home-resume-stat">
-        <strong>10+</strong>
-        <span>Public notes and essays</span>
-      </div>
-      
-      <div class="home-resume-stat">
-        <strong>AI x Product</strong>
-        <span>Long-term exploration</span>
-      </div>
-      
-    </div>
-    
-
-    
-    <div class="home-resume-latest-wrap">
       <div class="home-resume-latest">
-        <p class="home-resume-latest-label">Latest posts</p>
+        <div class="home-resume-latest-header">
+          <p class="home-resume-latest-label">Latest notes</p>
+          <a class="home-resume-all-posts" href="/archives/">All writing &rarr;</a>
+        </div>
         <ul>
           
           <li>
             <a href="/2026/04/18/KosoWorld-WorldScene/">科索造物集第二个项目《蓝星之美》：空间叙事练习</a>
-            <time datetime="2026-04-18">2026-04-18</time>
+            <time datetime="2026-04-18">2026.04.18</time>
           </li>
           
           <li>
             <a href="/2026/04/18/KosoWorld-Intro-And-Timeline/">“科索造物集”以及第一个项目《游戏史时间轴》</a>
-            <time datetime="2026-04-18">2026-04-18</time>
+            <time datetime="2026-04-18">2026.04.18</time>
           </li>
           
           <li>
             <a href="/2026/03/21/SmartCar-Project-Story/">从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘</a>
-            <time datetime="2026-03-21">2026-03-21</time>
+            <time datetime="2026-03-21">2026.03.21</time>
           </li>
           
         </ul>
       </div>
-    </div>
-    
+      
+    </aside>
   </div>
 </section>
 
