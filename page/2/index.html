@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuange250.github.io">
-  <title>Tag: embodied intelligence | Chen Zhiyuan</title>
+  <title>Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Chen Zhiyuan">
-<meta property="og:url" content="https://yuange250.github.io/tags/embodied-intelligence/index.html">
+<meta property="og:url" content="https://yuange250.github.io/page/2/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
 <meta property="og:description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
 <meta property="og:locale" content="en_US">
@@ -173,63 +173,627 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<header class="collection-header">
-  <p class="collection-kicker">Topic</p>
-  <h1>embodied intelligence</h1>
-  <p class="collection-description">Writing and project notes connected to this topic.</p>
-</header>
+
+<style>
+  .home-resume-spotlight {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    container-name: home-spotlight;
+    container-type: inline-size;
+    margin: 24px 30px 30px;
+    padding: clamp(30px, 3.2vw, 50px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 30px;
+    background:
+      radial-gradient(circle at 88% 14%, rgba(250, 239, 207, 0.28), transparent 27%),
+      linear-gradient(120deg, #102e49 0%, #194a6b 64%, #b98d49 135%);
+    color: #f7f9fb;
+    box-shadow: 0 24px 64px rgba(13, 35, 55, 0.18);
+  }
+  .home-resume-spotlight::before,
+  .home-resume-spotlight::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    pointer-events: none;
+  }
+  .home-resume-spotlight::before {
+    right: -120px;
+    bottom: -180px;
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 72px rgba(255, 255, 255, 0.025),
+      0 0 0 144px rgba(255, 255, 255, 0.018);
+  }
+  .home-resume-spotlight::after {
+    inset: 0;
+    opacity: 0.18;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: linear-gradient(90deg, #000, transparent 58%);
+    mask-image: linear-gradient(90deg, #000, transparent 58%);
+  }
+  .home-resume-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(460px, 0.92fr);
+    gap: clamp(36px, 4.5vw, 72px);
+    align-items: stretch;
+  }
+  .home-resume-copy,
+  .home-resume-hub {
+    min-width: 0;
+  }
+  .home-resume-copy {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 4px;
+  }
+  .home-resume-eyebrow {
+    margin: 0 0 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247, 249, 251, 0.7);
+  }
+  .home-resume-title {
+    max-width: 760px;
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 3.15vw, 52px);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .home-resume-affil {
+    margin: 20px 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(247, 249, 251, 0.84);
+  }
+  .home-resume-subtitle {
+    max-width: 690px;
+    margin: 18px 0 0;
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(247, 249, 251, 0.88);
+  }
+  .home-resume-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .home-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 148px;
+    padding: 13px 20px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .home-resume-btn:hover {
+    transform: translateY(-2px);
+  }
+  .home-resume-btn.primary {
+    background: #f8fafb !important;
+    color: #14344f !important;
+    box-shadow: 0 12px 28px rgba(6, 22, 35, 0.2);
+  }
+  .home-resume-btn.primary:hover {
+    box-shadow: 0 16px 34px rgba(6, 22, 35, 0.26);
+  }
+  .home-resume-btn.secondary {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.07) !important;
+    color: #fff !important;
+    backdrop-filter: blur(8px);
+  }
+  .home-resume-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.13) !important;
+  }
+  .home-resume-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: auto;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .home-resume-stat {
+    min-width: 0;
+    padding: 0 18px;
+  }
+  .home-resume-stat:first-child {
+    padding-left: 0;
+  }
+  .home-resume-stat + .home-resume-stat {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .home-resume-stat strong,
+  .home-resume-stat span,
+  .home-resume-card-title,
+  .home-resume-card-desc {
+    display: block;
+  }
+  .home-resume-stat strong {
+    overflow-wrap: anywhere;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #fff;
+  }
+  .home-resume-stat span {
+    margin-top: 7px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: rgba(247, 249, 251, 0.67);
+  }
+  .home-resume-hub {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    border-radius: 25px;
+    background: rgba(248, 249, 247, 0.96);
+    box-shadow: 0 22px 48px rgba(7, 27, 43, 0.2);
+    backdrop-filter: blur(14px);
+  }
+  .home-resume-hub-header,
+  .home-resume-latest-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .home-resume-hub-kicker,
+  .home-resume-latest-label {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .home-resume-hub-kicker {
+    color: #183c59;
+  }
+  .home-resume-hub-intro {
+    max-width: 270px;
+    margin: 0;
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #72808b;
+  }
+  .home-resume-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .home-resume-card {
+    display: flex;
+    min-height: 146px;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid #dfe5e8;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.72);
+    color: #173750 !important;
+    box-shadow: 0 7px 18px rgba(28, 49, 64, 0.055);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .home-resume-card:hover {
+    transform: translateY(-3px);
+    border-color: #c99a4f;
+    background: #fff;
+    box-shadow: 0 13px 26px rgba(28, 49, 64, 0.11);
+  }
+  .home-resume-card-index {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #b17d2e;
+  }
+  .home-resume-card-copy {
+    margin-top: 15px;
+  }
+  .home-resume-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #173750 !important;
+  }
+  .home-resume-card-desc {
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #687986 !important;
+  }
+  .home-resume-card-arrow {
+    display: inline-flex;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    border-radius: 50%;
+    background: #edf1f2;
+    color: #173750;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .home-resume-card:hover .home-resume-card-arrow {
+    transform: translateX(2px);
+    background: #173750;
+    color: #fff;
+  }
+  .home-resume-latest {
+    margin-top: 26px;
+    padding-top: 21px;
+    border-top: 1px solid #dce3e7;
+  }
+  .home-resume-latest-label {
+    color: #86939d;
+  }
+  .home-resume-all-posts {
+    font-size: 11px;
+    font-weight: 600;
+    color: #5e6f7b !important;
+  }
+  .home-resume-all-posts:hover {
+    color: #173750 !important;
+  }
+  .home-resume-latest ul {
+    margin: 10px 0 0;
+  }
+  .home-resume-latest li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-top: 1px solid #e5e9eb;
+  }
+  .home-resume-latest li:first-child {
+    border-top: 0;
+  }
+  .home-resume-latest a {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #173750 !important;
+  }
+  .home-resume-latest li > a:hover {
+    color: #a36f20 !important;
+  }
+  .home-resume-latest time {
+    flex-shrink: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    color: #87939c;
+  }
+  .home-posts-heading {
+    margin: 18px 30px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #17304a;
+  }
+  @media screen and (max-width: 1120px) {
+    .home-resume-hero {
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+      gap: 34px;
+    }
+    .home-resume-title {
+      font-size: 40px;
+    }
+    .home-resume-card {
+      padding: 14px;
+    }
+  }
+  @container home-spotlight (max-width: 1040px) {
+    .home-resume-hero {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-copy {
+      padding: 0;
+    }
+    .home-resume-stats {
+      margin-top: 42px;
+    }
+    .home-resume-hub {
+      padding: 24px;
+    }
+  }
+  @media screen and (max-width: 940px) {
+    .home-resume-hero {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-copy {
+      padding: 0;
+    }
+    .home-resume-stats {
+      margin-top: 42px;
+    }
+    .home-resume-hub {
+      padding: 24px;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .home-resume-spotlight {
+      margin: 10px;
+      padding: 26px 20px;
+      border-radius: 23px;
+    }
+    .home-resume-spotlight::after {
+      display: none;
+    }
+    .home-resume-title {
+      font-size: 32px;
+      line-height: 1.1;
+    }
+    .home-resume-affil,
+    .home-resume-subtitle {
+      font-size: 14px;
+    }
+    .home-resume-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .home-resume-btn {
+      min-width: 0;
+      padding-right: 12px;
+      padding-left: 12px;
+    }
+    .home-resume-stats {
+      padding-top: 20px;
+    }
+    .home-resume-stat {
+      padding: 0 10px;
+    }
+    .home-resume-stat strong {
+      font-size: 17px;
+    }
+    .home-resume-stat span {
+      font-size: 10px;
+    }
+    .home-resume-hub {
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .home-resume-hub-header {
+      display: block;
+    }
+    .home-resume-hub-intro {
+      max-width: none;
+      margin-top: 7px;
+      text-align: left;
+    }
+    .home-resume-card-grid {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-card {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr) 28px;
+      gap: 10px;
+      min-height: 0;
+      align-items: center;
+    }
+    .home-resume-card-copy,
+    .home-resume-card-arrow {
+      margin-top: 0;
+    }
+    .home-resume-card-desc {
+      margin-top: 4px;
+    }
+    .home-resume-latest li {
+      display: block;
+    }
+    .home-resume-latest time {
+      display: block;
+      margin-top: 4px;
+    }
+    .home-posts-heading {
+      margin: 14px 10px 0;
+      font-size: 24px;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .home-resume-actions {
+      grid-template-columns: 1fr;
+    }
+    .home-resume-stats {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .home-resume-stat,
+    .home-resume-stat:first-child {
+      padding: 0;
+    }
+    .home-resume-stat + .home-resume-stat {
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-left: 0;
+    }
+  }
+</style>
+<section class="home-resume-spotlight" role="region" aria-label="Homepage introduction">
+  <div class="home-resume-hero">
+    <div class="home-resume-copy">
+      
+      <p class="home-resume-eyebrow">Computer vision / multimodal AI / side projects</p>
+      
+      <h2 class="home-resume-title">Hi, I&#39;m Chen Zhiyuan.</h2>
+      
+      <p class="home-resume-affil">AI Researcher at Ant Group / M.S., Beihang University</p>
+      
+      
+      <p class="home-resume-subtitle">I work on computer vision and multimodal AI, especially digital humans and visual generation. Outside work, I build small products and write about technology, games, economics, and history.</p>
+      
+      <div class="home-resume-actions">
+        <a class="home-resume-btn primary" href="/resume/">View CV</a>
+        <a class="home-resume-btn secondary" href="/guestbook/">Leave a Message</a>
+      </div>
+
+      
+      <div class="home-resume-stats" aria-label="Profile highlights">
+        
+        <div class="home-resume-stat">
+          <strong>6+</strong>
+          <span>Years in computer vision</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>5</strong>
+          <span>Selected publications</span>
+        </div>
+        
+        <div class="home-resume-stat">
+          <strong>10+</strong>
+          <span>Notes and essays</span>
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <aside class="home-resume-hub" aria-label="Explore the site">
+      <div class="home-resume-hub-header">
+        <p class="home-resume-hub-kicker">Selected work</p>
+        <p class="home-resume-hub-intro">A few things I&#39;ve published, built, and written.</p>
+      </div>
+
+      
+      <nav class="home-resume-card-grid" aria-label="Featured sections">
+        
+        <a class="home-resume-card" href="/resume/">
+          <span class="home-resume-card-index">01</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Publications</span>
+            <span class="home-resume-card-desc">Papers, projects, and the path that brought me here.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        
+        <a class="home-resume-card" href="/categories/Research/">
+          <span class="home-resume-card-index">02</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Research Notes</span>
+            <span class="home-resume-card-desc">What I am learning and building in vision and multimodal AI.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        
+        <a class="home-resume-card" href="/categories/Essays/">
+          <span class="home-resume-card-index">03</span>
+          <span class="home-resume-card-copy">
+            <span class="home-resume-card-title">Essays</span>
+            <span class="home-resume-card-desc">Writing on games, economics, history, and culture.</span>
+          </span>
+          <span class="home-resume-card-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        
+      </nav>
+      
+
+      
+      <div class="home-resume-latest">
+        <div class="home-resume-latest-header">
+          <p class="home-resume-latest-label">Recent writing</p>
+          <a class="home-resume-all-posts" href="/archives/">Browse archive &rarr;</a>
+        </div>
+        <ul>
+          
+          <li>
+            <a href="/2026/07/11/Seeing-Book-Review/">《看见》读后感：从叛逆开始，到看见结束</a>
+            <time datetime="2026-07-11">2026.07.11</time>
+          </li>
+          
+          <li>
+            <a href="/2026/04/18/KosoWorld-WorldScene/">科索造物集第二个项目《蓝星之美》：空间叙事练习</a>
+            <time datetime="2026-04-18">2026.04.18</time>
+          </li>
+          
+          <li>
+            <a href="/2026/04/18/KosoWorld-Intro-And-Timeline/">“科索造物集”以及第一个项目《游戏史时间轴》</a>
+            <time datetime="2026-04-18">2026.04.18</time>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </aside>
+  </div>
+</section>
+
+<h2 class="home-posts-heading">More writing</h2>
+
+
 
 
   
-  
+    <article id="post-NerualNetWorks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2025/06/03/EmbodiedIntelligenceIntro1/" class="archive-article-date">
-  	<time datetime="2025-06-03T10:25:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/06/03/EmbodiedIntelligenceIntro1/">具身智能基础知识学习</a>
+      <a class="article-title" href="/2017/10/21/NerualNetWorks/">先来谈一谈神经网络(Neural Network)</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/21/NerualNetWorks/" class="archive-article-date">
+  	<time datetime="2017-10-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有人说：”有人说，文学的永恒主题是生与死。”<br>深度学习的永恒主题是什么？</p>
+        
+          <a class="article-more-a" href="/2017/10/21/NerualNetWorks/#more">more >></a>
+        
+      
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-					<a href="/tags/embodied-intelligence/" class="article-tag-list-link color2">embodied intelligence</a>
+					<a href="/tags/Deep-Learning/" class="article-tag-list-link color4">Deep Learning</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-					<a href="/tags/notes/" class="article-tag-list-link color1">notes</a>
+					<a href="/tags/neural-networks/" class="article-tag-list-link color1">neural networks</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-					<a href="/tags/Embodiedintelligence/" class="article-tag-list-link color1">Embodiedintelligence</a>
+					<a href="/tags/DeepLearning/" class="article-tag-list-link color3">DeepLearning</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -242,18 +806,46 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/21/NerualNetWorks/">Read full post >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
 
+  <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -290,10 +882,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
