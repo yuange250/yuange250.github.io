@@ -761,11 +761,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>语音交互系统通常可以由自动语音识别（ASR）、大语言模型（LLM）和语音合成（TTS）串联实现：</p>
+        <p>语音助手可以由三套独立系统串联完成：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音</span><br></pre></td></tr></table></figure>
 
-<p>级联系统的限制主要来自四个方面：ASR 错误会传递到后续模块；转写过程会丢失语气、节奏和环境声等非文字信息；多个模块串行执行会累积延迟；加入视频后，还需要额外处理声音与画面的时间对齐。</p>
-<p>Qwen 的音频与全模态模型沿着这些问题逐步演进：Qwen-Audio 统一多类音频理解任务，Qwen2-Audio 改进自然语言交互，Qwen2.5-Omni 将视觉、音频、文本理解与语音生成纳入同一模型，Qwen3-Omni 则进一步调整模型容量、跨模态推理和流式语音生成。本文依据各代技术报告与官方仓库，对其架构变化、量化结果和公开限制进行整理。</p>
+<p>这条链路的每个箭头都会引入信息损失或等待时间。ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 必须等 ASR 结束，TTS 又要等待可用文本；加入视频后，声音与画面还需要共享时间坐标。</p>
+<p>区分 Qwen-Audio、Qwen2-Audio、Qwen2.5-Omni 和 Qwen3-Omni，不能只看“支持了几种模态”。更具体的差异位于四条数据路径上：波形以多大的时间粒度进入语言模型；音频与视频怎样获得同一时间位置；文本 token 与语音 token 由哪些模块生成；流式输出必须等待多少上下文。下面沿着这四条路径逐代展开。</p>
         
           <a class="article-more-a" href="/2026/07/12/Qwen-Omni-Evolution/#more">more >></a>
         
