@@ -714,7 +714,7 @@
         <ul>
           
           <li>
-            <a href="/2026/07/12/Qwen-Omni-Evolution/">Qwen-Omni 进化史：每一代都在修上一代的坑</a>
+            <a href="/2026/07/12/Qwen-Omni-Evolution/">Qwen-Omni 系列的技术演进：从音频理解到端到端全模态交互</a>
             <time datetime="2026-07-12">2026.07.12</time>
           </li>
           
@@ -748,7 +748,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2026/07/12/Qwen-Omni-Evolution/">Qwen-Omni 进化史：每一代都在修上一代的坑</a>
+      <a class="article-title" href="/2026/07/12/Qwen-Omni-Evolution/">Qwen-Omni 系列的技术演进：从音频理解到端到端全模态交互</a>
     </h1>
   
 
@@ -761,12 +761,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>“Omni”大概是这两年最容易被用宽的一个词。一个模型能收文字、图片和音频，好像就可以在名字后面挂上 Omni；如果还能开口说话，那更是恨不得立刻宣布自己已经拥有了五感。</p>
-<p>但会说话的 AI 并不一定真的是全模态模型。搭一个最朴素的语音助手，其实只需要把三套现成系统串起来：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转文字 → LLM 生成答案 → TTS 合成语音</span><br></pre></td></tr></table></figure>
+        <p>语音交互系统通常可以由自动语音识别（ASR）、大语言模型（LLM）和语音合成（TTS）串联实现：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音</span><br></pre></td></tr></table></figure>
 
-<p>这条流水线当然能跑，却也很像传统电话客服。ASR 听错一个词，后面的 LLM 就会一本正经地沿着错误继续回答；语气、环境声和说话节奏在转写时被压成纯文字；每个模块还要排队工作，用户说完之后只能等整条链路慢慢走完。如果再加入视频，音频里的“砰”与画面里掉落的杯子能不能在时间上对齐，又成了新的问题。</p>
-<p>所以我更愿意把 Qwen-Omni 的发展史理解成一部不断还技术债的历史。它并不是每一代多接一种文件格式，而是上一代先把问题暴露出来，下一代再想办法把那个坑填上，随后又发现后面还有一个更大的坑。</p>
+<p>级联系统的限制主要来自四个方面：ASR 错误会传递到后续模块；转写过程会丢失语气、节奏和环境声等非文字信息；多个模块串行执行会累积延迟；加入视频后，还需要额外处理声音与画面的时间对齐。</p>
+<p>Qwen 的音频与全模态模型沿着这些问题逐步演进：Qwen-Audio 统一多类音频理解任务，Qwen2-Audio 改进自然语言交互，Qwen2.5-Omni 将视觉、音频、文本理解与语音生成纳入同一模型，Qwen3-Omni 则进一步调整模型容量、跨模态推理和流式语音生成。本文依据各代技术报告与官方仓库，对其架构变化、量化结果和公开限制进行整理。</p>
         
           <a class="article-more-a" href="/2026/07/12/Qwen-Omni-Evolution/#more">more >></a>
         
