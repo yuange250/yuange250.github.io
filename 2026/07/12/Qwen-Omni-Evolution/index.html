@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yuange250.github.io">
-  <title>Tag: raspberry pi | Chen Zhiyuan</title>
+  <title>Qwen-Omni 进化史：每一代都在修上一代的坑 | Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Chen Zhiyuan">
-<meta property="og:url" content="https://yuange250.github.io/tags/raspberry-pi/index.html">
+  <meta name="description" content="“Omni”大概是这两年最容易被用宽的一个词。一个模型能收文字、图片和音频，好像就可以在名字后面挂上 Omni；如果还能开口说话，那更是恨不得立刻宣布自己已经拥有了五感。 但会说话的 AI 并不一定真的是全模态模型。搭一个最朴素的语音助手，其实只需要把三套现成系统串起来： 1用户语音 → ASR 转文字 → LLM 生成答案 → TTS 合成语音  这条流水线当然能跑，却也很像传统电话客服。ASR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qwen-Omni 进化史：每一代都在修上一代的坑">
+<meta property="og:url" content="https://yuange250.github.io/2026/07/12/Qwen-Omni-Evolution/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="Personal site - research notes, essays, and CV (computer vision &amp; multimodal ML).">
+<meta property="og:description" content="“Omni”大概是这两年最容易被用宽的一个词。一个模型能收文字、图片和音频，好像就可以在名字后面挂上 Omni；如果还能开口说话，那更是恨不得立刻宣布自己已经拥有了五感。 但会说话的 AI 并不一定真的是全模态模型。搭一个最朴素的语音助手，其实只需要把三套现成系统串起来： 1用户语音 → ASR 转文字 → LLM 生成答案 → TTS 合成语音  这条流水线当然能跑，却也很像传统电话客服。ASR">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-12T12:02:59.000Z">
+<meta property="article:modified_time" content="2026-07-12T12:10:21.619Z">
 <meta property="article:author" content="Chen Zhiyuan">
-<meta property="article:tag" content="Chen Zhiyuan, blog, computer vision, deep learning">
+<meta property="article:tag" content="Qwen">
+<meta property="article:tag" content="multimodal">
+<meta property="article:tag" content="audio">
+<meta property="article:tag" content="omni-modal">
+<meta property="article:tag" content="model architecture">
 <meta name="twitter:card" content="summary">
   
   
@@ -172,68 +178,196 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-<header class="collection-header">
-  <p class="collection-kicker">Topic</p>
-  <h1>raspberry pi</h1>
-  <p class="collection-description">Writing and project notes connected to this topic.</p>
-</header>
-
-
-  
-  
+            <article id="post-Qwen-Omni-Evolution" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2026" class="archive-year">2026</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2026/03/21/SmartCar-Project-Story/" class="archive-article-date">
-  	<time datetime="2026-03-21T14:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-03-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2026/03/21/SmartCar-Project-Story/">从“能跑”到“能用”：我的树莓派智能小车与机械臂项目复盘</a>
+    <h1 class="article-title" itemprop="name">
+      Qwen-Omni 进化史：每一代都在修上一代的坑
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2026/07/12/Qwen-Omni-Evolution/" class="archive-article-date">
+  	<time datetime="2026-07-12T12:02:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2026-07-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>“Omni”大概是这两年最容易被用宽的一个词。一个模型能收文字、图片和音频，好像就可以在名字后面挂上 Omni；如果还能开口说话，那更是恨不得立刻宣布自己已经拥有了五感。</p>
+<p>但会说话的 AI 并不一定真的是全模态模型。搭一个最朴素的语音助手，其实只需要把三套现成系统串起来：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转文字 → LLM 生成答案 → TTS 合成语音</span><br></pre></td></tr></table></figure>
+
+<p>这条流水线当然能跑，却也很像传统电话客服。ASR 听错一个词，后面的 LLM 就会一本正经地沿着错误继续回答；语气、环境声和说话节奏在转写时被压成纯文字；每个模块还要排队工作，用户说完之后只能等整条链路慢慢走完。如果再加入视频，音频里的“砰”与画面里掉落的杯子能不能在时间上对齐，又成了新的问题。</p>
+<p>所以我更愿意把 Qwen-Omni 的发展史理解成一部不断还技术债的历史。它并不是每一代多接一种文件格式，而是上一代先把问题暴露出来，下一代再想办法把那个坑填上，随后又发现后面还有一个更大的坑。</p>
+<span id="more"></span>
+
+<h2 id="一、Qwen-Audio：先解决“听不见”"><a href="#一、Qwen-Audio：先解决“听不见”" class="headerlink" title="一、Qwen-Audio：先解决“听不见”"></a>一、Qwen-Audio：先解决“听不见”</h2><p>2023 年的 Qwen-Audio，面对的是一个最基础的问题：当时的大语言模型再聪明，也基本是聋的。</p>
+<p>语音识别、声音分类、情绪识别、音乐分析当然早就存在，但它们往往各做各的。识别人声的模型不理解狗叫，判断环境声的模型也不会欣赏音乐。Qwen-Audio 想做的第一件事，就是把这些原本分散的音频任务塞进同一个音频语言模型里。</p>
+<p>它以 Qwen-7B 作为语言模型，以 Whisper-large-v2 初始化音频编码器，训练内容覆盖语音、自然声音、音乐和歌曲等三十多类任务。为了避免不同数据集的标签互相打架，模型在输入中加入了一套层级标签，用来告诉解码器当前面对的语言、任务和输出格式。在它的基础上，团队又做了 Qwen-Audio-Chat，让模型支持多轮音频问答。[1][2]</p>
+<p>这一代真正解决的是“通用音频理解”。同一套模型终于既能转写语音，也能分析情绪、辨认声音和讨论音乐。</p>
+<p>但 Qwen-Audio 更像一间能力很全的音频化验室，还不像一个可以自然交流的人。用户经常需要先告诉它该做哪类任务，复杂的层级标签也说明各种能力尚未被真正统一。官方仓库还特别提醒，模型对三十秒以内的音频效果最好。更关键的是，它只能输出文字：耳朵算是装上了，嘴还没有。</p>
+<h2 id="二、Qwen2-Audio：听得见之后，还得听得懂话"><a href="#二、Qwen2-Audio：听得见之后，还得听得懂话" class="headerlink" title="二、Qwen2-Audio：听得见之后，还得听得懂话"></a>二、Qwen2-Audio：听得见之后，还得听得懂话</h2><p>Qwen2-Audio 在 2024 年要修的，就是上一代过于“工具化”的交互方式。</p>
+<p>这一代扩大了训练数据，并用自然语言提示取代复杂的层级标签。用户不再需要熟悉模型内部的任务分类，只要像平常一样说话即可。模型还形成了两种交互方式：语音聊天模式负责直接听懂语音指令，音频分析模式则接收音频加文字问题。切换不依赖特殊的系统提示，而是由模型自己判断。DPO 又进一步改善了事实性和指令遵循。[3]</p>
+<p>这一步看起来只是把提示词改自然了，实际意义却很大。Qwen-Audio 主要是在“处理一段音频”，Qwen2-Audio 开始尝试“理解音频里的人想让它做什么”。哪怕一段录音中同时有多人说话、环境声和一句语音命令，它也应该先找到真正的指令，再作出回答。</p>
+<p>可“听懂命令”和“保留语言模型的推理能力”仍然是两回事。</p>
+<p>后来 Qwen2.5-Omni 的技术报告把 Qwen2-Audio 与纯文本 Qwen2-7B 放在同一批语音指令上比较。MMLU 中，Qwen2-7B 使用文字输入得到 69.3 分，Qwen2-Audio 使用语音输入只有 33.2 分；GSM8K 更是从 82.3 分掉到 18.4 分。[4] 这组数字很能说明问题：声音虽然进了模型，却还没有像文字一样顺畅地进入语言模型的“思考区”。</p>
+<p>除此之外，Qwen2-Audio 依然只能听和写，既看不见画面，也不能直接生成语音。想让它成为一个完整的语音助手，外面仍然要再接一套 TTS。第一代流水线只是缩短了，还没有消失。</p>
+<h2 id="三、Qwen2-5-Omni：把眼睛、耳朵和嘴接到一起"><a href="#三、Qwen2-5-Omni：把眼睛、耳朵和嘴接到一起" class="headerlink" title="三、Qwen2.5-Omni：把眼睛、耳朵和嘴接到一起"></a>三、Qwen2.5-Omni：把眼睛、耳朵和嘴接到一起</h2><p>2025 年 3 月发布的 Qwen2.5-Omni，第一次真正开始处理“系统割裂”的问题。</p>
+<p>在此之前，视觉有 Qwen-VL，音频有 Qwen-Audio，两条路线各自发展得不错，但真实世界并不会把画面和声音拆成两个文件夹。一个杯子落地，模型需要知道画面里的动作与声音发生在同一时刻；用户对着摄像头提问，语音本身既是内容，也是指令。</p>
+<p>Qwen2.5-Omni 为此加入了几个关键设计。[4]</p>
+<p>首先，音频与视觉编码器都采用分块处理，让模型不必等完整段视频结束后再开始理解。其次，TMRoPE 把音频与视频按照时间交错组织，使同一时刻的声音和画面在位置编码中尽量对齐。最显眼的变化则是 Thinker–Talker 架构：Thinker 像大脑，负责接收文字、图像、音频和视频并生成文本；Talker 像嘴，读取 Thinker 的中间表示和文字结果，再生成离散语音 token。最后由滑窗 DiT 把语音 token 流式还原成波形。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文字 / 图像 / 音频 / 视频</span><br><span class="line">             ↓</span><br><span class="line">          Thinker ───→ 文字</span><br><span class="line">             ↓</span><br><span class="line">           Talker ───→ 语音</span><br></pre></td></tr></table></figure>
+
+<p>这一次，模型终于形成了“看、听、想、说”的完整闭环，而且文字与语音可以流式生成。前面提到的推理损失也大幅收窄：同一份评测中，Qwen2.5-Omni 使用语音指令在 MMLU 上得到 65.6 分，在 GSM8K 上得到 85.4 分，已经接近甚至超过对照的纯文本 Qwen2-7B。[4]</p>
+<p>不过，系统被统一之后，账单也一起统一了。</p>
+<p>官方给出的理论最低显存数据显示，Qwen2.5-Omni-7B 以 BF16 处理 15 秒视频需要 31.11GB，实际使用通常还要再高至少 20%；60 秒视频则达到 60.19GB。[5] 后续推出的 3B、GPTQ-Int4、AWQ 和 MNN 端侧版本确实在努力降低门槛，但“全模态”天然要同时承担视觉编码、音频编码、语言推理和语音生成，省下来的显存很快又会被另一种模态吃掉。</p>
+<p>另外，“流式”也不等于“全双工”。Qwen2.5-Omni 可以边生成边播放，但开源交互方式仍然主要是一轮输入对应一轮输出。模型说话时能不能继续听见用户，用户插嘴时能不能立刻停下，摄像头里突然发生事情时能不能主动开口，这些都还没有进入它的核心设计。</p>
+<h2 id="四、Qwen3-Omni：更大的脑子、更快的嘴"><a href="#四、Qwen3-Omni：更大的脑子、更快的嘴" class="headerlink" title="四、Qwen3-Omni：更大的脑子、更快的嘴"></a>四、Qwen3-Omni：更大的脑子、更快的嘴</h2><p>半年后的 Qwen3-Omni，主要在修 Qwen2.5-Omni 留下的三笔债：模型容量、跨模态推理和语音延迟。</p>
+<p>第一项变化是从 Dense 7B 转向 30B-A3B 的 MoE 架构。模型拥有约 30B 的总容量，但每次只激活其中一部分专家。这样既能扩大知识与能力上限，又不用让每个 token 都跑完整个 30B 网络。Qwen3-Omni 还采用先文本预训练、再混合多模态训练的路线，试图避免“学会听和看之后，原来的文字与视觉能力反而下降”。官方报告最强调的一点，正是它在音频和音视频能力大幅提升的同时，没有明显牺牲同规模的单模态表现。[6][7]</p>
+<p>第二项变化是 Thinking。Qwen2.5-Omni 的 Thinker 名字里虽然有“思考”，但主要仍是普通指令模型；Qwen3-Omni 则单独推出 Thinking 版本，让模型能对文字、图像、声音和视频进行显式推理。团队还从 Instruct 模型微调出 Captioner，专门生成细致、低幻觉的音频描述。</p>
+<p>第三项变化发生在“嘴”上。Qwen2.5-Omni 的 Talker 生成音频 token 后，还要依赖相对昂贵的滑窗 DiT 把它们还原成波形；Qwen3-Omni 改成多码本预测，再用轻量的因果 ConvNet 从第一帧 codec 开始生成音频。官方给出的冷启动理论首包延迟是 234ms。[6]</p>
+<p>语言覆盖也明显扩大：文字支持 119 种语言，语音输入支持 19 种，语音输出支持 10 种。官方在 36 个音频与音视频基准中宣称取得 32 个开源 SOTA 和 22 个总榜 SOTA。[7] 榜单数字当然很漂亮，但我觉得真正重要的不是又赢了多少张表，而是“全模态模型必然牺牲单模态能力”这件事，开始不再是默认前提。</p>
+<p>然而，A3B 只是每次算得少，并不代表整个模型装得下。Qwen3-Omni-30B-A3B-Instruct 以 BF16 处理 15 秒视频，官方理论最低显存达到 78.85GB；120 秒视频则需要 144.81GB。[7] MoE 降低了计算量，却没有让其余专家权重凭空消失。相比 Qwen2.5-Omni，它的脑子确实更强了，本地部署的门槛却反而更高。</p>
+<p>把四代模型放在一起，路线就很清楚了：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>主要填上的坑</th>
+<th>又留下的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qwen-Audio</td>
+<td>让 LLM 能理解多类音频</td>
+<td>标签复杂、音频较短、只能输出文字</td>
+</tr>
+<tr>
+<td>Qwen2-Audio</td>
+<td>用自然语言听懂音频指令</td>
+<td>推理损失明显、没有视觉与语音输出</td>
+</tr>
+<tr>
+<td>Qwen2.5-Omni</td>
+<td>统一音频、视觉、文字与语音生成</td>
+<td>显存高、仍以轮次交互为主、语音解码较重</td>
+</tr>
+<tr>
+<td>Qwen3-Omni</td>
+<td>MoE 扩容、跨模态 Thinking、降低首包延迟</td>
+<td>长视频、全双工、端侧部署与输出模态仍未解决</td>
+</tr>
+</tbody></table>
+<h2 id="五、Qwen3-Omni-还没填完的五个坑"><a href="#五、Qwen3-Omni-还没填完的五个坑" class="headerlink" title="五、Qwen3-Omni 还没填完的五个坑"></a>五、Qwen3-Omni 还没填完的五个坑</h2><h3 id="1-低延迟不等于全双工"><a href="#1-低延迟不等于全双工" class="headerlink" title="1. 低延迟不等于全双工"></a>1. 低延迟不等于全双工</h3><p>两百多毫秒就能吐出第一段声音，解决的是“回答开始得够不够快”；全双工解决的则是“回答时还能不能继续听”。</p>
+<p>真正自然的交流很少一人一句排队进行。人会插嘴、停顿、改口，也会在对方尚未说完时通过“嗯”“对”给出反馈。视觉加入之后，模型还应持续观察环境，并自己判断什么时候值得主动开口。从公开仓库来看，Qwen3-Omni 强调低延迟流式响应和自然轮次，但没有把输入输出互不阻塞、主动插话与持续观察作为开源模型的明确能力。[7]</p>
+<p>目前填这个坑最积极的是 MiniCPM-o 4.5。它把音频、视频输入流与文字、语音输出流放在同一条毫秒级时间线上，通过时分复用持续建模；模型每秒判断一次“现在要不要说话”，因而可以在看、听、说同时进行时主动提醒用户。9B 的规模也明显更适合本地设备。[8]</p>
+<p>不过 MiniCPM-o 团队自己也承认，全双工基础能力还需要提升，Omni 模式存在语音发音不稳定和中英文混说等问题。更早的 Moshi 已经实现了语音层面的全双工对话，但它没有视觉。[9] 这说明全双工不是加一个“允许打断”的按钮，而是另一套训练数据、时间建模和交互决策问题。</p>
+<h3 id="2-看得见长视频，不等于记得住一个持续世界"><a href="#2-看得见长视频，不等于记得住一个持续世界" class="headerlink" title="2. 看得见长视频，不等于记得住一个持续世界"></a>2. 看得见长视频，不等于记得住一个持续世界</h3><p>Qwen3-Omni 的技术报告直接承认，它在长视频基准上的表现不够理想，原因包括位置外推能力和上下文长度受限。[6]</p>
+<p>这里的难点不只是把更多帧塞进上下文。模型看一小时监控视频时，不可能把每一帧都同等保留；它需要知道什么值得记，什么可以忘，后来发生的事情又是否改变了对早期事件的理解。真正的实时助手还要在输入永不结束的情况下持续压缩记忆，这已经接近一个在线世界模型，而不只是“超长视频问答”。</p>
+<p>Qwen 自己的另一条路线 Qwen3-VL 已经把视觉上下文做到原生 256K，并可扩展到 1M，官方称能够处理数小时视频和秒级事件定位。[10] 但它擅长的是长视觉理解，并不负责实时语音输入与输出。现在的局面有点像：一个模型能看很久但不会陪你说话，另一个模型能说话却还记不了那么久。两条能力什么时候真正合并，仍然是个问题。</p>
+<h3 id="3-“Omni”目前主要还是输入侧更全"><a href="#3-“Omni”目前主要还是输入侧更全" class="headerlink" title="3. “Omni”目前主要还是输入侧更全"></a>3. “Omni”目前主要还是输入侧更全</h3><p>Qwen3-Omni 可以输入文字、图像、音频和视频，输出却只有文字与语音。让它看图后直接修改图片、听音乐后续写一段音乐，或者根据描述生成视频，仍然需要调用 Qwen-Image、视频模型或其他外部工具。</p>
+<p>这并不是 Qwen 独有的问题。NExT-GPT 通过适配器连接不同扩散解码器，尝试实现文字、图像、视频和音频的 Any-to-Any 生成；Unified-IO 2 则把文字、图像、音频和动作统一成离散序列交给一个编码器—解码器 Transformer。[11][12] 它们证明了任意模态输出在结构上可行，但基础理解能力、生成质量和实时性还难以同时做到顶尖。</p>
+<p>所以今天的 Omni 更准确地说是“全模态感知，加文字和语音表达”，离真正的任意输入、任意输出还有一段距离。</p>
+<h3 id="4-激活参数少，不等于普通人跑得动"><a href="#4-激活参数少，不等于普通人跑得动" class="headerlink" title="4. 激活参数少，不等于普通人跑得动"></a>4. 激活参数少，不等于普通人跑得动</h3><p>Qwen3-Omni 的 A3B 很容易给人一种“它运行时只有 3B”的错觉。实际部署仍要存放完整专家权重，还要承担视觉与音频编码器、KV Cache、Talker 和 codec 解码器。官方更推荐 vLLM 或云端 API，本身已经说明 Transformers 本地推理并不是它最舒服的使用方式。[7]</p>
+<p>现在填这个坑大致有三条路。一条是量化与推理框架，例如 vLLM-Omni、AWQ 和 GGUF；一条是 MiniCPM-o 这种从一开始就控制总参数量、面向端侧设计的模型；还有一条则是干脆拆出小型专用模型。最后一条看起来不够“Omni”，却往往最实用。[15]</p>
+<h3 id="5-统一底座之后，为什么又开始分家"><a href="#5-统一底座之后，为什么又开始分家" class="headerlink" title="5. 统一底座之后，为什么又开始分家"></a>5. 统一底座之后，为什么又开始分家</h3><p>2026 年 Qwen 接连发布 Qwen3-ASR 与 Qwen3-TTS，这件事很有意思。</p>
+<p>Qwen3-ASR 只有 0.6B 和 1.7B 两种规模，继承 Qwen3-Omni 的音频理解能力，专门处理三十种语言、二十二种中文方言、歌曲识别、流式转写和时间戳对齐。[13] Qwen3-TTS 则集中解决声音生成，支持十种语言、三秒声音克隆、描述式声音设计和更细的语音控制，其低延迟 tokenizer 可以做到 97ms 理论首包输出。[14]</p>
+<p>Captioner、ASR、TTS 的出现说明，统一大模型并不会消灭专用模型。恰恰相反，Omni 适合先训练一套足够通用的世界表示，再把能力蒸馏或迁移到更小、更稳、更便宜的分支上。需要实时字幕时，没有必要把一套 30B Omni 连同视觉和 Talker 全部搬进来；只做声音克隆时，也不需要让模型先学会看视频。</p>
+<p>这条路线解决了部署和专业能力，却没有消除另一个矛盾：一旦重新拆开，系统又会面对模块之间的信息损失与延迟。统一与分工并不是谁最终取代谁，更像一只反复摆动的钟摆。</p>
+<h2 id="六、下一代-Omni-真正缺的是什么"><a href="#六、下一代-Omni-真正缺的是什么" class="headerlink" title="六、下一代 Omni 真正缺的是什么"></a>六、下一代 Omni 真正缺的是什么</h2><p>回头看这条时间线，每一代的任务其实都很明确：</p>
+<ul>
+<li>Qwen-Audio 先让模型听见；</li>
+<li>Qwen2-Audio 让它听懂用户真正的指令；</li>
+<li>Qwen2.5-Omni 把看、听、想和说接成一个闭环；</li>
+<li>Qwen3-Omni 再把推理、容量和响应速度往前推了一步。</li>
+</ul>
+<p>走到这里，再增加一种输入格式已经没有那么重要。真正没有解决好的，是让模型低成本地生活在一个连续世界里：它要一边说一边听，长期看着不断变化的画面，记住真正重要的事情，在多人、多语言和复杂噪声中找到正确对象，还要知道什么时候应该主动开口，什么时候最好闭嘴。</p>
+<p>而且，当摄像头与麦克风持续开启，隐私、声音克隆和深度伪造也不再是附录里的安全提示，而是产品本身必须回答的问题。目前无论 Qwen3-Omni、MiniCPM-o 还是其他全模态模型，都还谈不上把这些问题一起解决。</p>
+<p>所以下一代 Omni 真正需要增加的，可能不是第五种输入格式，而是“时间”：它得在一个漫长、不断被打断的现实里，持续听、看、记住，并知道什么时候开口。</p>
+<h2 id="资料与延伸阅读"><a href="#资料与延伸阅读" class="headerlink" title="资料与延伸阅读"></a>资料与延伸阅读</h2><p>[1] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen-Audio">Qwen-Audio 官方仓库</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.07919">Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models</a></p>
+<p>[3] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.10759">Qwen2-Audio Technical Report</a></p>
+<p>[4] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.20215">Qwen2.5-Omni Technical Report</a></p>
+<p>[5] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen2.5-Omni">Qwen2.5-Omni 官方仓库</a></p>
+<p>[6] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.17765">Qwen3-Omni Technical Report</a></p>
+<p>[7] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen3-Omni">Qwen3-Omni 官方仓库</a></p>
+<p>[8] <a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM-o">MiniCPM-o 官方仓库</a></p>
+<p>[9] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2410.00037">Moshi: A Speech-Text Foundation Model for Real-Time Dialogue</a></p>
+<p>[10] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL 官方仓库</a></p>
+<p>[11] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.05519">NExT-GPT: Any-to-Any Multimodal LLM</a></p>
+<p>[12] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2312.17172">Unified-IO 2: Scaling Autoregressive Multimodal Models with Vision, Language, Audio, and Action</a></p>
+<p>[13] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen3-ASR">Qwen3-ASR 官方仓库</a></p>
+<p>[14] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.15621">Qwen3-TTS Technical Report</a></p>
+<p>[15] <a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm-omni">vLLM-Omni 官方仓库</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              Tip
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>Thanks for your support<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixinpay.jpg">
+                      <span class="reward-type">WeChat Pay</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-					<a href="/tags/robotics/" class="article-tag-list-link color4">robotics</a>
+					<a href="/tags/Qwen/" class="article-tag-list-link color5">Qwen</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-					<a href="/tags/raspberry-pi/" class="article-tag-list-link color3">raspberry pi</a>
+					<a href="/tags/multimodal/" class="article-tag-list-link color1">multimodal</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-					<a href="/tags/project-log/" class="article-tag-list-link color2">project log</a>
+					<a href="/tags/audio/" class="article-tag-list-link color1">audio</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-					<a href="/tags/engineering/" class="article-tag-list-link color2">engineering</a>
+					<a href="/tags/omni-modal/" class="article-tag-list-link color1">omni-modal</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+					<a href="/tags/model-architecture/" class="article-tag-list-link color4">model architecture</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -246,18 +380,56 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2026/07/11/Seeing-Book-Review/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读〈看见〉：真实自有万钧之力</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+  <aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
 
-    
+  
 
+  
+
+  
+
+  
 
 
           </div>
@@ -295,9 +467,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
