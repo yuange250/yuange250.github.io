@@ -761,11 +761,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>语音助手可以由三套独立系统串联完成：</p>
+        <p>在原生端到端语音模型出现之前，语音助手通常采用上一代的级联式工作流：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音</span><br></pre></td></tr></table></figure>
 
-<p>这条链路的每个箭头都会引入信息损失或等待时间。ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 必须等 ASR 结束，TTS 又要等待可用文本；加入视频后，声音与画面还需要共享时间坐标。</p>
-<p>区分 Qwen-Audio、Qwen2-Audio、Qwen2.5-Omni 和 Qwen3-Omni，不能只看“支持了几种模态”。更具体的差异位于四条数据路径上：波形以多大的时间粒度进入语言模型；音频与视频怎样获得同一时间位置；文本 token 与语音 token 由哪些模块生成；流式输出必须等待多少上下文。下面沿着这四条路径逐代展开。</p>
+<p>这套 workflow 把识别、推理和合成拆成三个可独立替换、监控与审核的模块，至今仍适用于模块边界优先的生产系统。它的问题集中在模块之间：ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 通常要等待可用转写，TTS 又要等待可用文本；加入视频后，声音与画面还需要由系统层维护同一时间坐标。</p>
+<p>Qwen-Audio 到 Qwen3.5-Omni 的演进，可以看作这些外部接口逐步被移入模型：先让波形绕过 ASR 直接进入语言模型，再把音频与视频放到同一时间轴，随后加入文本与语音的并行生成，最后把轮次判断、语义打断和工具调用纳入实时交互。区分各代模型不能只看“支持了几种模态”，还要看五条数据路径：波形以多大的时间粒度进入语言模型；音频与视频怎样获得同一时间位置；文本 token 与语音 token 如何同步；流式输出必须等待多少上下文；模型在说话时怎样处理新输入。下面沿着这些接口逐代展开。</p>
         
           <a class="article-more-a" href="/2026/07/12/Qwen-Omni-Evolution/#more">more >></a>
         

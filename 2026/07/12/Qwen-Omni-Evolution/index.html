@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://yuange250.github.io">
   <title>Qwen-Omni 系列的技术演进：从音频理解到端到端全模态交互 | Chen Zhiyuan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语音助手可以由三套独立系统串联完成： 1用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音  这条链路的每个箭头都会引入信息损失或等待时间。ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 必须等 ASR 结束，TTS 又要等待可用文本；加入视频后，声音与画面还需要共享时间坐标。 区分 Qwen-Audio、Qwen2-Audio、Qwen2.5-">
+  <meta name="description" content="在原生端到端语音模型出现之前，语音助手通常采用上一代的级联式工作流： 1用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音  这套 workflow 把识别、推理和合成拆成三个可独立替换、监控与审核的模块，至今仍适用于模块边界优先的生产系统。它的问题集中在模块之间：ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 通常要等待可用转写，TTS 又要等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Qwen-Omni 系列的技术演进：从音频理解到端到端全模态交互">
 <meta property="og:url" content="https://yuange250.github.io/2026/07/12/Qwen-Omni-Evolution/index.html">
 <meta property="og:site_name" content="Chen Zhiyuan">
-<meta property="og:description" content="语音助手可以由三套独立系统串联完成： 1用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音  这条链路的每个箭头都会引入信息损失或等待时间。ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 必须等 ASR 结束，TTS 又要等待可用文本；加入视频后，声音与画面还需要共享时间坐标。 区分 Qwen-Audio、Qwen2-Audio、Qwen2.5-">
+<meta property="og:description" content="在原生端到端语音模型出现之前，语音助手通常采用上一代的级联式工作流： 1用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音  这套 workflow 把识别、推理和合成拆成三个可独立替换、监控与审核的模块，至今仍适用于模块边界优先的生产系统。它的问题集中在模块之间：ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 通常要等待可用转写，TTS 又要等">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-07-12T12:02:59.000Z">
-<meta property="article:modified_time" content="2026-07-12T14:56:15.323Z">
+<meta property="article:modified_time" content="2026-07-13T06:44:03.327Z">
 <meta property="article:author" content="Chen Zhiyuan">
 <meta property="article:tag" content="Qwen">
 <meta property="article:tag" content="multimodal">
@@ -198,11 +198,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>语音助手可以由三套独立系统串联完成：</p>
+        <p>在原生端到端语音模型出现之前，语音助手通常采用上一代的级联式工作流：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户语音 → ASR 转写 → LLM 生成文本 → TTS 合成语音</span><br></pre></td></tr></table></figure>
 
-<p>这条链路的每个箭头都会引入信息损失或等待时间。ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 必须等 ASR 结束，TTS 又要等待可用文本；加入视频后，声音与画面还需要共享时间坐标。</p>
-<p>区分 Qwen-Audio、Qwen2-Audio、Qwen2.5-Omni 和 Qwen3-Omni，不能只看“支持了几种模态”。更具体的差异位于四条数据路径上：波形以多大的时间粒度进入语言模型；音频与视频怎样获得同一时间位置；文本 token 与语音 token 由哪些模块生成；流式输出必须等待多少上下文。下面沿着这四条路径逐代展开。</p>
+<p>这套 workflow 把识别、推理和合成拆成三个可独立替换、监控与审核的模块，至今仍适用于模块边界优先的生产系统。它的问题集中在模块之间：ASR 错误会传入 LLM；语气、节奏与环境声无法完整保留在转写文本中；LLM 通常要等待可用转写，TTS 又要等待可用文本；加入视频后，声音与画面还需要由系统层维护同一时间坐标。</p>
+<p>Qwen-Audio 到 Qwen3.5-Omni 的演进，可以看作这些外部接口逐步被移入模型：先让波形绕过 ASR 直接进入语言模型，再把音频与视频放到同一时间轴，随后加入文本与语音的并行生成，最后把轮次判断、语义打断和工具调用纳入实时交互。区分各代模型不能只看“支持了几种模态”，还要看五条数据路径：波形以多大的时间粒度进入语言模型；音频与视频怎样获得同一时间位置；文本 token 与语音 token 如何同步；流式输出必须等待多少上下文；模型在说话时怎样处理新输入。下面沿着这些接口逐代展开。</p>
 <span id="more"></span>
 
 <h2 id="一、Qwen-Audio：用一套编码器承接三十多类音频任务"><a href="#一、Qwen-Audio：用一套编码器承接三十多类音频任务" class="headerlink" title="一、Qwen-Audio：用一套编码器承接三十多类音频任务"></a>一、Qwen-Audio：用一套编码器承接三十多类音频任务</h2><h3 id="1-波形怎样进入-Qwen-7B"><a href="#1-波形怎样进入-Qwen-7B" class="headerlink" title="1. 波形怎样进入 Qwen-7B"></a>1. 波形怎样进入 Qwen-7B</h3><p>Qwen-Audio 于 2023 年 11 月公开。</p>
@@ -456,15 +456,157 @@
 </tbody></table>
 <p>语言范围为 119 种文本语言、19 种语音输入语言和 10 种语音输出语言。官方汇总的 36 项音频与音视频基准中，32 项为开源模型最高结果，22 项为全部参评模型最高结果。[7]</p>
 <p>显存仍由总权重与上下文决定。官方仓库的 BF16 理论最低值中，15 秒视频需要 78.85GB，120 秒视频需要 144.81GB。[7] 技术报告还明确列出长视频限制：位置外推能力和上下文长度不足；在 Video-MME、LVBench 等长视频评测中，Qwen3-Omni 并未同步取得音频任务上的相对结果。[6]</p>
-<h2 id="五、仍未闭合的具体接口"><a href="#五、仍未闭合的具体接口" class="headerlink" title="五、仍未闭合的具体接口"></a>五、仍未闭合的具体接口</h2><h3 id="1-流式生成与全双工不是同一个接口"><a href="#1-流式生成与全双工不是同一个接口" class="headerlink" title="1. 流式生成与全双工不是同一个接口"></a>1. 流式生成与全双工不是同一个接口</h3><p>Qwen3-Omni 的 234ms 指标测量“收到尾包后多久产生首个音频包”。全双工还要求输出期间继续接收输入，并定义至少三类事件：检测用户插话后停止当前生成；在用户短暂反馈时保持原轮次；持续观察音视频并决定是否主动发言。Qwen3-Omni 的公开仓库没有给出这三类事件的接口或评测。[7]</p>
-<p>MiniCPM-o 4.5 将音频、视频输入流与文本、语音输出流放入统一时间线，并以 1Hz 频率判断是否发言，公开模型规模为 9B。[8] 其仓库同时列出 Omni 模式下的发音稳定性、中英文混合和全双工基础能力限制。Moshi 通过同步建模用户与系统两路语音 token 实现语音全双工，但不接收视觉输入。[9] 两项工作分别补充了主动音视频交互和双向语音建模，输入模态与基础模型能力不同。</p>
-<h3 id="2-40-分钟音频不等于持续视频记忆"><a href="#2-40-分钟音频不等于持续视频记忆" class="headerlink" title="2. 40 分钟音频不等于持续视频记忆"></a>2. 40 分钟音频不等于持续视频记忆</h3><p>Qwen3-Omni 支持超过 40 分钟的单次音频理解，但预训练长上下文上限为 32,768 token，技术报告也直接记录了长视频位置外推与上下文限制。[6] 持续视频还要求在上下文写满之前压缩历史事件，并在新证据出现后更新旧事件状态；公开模型没有给出这种长期记忆模块。</p>
-<p>Qwen3-VL 的原生上下文为 256K，可扩展到 1M，官方说明覆盖数小时视频与秒级事件定位。[10] 它不包含 Qwen3-Omni 的 Talker、MTP 和 Code2Wav。因此，长视觉上下文与实时语音输出目前位于两套模型中。</p>
-<h3 id="3-输入有四种，原生输出只有两种"><a href="#3-输入有四种，原生输出只有两种" class="headerlink" title="3. 输入有四种，原生输出只有两种"></a>3. 输入有四种，原生输出只有两种</h3><p>Qwen3-Omni 原生输入为文本、图像、音频、视频，原生输出为文本和语音。[7] 图像编辑、音乐续写和视频生成需要调用独立生成模型。</p>
-<p>NExT-GPT 使用投影层连接不同模态编码器，再通过输出适配器调用图像、视频和音频扩散模型；语言模型负责生成模态信号 token，而实际内容由外部解码器生成。[11] Unified-IO 2 则把文本、图像、音频和动作量化成统一离散序列，由同一个 encoder-decoder Transformer 预测。[12] 前者保留专用生成器，后者统一 token 空间，两者都没有采用 Qwen3-Omni 的实时 Talker 链路。</p>
-<h3 id="4-激活参数与驻留参数是两组数字"><a href="#4-激活参数与驻留参数是两组数字" class="headerlink" title="4. 激活参数与驻留参数是两组数字"></a>4. 激活参数与驻留参数是两组数字</h3><p>A3B 降低的是每个 token 的激活计算量，不会移除未被当前 token 选择的专家权重。完整本地部署还要为视觉与音频编码器、Talker、MTP、Code2Wav 和 KV Cache 预留显存。vLLM-Omni 通过分模块调度、张量并行和流水线执行处理多模态生成，AWQ、GGUF 等格式降低权重精度；这些方法分别减少调度开销或权重体积，不改变视频 token 随时长增长的事实。[15]</p>
-<h3 id="5-ASR-与-TTS-已拆成独立部署分支"><a href="#5-ASR-与-TTS-已拆成独立部署分支" class="headerlink" title="5. ASR 与 TTS 已拆成独立部署分支"></a>5. ASR 与 TTS 已拆成独立部署分支</h3><p>Qwen3-ASR 提供 0.6B 和 1.7B 两种规模，支持 30 种语言、22 种中文方言、歌曲识别、流式与离线转写，并可连接 ForcedAligner 输出词级时间戳。[13] Qwen3-TTS 支持 10 种语言、三秒声音克隆、自然语言音色描述和语音控制，其 tokenizer 的理论首包时间为 97ms。[14]</p>
-<p>这些模型不需要加载 Omni 中与目标任务无关的视觉或生成模块。相应地，采用 ASR → LLM → TTS 重新组成系统时，转写损失、模块间等待和跨模态状态传递又需要由系统层处理。统一模型与专用模型的差异因此可以落到可测量项上：总驻留参数、首包延迟、跨模块错误传播，以及是否保留语气和视觉上下文。</p>
+<h2 id="五、Qwen3-5-Omni：把长上下文、语音同步与轮次判断放进同一代模型"><a href="#五、Qwen3-5-Omni：把长上下文、语音同步与轮次判断放进同一代模型" class="headerlink" title="五、Qwen3.5-Omni：把长上下文、语音同步与轮次判断放进同一代模型"></a>五、Qwen3.5-Omni：把长上下文、语音同步与轮次判断放进同一代模型</h2><p>Qwen3.5-Omni 于 2026 年 4 月公开技术报告，包含 Plus 与 Flash 两个 instruct 版本。报告只说明模型扩展到数千亿参数，并未列出两个版本各自的总参数、激活参数和层数；因此，Plus 与 Flash 不能像 Qwen3-Omni-30B-A3B 一样由名称直接还原模型规模。[16]</p>
+<h3 id="1-AuT-的输出速率从-12-5Hz-继续降到-6-25Hz"><a href="#1-AuT-的输出速率从-12-5Hz-继续降到-6-25Hz" class="headerlink" title="1. AuT 的输出速率从 12.5Hz 继续降到 6.25Hz"></a>1. AuT 的输出速率从 12.5Hz 继续降到 6.25Hz</h3><p>Qwen3.5-Omni 沿用从零训练的 AuT，但输入频谱经过四个 Conv2D block 做 16 倍下采样，最终每秒只向 Thinker 送入 6.25 个音频表示，即每个表示覆盖约 160ms。作为对照，Qwen3-Omni 为 12.5Hz、约 80ms 一个表示，Qwen2.5-Omni 为 25Hz、约 40ms 一个表示。[16]</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Qwen2 / Qwen2.5：25 Hz   =  40ms / audio token</span><br><span class="line">Qwen3-Omni：      12.5 Hz =  80ms / audio token</span><br><span class="line">Qwen3.5-Omni：     6.25Hz = 160ms / audio token</span><br></pre></td></tr></table></figure>
+
+<p>AuT 使用 Qwen3-ASR 生成的 4,000 万小时音频—文本对训练，覆盖二十多种语言；中文、英文和其他多语言数据比例为 3.5 : 3.5 : 3。它继续使用动态注意力窗口，使流式 prefill 时可以复用局部缓存，离线音频任务又能使用更长的上下文。[16]</p>
+<p>文本侧的 byte-level BPE 词表从约 15 万扩展到 25 万。报告给出的多语言编码效率变化为 10% 至 60%；这不仅减少纯文本 token，也直接改变 ARIA 后续需要协调的文本—语音速率。[16]</p>
+<h3 id="2-绝对时间不再只写进-RoPE"><a href="#2-绝对时间不再只写进-RoPE" class="headerlink" title="2. 绝对时间不再只写进 RoPE"></a>2. 绝对时间不再只写进 RoPE</h3><p>Qwen3.5-Omni 保留 TM-RoPE：音频每 160ms 增加一个 temporal ID，视频帧按真实时间戳映射到同样的 160ms 网格。但长视频中，相邻视觉帧对应的 temporal ID 可能非常稀疏；若只依赖位置旋转，模型还需要在训练数据中见过足够多不同帧率与时长的组合。[16]</p>
+<p>这一代因此又加入一条显式时间通道：每个视频或音视频 temporal patch 前插入格式化为秒数的文本时间戳，纯音频序列也会在随机间隔插入时间戳。TM-RoPE 提供连续的位置结构，文本时间戳提供模型可以直接读写的 timecode。代价是序列略微增长，但结构化字幕可以直接输出场景分段、起止时间、人物与声音关系，而不必在解码后另做时间对齐。[16]</p>
+<h3 id="3-Thinker-与-Talker-都换成-Hybrid-Attention-MoE"><a href="#3-Thinker-与-Talker-都换成-Hybrid-Attention-MoE" class="headerlink" title="3. Thinker 与 Talker 都换成 Hybrid Attention MoE"></a>3. Thinker 与 Talker 都换成 Hybrid Attention MoE</h3><p>Qwen3.5-Omni 的 Thinker 和 Talker 均采用 Qwen3.5 系列的 Hybrid Attention MoE：以 Gated DeltaNet（GDN）承担主要的线性时间序列建模，并保留 Gated Attention 层处理需要精确回看的内容。[16][17]</p>
+<p>普通全注意力在长上下文中需要持续读写随序列增长的 KV Cache；GDN 把历史压入固定状态，主要减少长音频和长视频推理中的 KV-cache I&#x2F;O。保留全注意力则用于弥补纯线性注意力在精确检索上的限制。Qwen3.5-Omni 报告没有公开两个版本的层数、专家数或 GDN 与全注意力的具体层比例，只公开了这套结构同时用于 Thinker 与 Talker。[16]</p>
+<h3 id="4-ARIA-把两条生成轨道改成一个交错序列"><a href="#4-ARIA-把两条生成轨道改成一个交错序列" class="headerlink" title="4. ARIA 把两条生成轨道改成一个交错序列"></a>4. ARIA 把两条生成轨道改成一个交错序列</h3><p>Qwen3-Omni 的 Talker 需要并行维护离散文本 token 与语音 codec token。问题在于两类 tokenizer 的效率并不恒定：同一句话在中文、英文、数字、缩写或低资源语言中会产生不同数量的文本 token，而语音 token 数主要由发音时长决定。使用固定交错比例时，文本轨可能过早耗尽，也可能落后于语音轨，具体表现为漏词、错读和数字发音歧义。[16]</p>
+<p>ARIA（Adaptive Rate Interleave Alignment）取消固定交错率和 MFA 逐词对齐，把文本 token 与语音 token 组织成单个单调交错序列。它使用每条训练样本的整体语音—文本 token 比作为上限：对生成序列的任意前缀，已生成语音 token 相对文本 token 的累计比例都不能超过该样本的全局比例。模型可以先生成任意长度的文本前缀，再在约束内插入足够的语音 token，并随语言和语速动态改变两者间隔。[16]</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Qwen3-Omni：   text stream ─────────────→</span><br><span class="line">               speech stream ───────────→  两轨分别调度</span><br><span class="line"></span><br><span class="line">Qwen3.5-Omni：text₀ text₁ speech₀ speech₁ text₂ ...</span><br><span class="line">               └──── ARIA 单调速率约束 ────┘</span><br></pre></td></tr></table></figure>
+
+<p>Talker 仍预测 RVQ 主码本，MTP 补齐当前帧的残差码本，因果 Code2Wav 逐帧恢复波形。ARIA 修改的是文本与语音单元进入 Talker 解码序列的时间，而不是把 Qwen3-Omni 的 MTP 与 Code2Wav 再替换一遍。[16]</p>
+<h3 id="5-256K-是-Thinker-上下文，Talker-另有-64K-训练阶段"><a href="#5-256K-是-Thinker-上下文，Talker-另有-64K-训练阶段" class="headerlink" title="5. 256K 是 Thinker 上下文，Talker 另有 64K 训练阶段"></a>5. 256K 是 Thinker 上下文，Talker 另有 64K 训练阶段</h3><p>Thinker 的预训练分三段：[16]</p>
+<ol>
+<li><strong>Encoder Alignment：</strong>LLM、视觉编码器与音频编码器分别从 Qwen3.5、Qwen3.5 Vision Encoder 和 AuT 初始化；冻结 LLM，先训练 adapter，再训练两个编码器。</li>
+<li><strong>General Stage：</strong>解冻全部参数，在 32,768 长度下训练约 4T token，其中纯文本 0.92T、音频 1.99T、图像 0.95T、视频 0.14T、音视频 0.29T。</li>
+<li><strong>Long Context Stage：</strong>把最大长度从 32,768 提升到 262,144，并增加长音频和长视频样本比例。</li>
+</ol>
+<p>报告将这套上下文换算为超过 10 小时音频，或 1 FPS 下超过 400 秒的 720P 音视频输入。这里的两种时长不能直接互换：视频帧还会产生空间 patch token，因此同样的 256K 在视频上消耗得更快。[16]</p>
+<p>Talker 的训练长度并不等于 Thinker。其 General Stage 使用超过 2,000 万小时、带多模态上下文的多语言语音；后续高质量持续预训练把 Talker 上下文扩展到 64K，再经过 DPO、GSPO 与 speaker fine-tuning。由此，256K 描述的是多模态理解与文本生成主干，不能直接解释为一次语音回复可以自回归生成 256K token。[16]</p>
+<h3 id="6-实时交互增加了语义打断，但仍有会话层上限"><a href="#6-实时交互增加了语义打断，但仍有会话层上限" class="headerlink" title="6. 实时交互增加了语义打断，但仍有会话层上限"></a>6. 实时交互增加了语义打断，但仍有会话层上限</h3><p>Qwen3.5-Omni 的技术报告新增原生 turn-taking intent recognition：模型区分真正要求打断的内容、用户的简短附和与背景声音，并能在语音指令中控制音量、语速和情绪。Talker 的独立 system prompt 还可以接收文字描述和参考音频 codec，从而执行零样本音色克隆。[16]</p>
+<p>在 Alibaba Cloud 的 realtime 接口中，这些能力落成两种轮次检测方式：<code>server_vad</code> 根据声学活动和静音时长切分轮次，<code>semantic_vad</code> 再根据语义完整性过滤填充词、附和与背景噪声；客户端通过 WebSocket 或 WebRTC 连续发送音频、图像帧和控制事件。Plus 版本支持内置 Web Search 与 Function Calling，但两者当前不能同时开启。[18]</p>
+<p>实时 API 的会话记忆短于离线模型的理论输入上限。<code>qwen3.5-omni-plus-realtime</code> 单连接最长 120 分钟，但仅保留最近 100 轮或累计 600 秒音频；视频为 50 轮或累计 240 秒。达到上限后会丢弃最早历史。因此，“模型可理解 10 小时音频”描述单次长输入能力，“实时会话保留 600 秒音频”描述在线服务的滚动状态，二者不是同一指标。[18]</p>
+<h3 id="7-延迟与同口径指标发生了哪些变化"><a href="#7-延迟与同口径指标发生了哪些变化" class="headerlink" title="7. 延迟与同口径指标发生了哪些变化"></a>7. 延迟与同口径指标发生了哪些变化</h3><p>报告在内部 vLLM、<code>torch.compile</code>、CUDA Graph 条件下给出单并发理论首包：Flash 的音频 &#x2F; 视频输入为 235 &#x2F; 426ms，Plus 为 435 &#x2F; 651ms。Flash 的 Generation RTF 为 0.178，Plus 为 0.187；8 并发时分别升至 0.257 与 0.334。报告同时说明两个版本的模型规模和并行策略差异较大，不能用首包数字直接比较模型质量。[16]</p>
+<p>与 Qwen3-Omni 报告中同名评测可对照的结果如下：[6][16]</p>
+<table>
+<thead>
+<tr>
+<th>接口或任务</th>
+<th align="right">Qwen3-Omni-30B-A3B</th>
+<th align="right">Qwen3.5-Omni-Plus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AuT 输出速率</td>
+<td align="right">12.5Hz（80ms）</td>
+<td align="right">6.25Hz（160ms）</td>
+</tr>
+<tr>
+<td>Thinker 最大训练长度</td>
+<td align="right">32,768</td>
+<td align="right">262,144</td>
+</tr>
+<tr>
+<td>LibriSpeech clean &#x2F; other WER ↓</td>
+<td align="right">1.22 &#x2F; 2.48</td>
+<td align="right">1.11 &#x2F; 2.23</td>
+</tr>
+<tr>
+<td>VoiceBench Overall ↑</td>
+<td align="right">85.5</td>
+<td align="right">93.1</td>
+</tr>
+<tr>
+<td>SEED-TTS 中文 &#x2F; 英文 WER ↓</td>
+<td align="right">1.07 &#x2F; 1.39</td>
+<td align="right">0.99 &#x2F; 1.26</td>
+</tr>
+<tr>
+<td>语音输入语言与方言</td>
+<td align="right">19 种语言</td>
+<td align="right">113 种语言与方言</td>
+</tr>
+<tr>
+<td>语音输出语言与方言</td>
+<td align="right">10 种语言</td>
+<td align="right">36 种语言与方言</td>
+</tr>
+</tbody></table>
+<p>Qwen3.5-Omni-Plus 还在 215 个音频与音视频子任务及基准上汇总结果；其中 MMAU 为 82.2、VoiceBench 为 93.1、Omni-Cloze 为 64.8、OmniGAIA 为 57.2。后两项分别对应音视频字幕与工具使用，不应与 ASR 的 WER 合并成一个“全模态分数”。[16]</p>
+<h2 id="六、最新实时方案的差异：五套系统解决的不是同一个接口"><a href="#六、最新实时方案的差异：五套系统解决的不是同一个接口" class="headerlink" title="六、最新实时方案的差异：五套系统解决的不是同一个接口"></a>六、最新实时方案的差异：五套系统解决的不是同一个接口</h2><p>截至 2026 年 7 月，Qwen3.5-Omni、Thinking Machines Lab Interaction Models、Seeduplex、Grok Live 和 GPT-Live 的公开形态不同：有的是技术报告与云端模型，有的是研究预览，有的是已经上线的消费产品或 Voice Agent API。下面只比较公开材料明确给出的接口，不根据产品演示反推未披露的内部架构。</p>
+<div style="max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>时间组织</th>
+<th>输入与输出</th>
+<th>轮次、打断与主动性</th>
+<th>公开边界</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qwen3.5-Omni Realtime</td>
+<td>chunked prefill；TM-RoPE + 文本时间戳；ARIA 交错文本&#x2F;语音</td>
+<td>文本、音频、图像&#x2F;视频 → 文本、语音</td>
+<td><code>server_vad</code> &#x2F; <code>semantic_vad</code>；语义打断；idle timeout</td>
+<td>模型报告 + 商业 API；未披露固定 micro-turn 调度</td>
+</tr>
+<tr>
+<td>TML Interaction Model</td>
+<td>输入与输出均切成 200ms micro-turn，按 <code>input₀ output₀ input₁ output₁</code> 排列</td>
+<td>文本、音频、视频 → 文本、语音</td>
+<td>模型原生决定沉默、附和、插话和视觉触发</td>
+<td>研究预览；276B MoE、12B 激活；长会话管理仍在研究</td>
+</tr>
+<tr>
+<td>Seeduplex</td>
+<td>持续接收用户音频，联合建模声学与语义状态</td>
+<td>文本、音频 → 文本、语音</td>
+<td>原生 listen-while-speaking；语义端点、目标说话人过滤、用户打断</td>
+<td>已用于豆包；视觉、backchannel、边听边搜索仍列在后续计划</td>
+</tr>
+<tr>
+<td>Grok Live &#x2F; Voice Agent</td>
+<td>WebSocket 双向流；服务端 VAD 或手动提交轮次</td>
+<td>API 为文本、音频 → 文本、语音</td>
+<td>VAD 阈值&#x2F;静音时长；idle timeout；工具调用时后台推理</td>
+<td>商业 API；内部 token 时间结构未公开；消费端相机能力不等同于 API</td>
+</tr>
+<tr>
+<td>GPT-Live</td>
+<td>连续全双工；每秒多次决定说、听、停、打断或调用工具</td>
+<td>当前产品为语音输入&#x2F;输出与视觉卡片</td>
+<td>原生附和、重叠语音、暂停与打断；复杂任务委派后台模型</td>
+<td>ChatGPT 产品；截至发布时尚未开放 API，且不支持视频&#x2F;屏幕共享</td>
+</tr>
+</tbody></table>
+</div>
+
+<h3 id="1-Thinking-Machines-Lab：把交互时间离散成-200ms-micro-turn"><a href="#1-Thinking-Machines-Lab：把交互时间离散成-200ms-micro-turn" class="headerlink" title="1. Thinking Machines Lab：把交互时间离散成 200ms micro-turn"></a>1. Thinking Machines Lab：把交互时间离散成 200ms micro-turn</h3><p>TML-Interaction-Small 不等待用户轮次结束。系统每次读取 200ms 的音频、视频或文本输入，同时生成对应 200ms 的文本或音频输出，再把两路数据按 <code>input₀, output₀, input₁, output₁...</code> 写进一个自回归序列。沉默、重叠说话和打断因此都是训练序列中的普通状态，而不是外部 VAD 触发后再补写的事件。[19]</p>
+<p>其输入侧没有 Whisper 规模的独立编码器：音频 dMel 经过轻量 embedding，图像切成 40×40 patch 后经过 hMLP，音频输出由 flow head 生成，所有组件与 Transformer 从头联合训练。为了让频繁的 200ms 小 prefill 不被推理框架开销吞没，服务端把每次请求追加到 GPU 中的持久序列，并为双向 serving 单独优化 attention 与 MoE kernel。[19]</p>
+<p>TML 还把实时 interaction model 与异步 background model 分开：前者持续处理用户、保持对话和接收新输入，后者执行长推理、搜索和工具任务；结果生成后再流回实时模型。其公开演示与 TimeSpeak、CueSpeak、ProactiveVideoQA、Charades 评测覆盖按时间提醒、听到指定口误立即纠正、看到动作发生才开口等主动行为。[19]</p>
+<p>这套方法的约束也由官方材料直接给出：TML-Interaction-Small 为 276B 总参数、12B 激活，连续音视频会快速累积上下文；更大的预训练模型尚不能满足该 serving 延迟，长会话需要额外上下文管理，网络抖动也会直接破坏 200ms 节奏。[19]</p>
+<h3 id="2-Seeduplex：先解决持续收音中的对象与端点"><a href="#2-Seeduplex：先解决持续收音中的对象与端点" class="headerlink" title="2. Seeduplex：先解决持续收音中的对象与端点"></a>2. Seeduplex：先解决持续收音中的对象与端点</h3><p>Seeduplex 的重点不是视觉理解，而是语音全双工中的两个判断：当前声音是否在对模型说话，以及用户究竟是在思考还是已经说完。模型持续接收用户侧音频，把声学特征、语义内容和对话上下文共同用于“开始回答、继续听、响应打断”三类状态决策，不再只由一段静音触发下一轮。[20]</p>
+<p>官方公布的豆包线上对照均以此前 half-duplex 模型为基线：端点延迟减少约 250ms，复杂场景中 AI 过早插话率下降 40%，处理用户打断的响应时间减少约 300ms，误响应率与误打断率减半；Endpoint MOS 提升 8%，Dialogue Fluency MOS 提升 12%。这些是同一产品内的 A&#x2F;B 与主观评测，不是与 Qwen、TML、Grok 或 GPT-Live 的统一基准。[20]</p>
+<p>官方路线图同时说明当前能力边界：backchannel 主动附和、由声学上下文发起对话、视觉输入，以及“边听边思考 &#x2F; 边听边搜索”仍属于后续工作。也就是说，Seeduplex 已把双向语音的节奏控制放入模型，但还没有公开 Qwen3.5-Omni 与 TML 所覆盖的实时视觉接口。[20]</p>
+<h3 id="3-Grok-Live：产品侧强调语音-Agent，API-仍显式保留-VAD"><a href="#3-Grok-Live：产品侧强调语音-Agent，API-仍显式保留-VAD" class="headerlink" title="3. Grok Live：产品侧强调语音 Agent，API 仍显式保留 VAD"></a>3. Grok Live：产品侧强调语音 Agent，API 仍显式保留 VAD</h3><p>xAI 当前的 Voice Agent 模型为 <code>grok-voice-think-fast-1.0</code>，<code>grok-voice-latest</code> 指向该版本。API 通过 WebSocket 双向传输音频与文本，支持 Web Search、X Search、Collections、MCP 和自定义函数；<code>reasoning.effort</code> 默认为 <code>high</code>，官方将其描述为在后台进行实时推理。[21][22]</p>
+<p>它的轮次接口仍然显式暴露 <code>server_vad</code>：开发者可以设置激活阈值、静音结束时长和前缀音频，也可以关闭 VAD 后手动 commit。<code>idle_timeout_ms</code> 会在助手说完且用户持续沉默时主动再次发言。该 API 与 OpenAI Realtime 事件协议大体兼容，还增加了断线续接、强制播报和发音替换事件。[21]</p>
+<p>这套公开接口能确认的是双向流、VAD、工具和后台推理，不能确认模型内部是否像 TML 一样按固定 micro-turn 训练。Grok 消费端 Voice Mode 已提供相机画面理解，但 Voice Agent API 的能力表只列文本与音频输入输出；两者应分别描述。[21][23]</p>
+<h3 id="4-GPT-Live：把全双工前台与-GPT-5-5-后台解耦"><a href="#4-GPT-Live：把全双工前台与-GPT-5-5-后台解耦" class="headerlink" title="4. GPT-Live：把全双工前台与 GPT-5.5 后台解耦"></a>4. GPT-Live：把全双工前台与 GPT-5.5 后台解耦</h3><p>GPT-Live 于 2026 年 7 月 8 日发布，包含 GPT-Live-1 与 GPT-Live-1 mini。它与此前 GPT-Realtime &#x2F; Advanced Voice Mode 的差异不是只缩短 VAD 静音阈值：模型在生成输出时持续处理输入，每秒多次决定继续听、开始说、暂停、打断或调用工具，因此可以在用户说话时附和，也可以保持沉默等待用户思考。[24]</p>
+<p>复杂任务由另一个模型异步执行。发布时 GPT-Live 将搜索、深度推理和 agentic 工作委派给 GPT-5.5，自己继续维持语音对话，再接收后台结果。这个前台实时模型 + 后台推理模型的系统边界与 TML 的公开描述相似，但 OpenAI 没有披露 GPT-Live 的 micro-turn 大小、音频 token 格式或参数规模。[24]</p>
+<p>GPT-Live 发布时只用于 ChatGPT Voice，API 仍在计划中；初始版本也不支持视频或屏幕共享。开发者当前可调用的是另一条产品线 GPT-Realtime-2.1：它在 GPT-Realtime-2 上修改了字母数字识别、静音与噪声处理和打断行为，提供 128K 上下文、可调 reasoning effort、图像输入、语音输入输出和 Function Calling，但不接收视频。因而，GPT-Live 的全双工产品行为不能直接当作 Realtime API 已公开的能力。[24][25]</p>
+<h3 id="5-Qwen3-5-Omni：同时开放四类输入，但主动视觉评测仍缺位"><a href="#5-Qwen3-5-Omni：同时开放四类输入，但主动视觉评测仍缺位" class="headerlink" title="5. Qwen3.5-Omni：同时开放四类输入，但主动视觉评测仍缺位"></a>5. Qwen3.5-Omni：同时开放四类输入，但主动视觉评测仍缺位</h3><p>Qwen3.5-Omni 同时公开了音视频编码、长上下文、语音生成和实时 API，并在同一实时接口中组合文本、音频、图像和视频输入。<code>semantic_vad</code> 与原生 turn-taking recognition 已经补上 Qwen3-Omni 缺少的语义打断接口，实时服务也支持 WebRTC、WebSocket、工具调用和滚动会话历史。[16][18]</p>
+<p>但其技术报告的实时指标集中在首包延迟、RTF、语音质量和音视频问答；没有像 TML 一样公布“看到指定视觉事件后应在何时主动开口”的评测，也没有公开固定的双向 micro-turn 训练序列。由现有资料可以确认低延迟流式输入输出和语义打断，不能进一步推断任意视觉事件触发下的主动发言能力。</p>
+<h2 id="七、仍未闭合的具体接口"><a href="#七、仍未闭合的具体接口" class="headerlink" title="七、仍未闭合的具体接口"></a>七、仍未闭合的具体接口</h2><h3 id="1-全双工语音、实时全模态与主动视觉是三个层级"><a href="#1-全双工语音、实时全模态与主动视觉是三个层级" class="headerlink" title="1. 全双工语音、实时全模态与主动视觉是三个层级"></a>1. 全双工语音、实时全模态与主动视觉是三个层级</h3><p>全双工语音要求模型在说话时继续听，并正确处理附和、抢话和背景声；实时全模态还要求视频与音频共享时钟；主动视觉进一步要求模型在没有新问题时持续判断“现在是否该说话”。Seeduplex 已公开前一层，Qwen3.5-Omni 覆盖前两层并提供语义打断，TML 的研究预览把第三层也作为训练和评测对象。[16][19][20]</p>
+<p>MiniCPM-o 4.5 将音频、视频输入流与文本、语音输出流放入统一时间线，并以 1Hz 频率判断是否发言，公开模型规模为 9B。[8] 其仓库同时列出 Omni 模式下的发音稳定性、中英文混合和全双工基础能力限制。Moshi 通过同步建模用户与系统两路语音 token 实现语音全双工，但不接收视觉输入。[9] 这些工作补齐的接口不同，不能仅按首包延迟排成一条榜单。</p>
+<h3 id="2-10-小时输入不等于-10-小时持续记忆"><a href="#2-10-小时输入不等于-10-小时持续记忆" class="headerlink" title="2. 10 小时输入不等于 10 小时持续记忆"></a>2. 10 小时输入不等于 10 小时持续记忆</h3><p>Qwen3.5-Omni 将 Thinker 训练长度扩展到 256K，并报告超过 10 小时的单次音频理解；实时 Plus API 却只保留累计 600 秒音频和 240 秒视频，超出后滚动丢弃最早历史。[16][18] 持续会话还需要把已经发生的事件压缩为可更新状态，并在新证据出现后修正旧结论；扩大一次请求的 token 上限并不会自动产生这类长期记忆。</p>
+<p>TML 也把 continuous audio&#x2F;video 的上下文快速累积列为限制。[19] Qwen3-VL 的原生上下文为 256K、可扩展到 1M，可处理数小时视频与秒级事件定位，但它不包含 Omni 的 Talker、MTP 和 Code2Wav。[10] 长视觉记忆、全双工语音和主动交互仍需要在系统层协调。</p>
+<h3 id="3-输入有四种，原生输出仍只有两种"><a href="#3-输入有四种，原生输出仍只有两种" class="headerlink" title="3. 输入有四种，原生输出仍只有两种"></a>3. 输入有四种，原生输出仍只有两种</h3><p>Qwen3.5-Omni 原生输入为文本、图像、音频和视频，原生输出为文本和语音。[16] 图像编辑、音乐续写和视频生成仍需调用独立生成模型。</p>
+<p>NExT-GPT 使用投影层连接不同模态编码器，再通过输出适配器调用图像、视频和音频扩散模型；语言模型负责生成模态信号 token，实际内容由外部解码器生成。[11] Unified-IO 2 则把文本、图像、音频和动作量化成统一离散序列，由同一个 encoder-decoder Transformer 预测。[12] 前者保留专用生成器，后者统一 token 空间，两者都没有采用 Qwen3.5-Omni 的实时 ARIA + Talker 链路。</p>
+<h3 id="4-最新方案仍缺少统一交互评测"><a href="#4-最新方案仍缺少统一交互评测" class="headerlink" title="4. 最新方案仍缺少统一交互评测"></a>4. 最新方案仍缺少统一交互评测</h3><p>首包延迟、turn-taking latency、endpoint MOS、FD-bench 和产品满意度测量的是不同对象。Qwen3.5-Omni 的 235ms 是指定内部推理栈上的理论音频首包；TML 的 0.40 秒是 FD-bench 中的轮次响应；Seeduplex 的 250ms 是相对上一代豆包模型减少的端点延迟；Grok 与 GPT-Live 的公开材料又主要给出产品或 API 指标。[16][19][20][22][24]</p>
+<p>可直接横向比较的评测至少要固定网络、音频设备、VAD 策略、并发、是否允许后台模型与工具，并同时记录误打断、漏打断、附和识别、响应内容正确率和主动发言时机。当前公开数字不足以把五套系统压缩为单一排名。</p>
+<h3 id="5-激活参数与驻留参数是两组数字"><a href="#5-激活参数与驻留参数是两组数字" class="headerlink" title="5. 激活参数与驻留参数是两组数字"></a>5. 激活参数与驻留参数是两组数字</h3><p>3B 或 12B 的激活参数降低的是每个 token 的计算量，不会移除未被当前 token 选择的专家权重。完整部署还要为视觉与音频编码器、Talker、MTP、波形解码器和 KV Cache 预留显存。Qwen3.5-Omni-Plus 与 Flash 没有公开参数明细，TML-Interaction-Small 则公开为 276B 总参数、12B 激活参数，两者都不能只根据激活参数估算显存。[16][19]</p>
+<p>vLLM-Omni 通过分模块调度、张量并行和流水线执行处理多模态生成，AWQ、GGUF 等格式降低权重精度；这些方法分别减少调度开销或权重体积，不改变音频、视频 token 与会话时长持续增长的事实。[15]</p>
+<h3 id="6-专用-ASR-与-TTS-仍会把系统带回级联工作流"><a href="#6-专用-ASR-与-TTS-仍会把系统带回级联工作流" class="headerlink" title="6. 专用 ASR 与 TTS 仍会把系统带回级联工作流"></a>6. 专用 ASR 与 TTS 仍会把系统带回级联工作流</h3><p>Qwen3-ASR 提供 0.6B 和 1.7B 两种规模，支持 30 种语言、22 种中文方言、歌曲识别、流式与离线转写，并可连接 ForcedAligner 输出词级时间戳。[13] Qwen3-TTS 支持 10 种语言、三秒声音克隆、自然语言音色描述和语音控制，其 tokenizer 的理论首包时间为 97ms。[14]</p>
+<p>这些模型不需要加载 Omni 中与目标任务无关的视觉或生成模块。相应地，采用 ASR → LLM → TTS 重新组成系统时，就回到了文章开头的级联式 workflow：它换来模块可替换、可单独扩缩容和更清晰的审计边界，也重新引入转写损失、模块间等待与跨模态状态传递。两条路线可以用总驻留参数、首包与端点延迟、跨模块错误传播、工具可控性，以及是否保留语气和视觉上下文分别评估。</p>
 <h2 id="资料与延伸阅读"><a href="#资料与延伸阅读" class="headerlink" title="资料与延伸阅读"></a>资料与延伸阅读</h2><p>[1] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen-Audio">Qwen-Audio 官方仓库</a></p>
 <p>[2] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2311.07919">Qwen-Audio: Advancing Universal Audio Understanding via Unified Large-Scale Audio-Language Models</a></p>
 <p>[3] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.10759">Qwen2-Audio Technical Report</a></p>
@@ -480,6 +622,16 @@
 <p>[13] <a target="_blank" rel="noopener" href="https://github.com/QwenLM/Qwen3-ASR">Qwen3-ASR 官方仓库</a></p>
 <p>[14] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2601.15621">Qwen3-TTS Technical Report</a></p>
 <p>[15] <a target="_blank" rel="noopener" href="https://github.com/vllm-project/vllm-omni">vLLM-Omni 官方仓库</a></p>
+<p>[16] <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.15804">Qwen3.5-Omni Technical Report</a></p>
+<p>[17] <a target="_blank" rel="noopener" href="https://qwen.ai/blog?id=qwen3.5">Qwen3.5: Towards Native Multimodal Agents</a></p>
+<p>[18] <a target="_blank" rel="noopener" href="https://www.alibabacloud.com/help/en/model-studio/realtime">Qwen-Omni-Realtime 官方文档</a></p>
+<p>[19] <a target="_blank" rel="noopener" href="https://thinkingmachines.ai/blog/interaction-models/">Thinking Machines Lab: Interaction Models</a></p>
+<p>[20] <a target="_blank" rel="noopener" href="https://seed.bytedance.com/en/blog/introducing-seed-full-duplex-speech-llm-attentive-listening-robust-interference-suppression-enabling-more-natural-interaction">ByteDance Seed: Introducing Seeduplex</a></p>
+<p>[21] <a target="_blank" rel="noopener" href="https://docs.x.ai/developers/model-capabilities/audio/voice-agent">xAI Voice Agent API 文档</a></p>
+<p>[22] <a target="_blank" rel="noopener" href="https://x.ai/news/grok-voice-think-fast-1">xAI: Grok Voice Think Fast 1.0</a></p>
+<p>[23] <a target="_blank" rel="noopener" href="https://x.ai/news/grok-4">xAI: Grok 4 Voice Mode</a></p>
+<p>[24] <a target="_blank" rel="noopener" href="https://openai.com/index/introducing-gpt-live/">OpenAI: Introducing GPT-Live</a></p>
+<p>[25] <a target="_blank" rel="noopener" href="https://developers.openai.com/api/docs/models/gpt-realtime-2.1">OpenAI GPT-Realtime-2.1 模型文档</a></p>
 
       
 
